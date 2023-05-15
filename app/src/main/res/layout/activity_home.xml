@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/homeAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/home_actionbar_menu"
+            app:navigationIcon="@drawable/ic_baseline_menu_24"
+            style="@style/Widget.MaterialComponents.Toolbar.Surface">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Automat™"
+                android:textSize="20sp"
+                android:textFontWeight="800"
+                android:layout_gravity="center"/>
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:id="@+id/noMachineFound"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/no_machine" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:text="Cerca distributori Automat™"
+            android:textAlignment="center"
+            android:textFontWeight="700"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/scanHelp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Premi %icon% per trovare distributori vicini"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/detectedMachines"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Distributori rilevati"
+            android:textSize="20sp"
+            android:textAlignment="textStart"
+            android:textFontWeight="700"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/machineList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/scanFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottomNav"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/home_fab_description"
+        app:srcCompat="@drawable/ic_baseline_refresh_24"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_navigation_menu" />
+</RelativeLayout>

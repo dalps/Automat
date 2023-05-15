@@ -1,22 +1,26 @@
 package com.monopalla.automat.data;
 
+import android.content.Context;
+
 import com.monopalla.automat.data.model.Machine;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class MachineRepository {
     private static MachineRepository instance;
-    private final Map<String, Machine> machines = new HashMap<String, Machine>();
+    private final Map<String, Machine> machines = new HashMap<>();
 
-    private MachineRepository() {
-        ProductRepository products = ProductRepository.getInstance();
+    private MachineRepository(Context context) {
+        ProductRepository products = ProductRepository.getInstance(context);
 
         Machine temp = new Machine("ATM-00011034",
                 "Automat del Palazzo #1",
                 "Cagliari",
-                "Disponibile");
+                "%icon% Pronto");
         temp.assignSlot("A01", products.getProduct("Fiesta"), 18);
         temp.assignSlot("A02", products.getProduct("Oreo"), 20);
         temp.assignSlot("A03", products.getProduct("Tuc"), 25);
@@ -25,7 +29,7 @@ public class MachineRepository {
         temp = new Machine("ATM-00011035",
                 "Automat del Palazzo #2",
                 "Cagliari",
-                "Disponibile");
+                "%icon% Occupato");
         temp.assignSlot("A01", products.getProduct("Fiesta"), 33);
         temp.assignSlot("A02", products.getProduct("Oreo"), 28);
         temp.assignSlot("A03", products.getProduct("Fonzies"), 27);
@@ -33,9 +37,9 @@ public class MachineRepository {
         machines.put(temp.getSerialNumber(), temp);
     }
 
-    public static MachineRepository getInstance() {
+    public static MachineRepository getInstance(Context context) {
         if(instance == null) {
-            instance = new MachineRepository();
+            instance = new MachineRepository(context);
         }
 
         return instance;
@@ -45,7 +49,7 @@ public class MachineRepository {
         return machines.get(serialNumber);
     }
 
-    public Collection<Machine> getMachines() {
-        return machines.values();
+    public ArrayList<Machine> getMachines() {
+        return new ArrayList<>(machines.values());
     }
 }

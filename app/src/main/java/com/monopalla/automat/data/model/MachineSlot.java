@@ -8,10 +8,10 @@ public class MachineSlot {
     private int numberOfItems; // The current amount of product items
     private static final int ITEM_CAPACITY = 50; // The maximum number of product items a slot can hold
 
-    public MachineSlot(String name, Product product, int count) {
+    public MachineSlot(String name, Product product, int initialAmount) {
         this.name = name;
         this.product = product;
-        this.numberOfItems = count;
+        numberOfItems = initialAmount;
     }
 
     public MachineSlot(String name) {

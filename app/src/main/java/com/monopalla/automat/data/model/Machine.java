@@ -11,6 +11,13 @@ public class Machine {
     private HashMap<String, MachineSlot> slots;
     private final static int SLOT_CAPACITY = 40;
 
+    /**
+     *
+     * @param serialNumber
+     * @param name
+     * @param position
+     * @param status
+     */
     public Machine(String serialNumber, String name, String position, String status) {
         this.serialNumber = serialNumber;
         this.name = name;
@@ -80,8 +87,9 @@ public class Machine {
     }
 
     /**
-     * Assign a product to an existing slot or create a new slot to hold it
-     **/
+     * Assign a product to an existing slot and fill it with some items. Alternatively add a new
+     * slot to the machine if there is no space available.
+     */
     public void assignSlot(String slotName, Product product, int amount) {
         MachineSlot slot = slots.get(slotName);
 

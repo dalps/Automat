@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Automat</string>
+    <string name="rv_machine_name">%1$s</string>
+    <string name="rv_machine_status">%1$s</string>
+    <string name="home_fab_description">Cerca Automat nelle vicinanze</string>
+    <string name="home_scan_help">Premi il pulsante %icon% per rilevare distributori vicini</string>
 </resources>
