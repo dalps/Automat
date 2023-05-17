@@ -1,9 +1,12 @@
 package com.monopalla.automat.data.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
-public class Machine {
+public class Machine implements Serializable {
     private String serialNumber;
     private String name;
     private String position;
@@ -24,6 +27,7 @@ public class Machine {
         this.position = position;
         this.status = status;
         this.slots = new HashMap<>();
+        System.out.println(slots.size());
     }
 
     public String getSerialNumber() {
@@ -99,12 +103,21 @@ public class Machine {
             return;
         }
 
-        if(slots.size() < SLOT_CAPACITY) {
+        if(slots.size() >= SLOT_CAPACITY) {
             System.out.println("Machine " + getSerialNumber() + " has no free slots available");
             return;
         }
 
         slots.put(slotName, new MachineSlot(slotName, product, amount));
+    }
+
+    public ArrayList<Product> getProducts() {
+        return slots.values()
+                .stream()
+                .filter(MachineSlot::isAssigned)
+                .map(MachineSlot::getProduct)
+                .distinct()
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override

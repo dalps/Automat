@@ -4,4 +4,6 @@
     <string name="rv_machine_status">%1$s</string>
     <string name="home_fab_description">Cerca Automat nelle vicinanze</string>
     <string name="home_scan_help">Premi il pulsante %icon% per rilevare distributori vicini</string>
+    <string name="machine_activity_subtitle">in %1$s</string>
+    <string name="product_price">%1$.2f Euro</string>
 </resources>

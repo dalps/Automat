@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.monopalla.automat.data.MachineRepository;
@@ -25,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     View machineListView;
     TextView scanHelpTV;
     BottomNavigationView bottomNavView;
+    MaterialToolbar appBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +38,14 @@ public class HomeActivity extends AppCompatActivity {
 
         machinesRV = findViewById(R.id.machineList);
         machinesRV.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MachineRecyclerViewAdapter((ArrayList<Machine>) machineData.getMachines());
+        adapter = new MachineRecyclerViewAdapter(machineData.getMachines());
         machinesRV.setAdapter(adapter);
         scanFAB = findViewById(R.id.scanFAB);
         noMachineFoundView = findViewById(R.id.noMachineFound);
         machineListView = findViewById(R.id.detectedMachines);
         scanHelpTV = findViewById(R.id.scanHelp);
         bottomNavView = findViewById(R.id.bottomNav);
+        appBar = findViewById(R.id.homeAppBar);
 
         bottomNavView.setSelectedItemId(R.id.home);
 

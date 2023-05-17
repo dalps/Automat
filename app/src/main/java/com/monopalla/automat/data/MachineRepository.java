@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class MachineRepository {
     private static MachineRepository instance;
     private final Map<String, Machine> machines = new HashMap<>();
+    private Machine currentMachine;
 
     private MachineRepository(Context context) {
         ProductRepository products = ProductRepository.getInstance(context);
@@ -20,7 +21,7 @@ public class MachineRepository {
         Machine temp = new Machine("ATM-00011034",
                 "Automat del Palazzo #1",
                 "Cagliari",
-                "%icon% Pronto");
+                "Pronto");
         temp.assignSlot("A01", products.getProduct("Fiesta"), 18);
         temp.assignSlot("A02", products.getProduct("Oreo"), 20);
         temp.assignSlot("A03", products.getProduct("Tuc"), 25);
@@ -29,7 +30,7 @@ public class MachineRepository {
         temp = new Machine("ATM-00011035",
                 "Automat del Palazzo #2",
                 "Cagliari",
-                "%icon% Occupato");
+                "Occupato");
         temp.assignSlot("A01", products.getProduct("Fiesta"), 33);
         temp.assignSlot("A02", products.getProduct("Oreo"), 28);
         temp.assignSlot("A03", products.getProduct("Fonzies"), 27);
@@ -45,11 +46,23 @@ public class MachineRepository {
         return instance;
     }
 
+    public static MachineRepository getInstance() {
+        return instance;
+    }
+
     public Machine getMachine(String serialNumber) {
         return machines.get(serialNumber);
     }
 
     public ArrayList<Machine> getMachines() {
         return new ArrayList<>(machines.values());
+    }
+
+    public Machine getCurrentMachine() {
+        return currentMachine;
+    }
+
+    public void setCurrentMachine(Machine currentMachine) {
+        this.currentMachine = currentMachine;
     }
 }

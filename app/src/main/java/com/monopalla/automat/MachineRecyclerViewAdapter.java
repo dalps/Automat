@@ -1,10 +1,15 @@
 package com.monopalla.automat;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +22,7 @@ import java.util.ArrayList;
 
 public class MachineRecyclerViewAdapter extends RecyclerView.Adapter<MachineRecyclerViewAdapter.ViewHolder> {
     private ArrayList<Machine> machineList;
+    private MachineRepository machineData = MachineRepository.getInstance();
 
     public MachineRecyclerViewAdapter(ArrayList<Machine> machineList) {
         this.machineList = machineList;
@@ -26,12 +32,14 @@ public class MachineRecyclerViewAdapter extends RecyclerView.Adapter<MachineRecy
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView machineNameTV;
         private final TextView machineStatusTV;
+        private final RelativeLayout machineLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             machineNameTV = itemView.findViewById(R.id.machineName);
             machineStatusTV = itemView.findViewById(R.id.machineStatus);
+            machineLayout = itemView.findViewById(R.id.machineContainer);
         }
 
 
@@ -40,6 +48,9 @@ public class MachineRecyclerViewAdapter extends RecyclerView.Adapter<MachineRecy
         }
         public TextView getMachineStatusTV() {
             return machineStatusTV;
+        }
+        public RelativeLayout getMachineLayout() {
+            return machineLayout;
         }
     }
 
@@ -56,27 +67,21 @@ public class MachineRecyclerViewAdapter extends RecyclerView.Adapter<MachineRecy
     public void onBindViewHolder(@NonNull MachineRecyclerViewAdapter.ViewHolder holder, int position) {
         Machine machine = machineList.get(position);
         Resources res = holder.itemView.getResources();
+        Context context = holder.itemView.getContext();
 
         TextView machineNameTV = holder.getMachineNameTV();
         TextView machineStatusTV = holder.getMachineStatusTV();
-
-        Drawable statusIcon;
-
-        if(machine.getStatus().contains("Pronto")) {
-            statusIcon = res.getDrawable(R.drawable.ic_baseline_check_24, null);
-        }
-        else {
-            statusIcon = res.getDrawable(R.drawable.ic_baseline_warning_24, null);
-        }
+        RelativeLayout machineLayout = holder.getMachineLayout();
         
         machineNameTV.setText(res.getString(R.string.rv_machine_name, machine.getName()));
-        machineStatusTV.setText(Utils.decorateText(res.getString(R.string.rv_machine_status, machine.getStatus()), statusIcon));
+        machineStatusTV.setText(res.getString(R.string.rv_machine_status, machine.getStatus()));
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("bruh");
-            }
+        machineLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(context, MachineActivity.class);
+
+            // intent.putExtra("MACHINE", machine);
+            machineData.setCurrentMachine(machine);
+            context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation((Activity) context).toBundle());
         });
     }
 

@@ -2,9 +2,10 @@ package com.monopalla.automat.data.model;
 
 import android.graphics.Bitmap;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Product {
+public class Product implements Serializable {
     private String name; // A unique identifier for the product
     private String description;
     private String type;
