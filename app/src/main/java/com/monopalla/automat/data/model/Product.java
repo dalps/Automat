@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Product implements Serializable {
+public class Product {
     private String name; // A unique identifier for the product
     private String description;
     private String type;

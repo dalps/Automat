@@ -2,13 +2,9 @@ package com.monopalla.automat;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.util.Pair;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,88 +15,58 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.monopalla.automat.data.ProductRepository;
 import com.monopalla.automat.data.model.Product;
+import com.monopalla.automat.databinding.ProductRecyclerviewItemBinding;
 
 import java.util.ArrayList;
 
 public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.ViewHolder> {
     private ArrayList<Product> productList;
-    private ProductRepository productData;
-    private Context context;
 
-    public ProductRecyclerViewAdapter(ArrayList<Product> productList, Context context) {
+    public ProductRecyclerViewAdapter(ArrayList<Product> productList) {
         this.productList = productList;
-        this.context = context;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final CardView productCardView;
-        private final TextView productNameTV;
-        private final TextView productPriceTV;
-        private final ImageView productPicIV;
+        final CardView productCardView;
+        final TextView productNameTV;
+        final TextView productPriceTV;
+        final ImageView productPicIV;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
+        public ViewHolder(ProductRecyclerviewItemBinding binding) {
+            super(binding.getRoot());
 
-            productCardView = itemView.findViewById(R.id.productCard);
-            productNameTV = itemView.findViewById(R.id.productName);
-            productPriceTV = itemView.findViewById(R.id.productPrice);
-            productPicIV = itemView.findViewById(R.id.productPic);
-        }
-
-
-        public CardView getProductCardView() {
-            return productCardView;
-        }
-        public TextView getProductNameTV() {
-            return productNameTV;
-        }
-        public TextView getProductPriceTV() {
-            return productPriceTV;
-        }
-        public ImageView getProductPicIV() {
-            return productPicIV;
+            productCardView = binding.productCard;
+            productNameTV = binding.productName;
+            productPriceTV = binding.productPrice;
+            productPicIV = binding.productPic;
         }
     }
 
     @NonNull
     @Override
     public ProductRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.product_recyclerview_item, parent, false);
 
-        return new ViewHolder(view);
+        return new ViewHolder(ProductRecyclerviewItemBinding.inflate(
+                LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductRecyclerViewAdapter.ViewHolder holder, int position) {
         Product product = productList.get(position);
-        Resources res = holder.itemView.getResources();
+        Context context = holder.itemView.getContext();
+        ProductRepository productData = ProductRepository.getInstance(context);
 
-         productData = ProductRepository.getInstance(context);
+        holder.productNameTV.setText(product.getName());
+        holder.productPriceTV.setText(context.getString(R.string.product_price, product.getPrice()));
+        holder.productPicIV.setImageBitmap(product.getPicture());
 
-        CardView productCardView = holder.getProductCardView();
-        TextView productNameTV = holder.getProductNameTV();
-        TextView productPriceTV = holder.getProductPriceTV();
-        ImageView productPicIV = holder.getProductPicIV();
-
-        productPicIV.setTransitionName("productPic" + position);
-        /* productNameTV.setTransitionName("productName" + position);
-        productPriceTV.setTransitionName("productPrice" + position); */
-
-        productNameTV.setText(product.getName());
-        String price = context.getString(R.string.product_price, product.getPrice());
-        productPriceTV.setText(price);
-        productPicIV.setImageBitmap(product.getPicture());
-
-        productCardView.setOnClickListener(view -> {
+        holder.productCardView.setOnClickListener(view -> {
             productData.setCurrentProduct(product);
 
             Intent intent = new Intent(context, ProductActivity.class);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
-                    (Activity) context
-            );
+                    (Activity) context);
 
-            intent.putExtra("TRANSITION_KEY", position);
             context.startActivity(intent, options.toBundle());
         });
     }

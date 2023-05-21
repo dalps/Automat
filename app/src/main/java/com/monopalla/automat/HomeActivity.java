@@ -3,58 +3,34 @@ package com.monopalla.automat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
-
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.monopalla.automat.data.MachineRepository;
-import com.monopalla.automat.data.model.Machine;
-
-import java.util.ArrayList;
+import com.monopalla.automat.databinding.ActivityHomeBinding;
 
 public class HomeActivity extends AppCompatActivity {
-    RecyclerView machinesRV;
-    MachineRecyclerViewAdapter adapter;
-    MachineRepository machineData;
-    FloatingActionButton scanFAB;
-    View noMachineFoundView;
-    View machineListView;
-    TextView scanHelpTV;
-    BottomNavigationView bottomNavView;
-    MaterialToolbar appBar;
+    ActivityHomeBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        machineData = MachineRepository.getInstance(getApplicationContext());
+        MachineRepository machineData = MachineRepository.getInstance(getApplicationContext());
+        System.out.println(machineData.getMachines().size());
 
-        machinesRV = findViewById(R.id.machineList);
-        machinesRV.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MachineRecyclerViewAdapter(machineData.getMachines());
-        machinesRV.setAdapter(adapter);
-        scanFAB = findViewById(R.id.scanFAB);
-        noMachineFoundView = findViewById(R.id.noMachineFound);
-        machineListView = findViewById(R.id.detectedMachines);
-        scanHelpTV = findViewById(R.id.scanHelp);
-        bottomNavView = findViewById(R.id.bottomNav);
-        appBar = findViewById(R.id.homeAppBar);
+        binding.machineList.setLayoutManager(new LinearLayoutManager(this));
+        binding.machineList.setAdapter(new MachineRecyclerViewAdapter(machineData.getMachines()));
 
-        bottomNavView.setSelectedItemId(R.id.home);
+        binding.bottomNav.setSelectedItemId(R.id.home);
 
-        scanHelpTV.setText(Utils.decorateText(getString(R.string.home_scan_help),
+        binding.scanHelp.setText(Utils.decorateText(getString(R.string.home_scan_help),
                 ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_refresh_24, null)));
 
-        scanFAB.setOnClickListener(view -> {
-            noMachineFoundView.setVisibility(View.GONE);
-            machineListView.setVisibility(View.VISIBLE);
+        binding.scanFAB.setOnClickListener(view -> {
+            binding.noMachineFound.setVisibility(View.GONE);
+            binding.detectedMachines.setVisibility(View.VISIBLE);
         });
     }
 }

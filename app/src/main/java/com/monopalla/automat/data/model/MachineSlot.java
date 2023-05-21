@@ -3,7 +3,7 @@ package com.monopalla.automat.data.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class MachineSlot implements Serializable {
+public class MachineSlot {
     private String name; // A unique name for the slot within the machine
     private Product product; // The product that is sold
     private int numberOfItems; // The current amount of product items

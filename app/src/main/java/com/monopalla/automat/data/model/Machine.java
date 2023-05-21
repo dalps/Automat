@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Machine implements Serializable {
+public class Machine {
     private String serialNumber;
     private String name;
     private String position;
@@ -14,20 +14,12 @@ public class Machine implements Serializable {
     private HashMap<String, MachineSlot> slots;
     private final static int SLOT_CAPACITY = 40;
 
-    /**
-     *
-     * @param serialNumber
-     * @param name
-     * @param position
-     * @param status
-     */
     public Machine(String serialNumber, String name, String position, String status) {
         this.serialNumber = serialNumber;
         this.name = name;
         this.position = position;
         this.status = status;
         this.slots = new HashMap<>();
-        System.out.println(slots.size());
     }
 
     public String getSerialNumber() {
@@ -91,7 +83,7 @@ public class Machine implements Serializable {
     }
 
     /**
-     * Assign a product to an existing slot and fill it with some items. Alternatively add a new
+     * Assign a product to an existing slot and fill it with some items. Alternatively, add a new
      * slot to the machine if there is no space available.
      */
     public void assignSlot(String slotName, Product product, int amount) {
@@ -125,7 +117,7 @@ public class Machine implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Machine)) return false;
         Machine machine = (Machine) o;
-        return getSerialNumber() == machine.getSerialNumber();
+        return getSerialNumber().equals(machine.getSerialNumber());
     }
 
     @Override

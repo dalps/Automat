@@ -22,13 +22,6 @@ import com.monopalla.automat.databinding.FragmentPaymentDialogBinding;
 
 import java.util.ArrayList;
 
-/**
- * <p>A fragment that shows a list of items as a modal bottom sheet.</p>
- * <p>You can show this modal bottom sheet from your activity like this:</p>
- * <pre>
- *     PaymentDialogFragment.newInstance(30).show(getSupportFragmentManager(), "dialog");
- * </pre>
- */
 public class PaymentDialogFragment extends BottomSheetDialogFragment {
     ArrayList<Product> cart;
     private FragmentPaymentDialogBinding binding;
@@ -44,7 +37,6 @@ public class PaymentDialogFragment extends BottomSheetDialogFragment {
 
         binding = FragmentPaymentDialogBinding.inflate(inflater, container, false);
         return binding.getRoot();
-
     }
 
     @Override
@@ -69,7 +61,6 @@ public class PaymentDialogFragment extends BottomSheetDialogFragment {
     }
 
     private class ViewHolder extends RecyclerView.ViewHolder {
-
         final TextView productName;
         final TextView productPrice;
         final ImageView productPic;
@@ -80,11 +71,9 @@ public class PaymentDialogFragment extends BottomSheetDialogFragment {
             productPrice = binding.productCheckOutPrice;
             productPic = binding.productCheckOutPic;
         }
-
     }
 
     private class CartAdapter extends RecyclerView.Adapter<ViewHolder> {
-
         private final ArrayList<Product> cart;
 
         CartAdapter(ArrayList<Product> cart) {
@@ -95,8 +84,8 @@ public class PaymentDialogFragment extends BottomSheetDialogFragment {
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-            return new ViewHolder(FragmentPaymentDialogCartItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
-
+            return new ViewHolder(FragmentPaymentDialogCartItemBinding.inflate(
+                    LayoutInflater.from(parent.getContext()), parent, false));
         }
 
         @Override
@@ -112,6 +101,5 @@ public class PaymentDialogFragment extends BottomSheetDialogFragment {
         public int getItemCount() {
             return cart.size();
         }
-
     }
 }
