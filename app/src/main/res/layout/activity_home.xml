@@ -42,13 +42,14 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:layout_marginBottom="@dimen/medium_margin"
             android:src="@drawable/no_machine" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
-            android:text="Cerca distributori Automat™"
+            android:text="Trova distributori Automat™"
             android:textAlignment="center"
             android:textFontWeight="700"
             android:textSize="20sp" />
@@ -57,17 +58,17 @@
             android:id="@+id/scanHelp"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="Premi %icon% per trovare distributori vicini"
+            android:text="@string/scan_help_text"
             android:textAlignment="center"/>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/detectedMachines"
+        android:id="@+id/machineSection"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:visibility="gone">
+        android:visibility="invisible">
 
         <TextView
             android:layout_width="match_parent"
@@ -86,7 +87,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/scanFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,7 +95,8 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="16dp"
         android:contentDescription="@string/home_fab_description"
-        app:srcCompat="@drawable/ic_baseline_refresh_24"/>
+        android:text="Scan"
+        app:icon="@drawable/ic_baseline_refresh_24"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"

@@ -72,13 +72,13 @@
             android:id="@+id/purchaseButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/addToCartButton"
+            android:layout_above="@+id/productPageAddToCartButton"
             android:text="Acquista subito"
             app:iconGravity="textStart"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/addToCartButton"
+            android:id="@+id/productPageAddToCartButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

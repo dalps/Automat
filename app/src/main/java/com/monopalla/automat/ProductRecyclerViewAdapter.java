@@ -5,7 +5,9 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.monopalla.automat.data.ProductRepository;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.databinding.ProductRecyclerviewItemBinding;
@@ -21,9 +24,11 @@ import java.util.ArrayList;
 
 public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.ViewHolder> {
     private ArrayList<Product> productList;
+    View snackBarAnchor;
 
-    public ProductRecyclerViewAdapter(ArrayList<Product> productList) {
+    public ProductRecyclerViewAdapter(ArrayList<Product> productList, View snackBarAnchor) {
         this.productList = productList;
+        this.snackBarAnchor = snackBarAnchor;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -31,6 +36,8 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         final TextView productNameTV;
         final TextView productPriceTV;
         final ImageView productPicIV;
+        final ImageButton productAddToCartButton;
+        final ImageButton productRemoveFromCartButton;
 
         public ViewHolder(ProductRecyclerviewItemBinding binding) {
             super(binding.getRoot());
@@ -39,6 +46,8 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             productNameTV = binding.productName;
             productPriceTV = binding.productPrice;
             productPicIV = binding.productPic;
+            productAddToCartButton = binding.productAddToCartButton;
+            productRemoveFromCartButton = binding.productRemoveFromCartButton;
         }
     }
 
@@ -68,6 +77,40 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
                     (Activity) context);
 
             context.startActivity(intent, options.toBundle());
+        });
+
+        holder.productAddToCartButton.setOnClickListener(view -> {
+            if(productData.isCartFull()) {
+                Snackbar.make(holder.productAddToCartButton, R.string.cart_full_alert,
+                        Snackbar.LENGTH_SHORT)
+                        .setAnchorView(snackBarAnchor)
+                        .show();
+                return;
+            }
+
+            productData.addToCart(product);
+
+            Snackbar.make(holder.productAddToCartButton,
+                    context.getString(R.string.cart_item_added_alert, product.getName()),
+                    Snackbar.LENGTH_SHORT)
+                    .setAnchorView(snackBarAnchor)
+                    .show();
+
+            AnimUtils.switchViewsWithCircularReveal(
+                    holder.productAddToCartButton, holder.productRemoveFromCartButton);
+        });
+
+        holder.productRemoveFromCartButton.setOnClickListener(view -> {
+            productData.removeFromCart(product);
+
+            Snackbar.make(holder.productRemoveFromCartButton,
+                    context.getString(R.string.cart_item_removed_alert, product.getName()),
+                    Snackbar.LENGTH_SHORT)
+                    .setAnchorView(snackBarAnchor)
+                    .show();
+
+            AnimUtils.switchViewsWithCircularReveal(
+                    holder.productRemoveFromCartButton, holder.productAddToCartButton);
         });
     }
 

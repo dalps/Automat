@@ -27,7 +27,7 @@ public class ProductActivity extends AppCompatActivity {
 
         binding.productPageAppBar.setNavigationOnClickListener(view -> finishAfterTransition());
 
-        binding.addToCartButton.setOnClickListener(view -> {
+        binding.productPageAddToCartButton.setOnClickListener(view -> {
             productData.addToCart(product);
             finishAfterTransition();
         });

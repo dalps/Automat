@@ -49,17 +49,35 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Premi su un prodotto per maggiori informazioni"
-        android:textAlignment="center"
-        android:paddingVertical="@dimen/medium_margin" />
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/helpText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Premi su un prodotto per maggiori informazioni"
+            android:textAlignment="center"
+            android:paddingVertical="@dimen/medium_margin" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/productList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/productList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/helpText"/>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/checkoutFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            android:contentDescription="Vai al check out"
+            android:text="Ordina"
+            app:icon="@drawable/ic_baseline_shopping_cart_checkout_24"/>
+    </RelativeLayout>
+
 
 </LinearLayout>

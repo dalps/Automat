@@ -3,8 +3,12 @@
     <string name="rv_machine_name">%1$s</string>
     <string name="rv_machine_status">%1$s</string>
     <string name="home_fab_description">Cerca Automat nelle vicinanze</string>
-    <string name="home_scan_help">Premi il pulsante %icon% per rilevare distributori vicini</string>
     <string name="machine_activity_subtitle">in %1$s</string>
     <string name="product_price">%1$.2f€</string>
     <string name="product_page_title">%1$s</string>
+    <string name="cart_full_alert">Non puoi ordinare più di 5 articoli</string>
+    <string name="cart_empty_alert">Il carrello è vuoto!</string>
+    <string name="cart_item_added_alert">%1$s aggiunto al carrello</string>
+    <string name="cart_item_removed_alert">%1$s rimosso dal carrello</string>
+    <string name="scan_help_text">Premi il pulsante Scan per trovare distributori vicini</string>
 </resources>

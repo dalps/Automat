@@ -17,6 +17,7 @@ public class ProductRepository {
     private final Context context;
     private Product currentProduct;
     private final ArrayList<Product> cart;
+    public static final int CART_SIZE = 5;
 
     private ProductRepository(Context context) {
         this.context = context;
@@ -61,11 +62,19 @@ public class ProductRepository {
         cart.add(product);
     }
 
-    public void emptyCart() {
+    public void clearCart() {
         cart.clear();
     }
 
     public boolean isCartEmpty() {
         return cart.isEmpty();
+    }
+
+    public boolean isCartFull() {
+        return cart.size() >= CART_SIZE;
+    }
+
+    public void removeFromCart(Product product) {
+        cart.remove(product);
     }
 }

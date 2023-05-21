@@ -25,12 +25,7 @@ public class HomeActivity extends AppCompatActivity {
 
         binding.bottomNav.setSelectedItemId(R.id.home);
 
-        binding.scanHelp.setText(Utils.decorateText(getString(R.string.home_scan_help),
-                ResourcesCompat.getDrawable(getResources(), R.drawable.ic_baseline_refresh_24, null)));
-
-        binding.scanFAB.setOnClickListener(view -> {
-            binding.noMachineFound.setVisibility(View.GONE);
-            binding.detectedMachines.setVisibility(View.VISIBLE);
-        });
+        binding.scanFAB.setOnClickListener(view ->
+                AnimUtils.switchViewsWithCircularReveal(binding.noMachineFound, binding.machineSection));
     }
 }
