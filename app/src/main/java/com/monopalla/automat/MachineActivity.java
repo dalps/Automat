@@ -32,7 +32,7 @@ public class MachineActivity extends AppCompatActivity {
 
         machineData = MachineRepository.getInstance(getApplicationContext());
         machine = machineData.getCurrentMachine();
-        adapter = new ProductRecyclerViewAdapter(machine.getProducts());
+        adapter = new ProductRecyclerViewAdapter(machine.getProducts(), this);
 
         appBar = findViewById(R.id.machineAppBar);
         productsRV = findViewById(R.id.productList);

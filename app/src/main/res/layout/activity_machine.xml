@@ -41,12 +41,20 @@
                     android:layout_height="wrap_content"
                     android:text="in Automat del Palazzo"
                     android:textSize="14sp"
+                    android:textFontWeight="700"
                     android:layout_gravity="center"/>
             </LinearLayout>
 
         </com.google.android.material.appbar.MaterialToolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Premi su un prodotto per maggiori informazioni"
+        android:textAlignment="center"
+        android:paddingVertical="@dimen/medium_margin" />
 
 
     <androidx.recyclerview.widget.RecyclerView

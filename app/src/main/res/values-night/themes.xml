@@ -16,8 +16,20 @@
         <item name="fontFamily">@font/nunito</item>
 
         <item name="android:windowActivityTransitions">true</item>
-        <item name="android:windowEnterTransition">@transition/slide</item>
-        <item name="android:windowExitTransition">@transition/slide</item>
+
+        <item name="android:windowEnterTransition">
+            @transition/slide_right
+        </item>
+        <item name="android:windowExitTransition">
+            @transition/slide_left
+        </item>
+
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/change_image_transform
+        </item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/change_image_transform
+        </item>
 
         <item name="android:windowLightStatusBar">true</item>
     </style>
