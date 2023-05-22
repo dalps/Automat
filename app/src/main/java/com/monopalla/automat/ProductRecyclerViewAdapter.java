@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.snackbar.Snackbar;
 import com.monopalla.automat.data.ProductRepository;
 import com.monopalla.automat.data.model.Product;
@@ -38,6 +39,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         final ImageView productPicIV;
         final ImageButton productAddToCartButton;
         final ImageButton productRemoveFromCartButton;
+        final MaterialCheckBox productFavoriteCheckBox;
 
         public ViewHolder(ProductRecyclerviewItemBinding binding) {
             super(binding.getRoot());
@@ -48,6 +50,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             productPicIV = binding.productPic;
             productAddToCartButton = binding.productAddToCartButton;
             productRemoveFromCartButton = binding.productRemoveFromCartButton;
+            productFavoriteCheckBox = binding.productFavoriteCheckbox;
         }
     }
 
@@ -81,20 +84,16 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
 
         holder.productAddToCartButton.setOnClickListener(view -> {
             if(productData.isCartFull()) {
-                Snackbar.make(holder.productAddToCartButton, R.string.cart_full_alert,
-                        Snackbar.LENGTH_SHORT)
-                        .setAnchorView(snackBarAnchor)
-                        .show();
+                showSnackbar(holder.productAddToCartButton,
+                        context.getString(R.string.cart_full_alert));
+
                 return;
             }
 
             productData.addToCart(product);
 
-            Snackbar.make(holder.productAddToCartButton,
-                    context.getString(R.string.cart_item_added_alert, product.getName()),
-                    Snackbar.LENGTH_SHORT)
-                    .setAnchorView(snackBarAnchor)
-                    .show();
+            showSnackbar(holder.productAddToCartButton,
+                    context.getString(R.string.cart_item_added_alert, product.getName()));
 
             AnimUtils.switchViewsWithCircularReveal(
                     holder.productAddToCartButton, holder.productRemoveFromCartButton);
@@ -103,19 +102,34 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         holder.productRemoveFromCartButton.setOnClickListener(view -> {
             productData.removeFromCart(product);
 
-            Snackbar.make(holder.productRemoveFromCartButton,
-                    context.getString(R.string.cart_item_removed_alert, product.getName()),
-                    Snackbar.LENGTH_SHORT)
-                    .setAnchorView(snackBarAnchor)
-                    .show();
+            showSnackbar(holder.productRemoveFromCartButton,
+                    context.getString(R.string.cart_item_removed_alert, product.getName()));
 
             AnimUtils.switchViewsWithCircularReveal(
                     holder.productRemoveFromCartButton, holder.productAddToCartButton);
+        });
+
+        holder.productFavoriteCheckBox.addOnCheckedStateChangedListener((checkBox, isChecked) -> {
+            if(isChecked == MaterialCheckBox.STATE_CHECKED) {
+                showSnackbar(holder.productRemoveFromCartButton,
+                        context.getString(R.string.cart_item_marked_alert, product.getName()));
+            }
+            else {
+                showSnackbar(holder.productRemoveFromCartButton,
+                                context.getString(R.string.cart_item_unmarked_alert, product.getName()));
+            }
+
         });
     }
 
     @Override
     public int getItemCount() {
         return productList.size();
+    }
+
+    public void showSnackbar(View view, String msg) {
+        Snackbar.make(view, msg, Snackbar.LENGTH_SHORT)
+                .setAnchorView(snackBarAnchor)
+                .show();
     }
 }

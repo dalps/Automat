@@ -9,28 +9,39 @@
     android:layout_margin="@dimen/small_margin"
     style="@style/Widget.MaterialComponents.CardView">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/productPic"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/placeholder"
-            android:scaleType="centerInside"
-            android:contentDescription="Product picture"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/productFavoriteCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:buttonTint="@android:color/holo_red_light"
+            android:tooltipText="Nei preferiti"
+            android:button="@drawable/favorite_states" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/small_margin">
 
+            <ImageView
+                android:id="@+id/productPic"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/placeholder"
+                android:scaleType="centerInside"
+                android:contentDescription="Product picture"
+                android:padding="@dimen/medium_margin"/>
+
             <TextView
                 android:id="@+id/productName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/productPic"
                 android:text="Placeholder"
                 android:textFontWeight="700"
                 android:textSize="20dp"/>
@@ -39,31 +50,34 @@
                 android:id="@+id/productPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="9.99"
-                android:layout_below="@id/productName"/>
+                android:layout_below="@id/productName"
+                android:text="9.99"/>
 
             <ImageButton
                 android:id="@+id/productAddToCartButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_above="@id/productName"
                 android:src="@drawable/ic_baseline_add_shopping_cart_24"
                 android:backgroundTint="@color/teal_200"
                 android:tooltipText="Aggiungi al carrello"
-                android:padding="@dimen/medium_margin" />
+                android:padding="@dimen/medium_margin"
+                android:elevation="2dp"/>
 
             <ImageButton
                 android:id="@+id/productRemoveFromCartButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_above="@id/productName"
                 android:src="@drawable/ic_baseline_remove_shopping_cart_24"
                 android:backgroundTint="@color/white"
                 android:tooltipText="Rimuovi dal carrello"
                 android:padding="@dimen/medium_margin"
+                android:background="?attr/selectableItemBackground"
                 android:visibility="invisible"/>
-
         </RelativeLayout>
+    </RelativeLayout>
 
-    </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

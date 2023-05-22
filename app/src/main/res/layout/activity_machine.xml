@@ -74,9 +74,9 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_margin="16dp"
-            android:contentDescription="Vai al check out"
-            android:text="Ordina"
-            app:icon="@drawable/ic_baseline_shopping_cart_checkout_24"/>
+            android:contentDescription="Vai al carrello"
+            android:text="Carrello"
+            app:icon="@drawable/ic_round_shopping_cart_24"/>
     </RelativeLayout>
 
 
