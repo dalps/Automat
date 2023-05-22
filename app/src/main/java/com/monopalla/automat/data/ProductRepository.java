@@ -26,6 +26,14 @@ public class ProductRepository {
         products.put("Oreo", new Product("Oreo","", "Snack", 1.50f, toBitmap(R.drawable.oreo)));
         products.put("Fonzies", new Product("Fonzies","", "Snack", 0.70f, toBitmap(R.drawable.fonzies)));
         products.put("Tuc", new Product("Tuc","", "Snack", 0.50f, toBitmap(R.drawable.tuc)));
+        products.put("Crackers", new Product("Crackers", "", "Snack", 0.60f, toBitmap(R.drawable.crackers)));
+        products.put("Mars", new Product("Mars", "", "Snack", 0.70f, toBitmap(R.drawable.mars)));
+        products.put("Croissant al Cioccolato", new Product("Croissant al Cioccolato", "", "Snack", 1.00f, toBitmap(R.drawable.chocroissant)));
+        products.put("Acqua Naturale", new Product("Acqua Naturale", "", "Bevanda", 0.70f, toBitmap(R.drawable.naturale)));
+        products.put("Acqua Frizzante", new Product("Acqua Frizzante", "", "Bevanda", 0.70f, toBitmap(R.drawable.frizzante)));
+        products.put("Succo alla Pera", new Product("Succo alla Pera", "", "Bevanda", 0.50f, toBitmap(R.drawable.pearjuice)));
+        products.put("Coca Cola", new Product("Coca Cola", "", "Bevanda", 0.90f, toBitmap(R.drawable.cocacola)));
+        products.put("The alla Pesca", new Product("Thè alla Pesca", "", "Bevanda", 0.90f, toBitmap(R.drawable.pesca)));
 
         cart = new ArrayList<>();
     }
