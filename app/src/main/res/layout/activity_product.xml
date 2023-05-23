@@ -68,6 +68,14 @@
             android:text="9.99 Euro"
             android:textSize="32sp"/>
 
+        <TextView
+            android:id="@+id/productPageDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productPagePrice"
+            android:text="Descrizione del prodotto"
+            android:textSize="18sp"/>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/purchaseButton"
             android:layout_width="match_parent"

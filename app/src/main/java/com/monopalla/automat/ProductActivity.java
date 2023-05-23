@@ -24,6 +24,7 @@ public class ProductActivity extends AppCompatActivity {
         binding.productPageName.setText(product.getName());
         binding.productPagePrice.setText(getString(R.string.product_price, product.getPrice()));
         binding.productPageTitle.setText(getString(R.string.product_page_title, product.getName()));
+        binding.productPageDescription.setText(product.getDescription());
 
         binding.productPageAppBar.setNavigationOnClickListener(view -> finishAfterTransition());
 
