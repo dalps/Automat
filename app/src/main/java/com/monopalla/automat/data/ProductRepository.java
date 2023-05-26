@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.monopalla.automat.R;
+import com.monopalla.automat.data.model.Cart;
 import com.monopalla.automat.data.model.Product;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class ProductRepository {
     private final Map<String, Product> products = new HashMap<>();
     private final Context context;
     private Product currentProduct;
-    private final ArrayList<Product> cart;
+    private Cart cart;
     public static final int CART_SIZE = 5;
 
     private ProductRepository(Context context) {
@@ -141,7 +142,7 @@ public class ProductRepository {
                 toBitmap(R.drawable.pesca))
         );
 
-        cart = new ArrayList<>();
+        cart = new Cart(CART_SIZE);
     }
 
     public static ProductRepository getInstance(Context context) {
@@ -168,27 +169,21 @@ public class ProductRepository {
         this.currentProduct = currentProduct;
     }
 
-    public ArrayList<Product> getCart() {
+    /* public void newCart(ArrayList<Product> products) {
+        cart = new Cart(CART_SIZE);
+
+        products.forEach(p -> cart.addProduct(p));
+    } */
+
+    public void addToCart(Product product) {
+        getCart().getItems().add(new Cart.CartItem(product, 1));
+    }
+
+    public Cart getCart() {
         return cart;
     }
 
-    public void addToCart(Product product) {
-        cart.add(product);
-    }
-
-    public void clearCart() {
-        cart.clear();
-    }
-
-    public boolean isCartEmpty() {
-        return cart.isEmpty();
-    }
-
-    public boolean isCartFull() {
-        return cart.size() >= CART_SIZE;
-    }
-
-    public void removeFromCart(Product product) {
-        cart.remove(product);
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

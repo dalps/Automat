@@ -28,7 +28,7 @@ public class MachineActivity extends AppCompatActivity {
 
         binding.machineAppBar.setNavigationOnClickListener(view -> {
             // TODO show clear cart confirmation dialog (if not empty)
-            productData.clearCart();
+            productData.getCart().clearCart();
 
             finishAfterTransition();
         });
@@ -36,16 +36,16 @@ public class MachineActivity extends AppCompatActivity {
         binding.appbarSubtitle.setText(getString(R.string.machine_activity_subtitle, machine.getName()));
 
         binding.checkoutFAB.setOnClickListener(view -> {
-            if(productData.isCartEmpty()) {
+            if(productData.getCart().isCartEmpty()) {
                 Snackbar.make(binding.checkoutFAB, getString(R.string.cart_empty_alert), Snackbar.LENGTH_SHORT)
                         .setAnchorView(binding.checkoutFAB)
                         .show();
                 return;
             }
 
-            PaymentDialogFragment paymentBottomSheet = new PaymentDialogFragment(
+            CartDialogFragment cartBottomSheet = new CartDialogFragment(
                     productData.getCart());
-            paymentBottomSheet.show(getSupportFragmentManager(), "payment");
+            cartBottomSheet.show(getSupportFragmentManager(), "cart");
         });
     }
 }

@@ -34,7 +34,7 @@ public class ProductActivity extends AppCompatActivity {
         });
 
         binding.purchaseButton.setOnClickListener(view -> {
-            if(!productData.isCartEmpty()) {
+            if(!productData.getCart().isCartEmpty()) {
                 /* TODO show cart deletion confirmation dialog
                 productData.emptyCart();
                 productData.addToCart(product); */

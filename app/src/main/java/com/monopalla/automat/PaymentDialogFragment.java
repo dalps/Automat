@@ -43,7 +43,7 @@ public class PaymentDialogFragment extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         final RecyclerView recyclerView = binding.list;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new CartAdapter(cart));
+        recyclerView.setAdapter(new OrderAdapter(cart));
         recyclerView.setNestedScrollingEnabled(false);
 
         binding.paymentTotal.setText(getString(R.string.product_price,
@@ -73,10 +73,10 @@ public class PaymentDialogFragment extends BottomSheetDialogFragment {
         }
     }
 
-    private class CartAdapter extends RecyclerView.Adapter<ViewHolder> {
+    private class OrderAdapter extends RecyclerView.Adapter<ViewHolder> {
         private final ArrayList<Product> cart;
 
-        CartAdapter(ArrayList<Product> cart) {
+        OrderAdapter(ArrayList<Product> cart) {
             this.cart = cart;
         }
 

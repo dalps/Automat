@@ -83,7 +83,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         });
 
         holder.productAddToCartButton.setOnClickListener(view -> {
-            if(productData.isCartFull()) {
+            if(productData.getCart().isCartFull()) {
                 showSnackbar(holder.productAddToCartButton,
                         context.getString(R.string.cart_full_alert));
 
@@ -100,7 +100,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         });
 
         holder.productRemoveFromCartButton.setOnClickListener(view -> {
-            productData.removeFromCart(product);
+            productData.getCart().removeProduct(product);
 
             showSnackbar(holder.productRemoveFromCartButton,
                     context.getString(R.string.cart_item_removed_alert, product.getName()));
