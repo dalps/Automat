@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.snackbar.Snackbar;
 import com.monopalla.automat.data.ProductRepository;
+import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.Product;
+import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.ProductRecyclerviewItemBinding;
 
 import java.util.ArrayList;
@@ -67,6 +69,8 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         Product product = productList.get(position);
         Context context = holder.itemView.getContext();
         ProductRepository productData = ProductRepository.getInstance(context);
+        UserRepository userData = UserRepository.getInstance(context);
+        User user = userData.getCurrentUser();
 
         holder.productNameTV.setText(product.getName());
         holder.productPriceTV.setText(context.getString(R.string.product_price, product.getPrice()));
@@ -109,12 +113,23 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
                     holder.productRemoveFromCartButton, holder.productAddToCartButton);
         });
 
+        if (user.isProductFavorite(product)) {
+            holder.productFavoriteCheckBox.setChecked(true);
+        }
+        else {
+            holder.productFavoriteCheckBox.setChecked(false);
+        }
+
         holder.productFavoriteCheckBox.addOnCheckedStateChangedListener((checkBox, isChecked) -> {
             if(isChecked == MaterialCheckBox.STATE_CHECKED) {
+                user.addFavorite(product);
+
                 showSnackbar(holder.productRemoveFromCartButton,
                         context.getString(R.string.cart_item_marked_alert, product.getName()));
             }
             else {
+                user.removeFavorite(product);
+
                 showSnackbar(holder.productRemoveFromCartButton,
                                 context.getString(R.string.cart_item_unmarked_alert, product.getName()));
             }

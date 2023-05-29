@@ -7,7 +7,9 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,13 +21,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.ActivityHomeBinding;
 import com.monopalla.automat.databinding.FragmentLoginBinding;
+import com.monopalla.automat.databinding.FragmentMainBinding;
 
 public class LoginFragment extends DialogFragment {
+    FragmentLoginBinding binding;
     ActivityHomeBinding parentBiding;
 
     public LoginFragment(ActivityHomeBinding parentBiding) {
@@ -39,7 +44,7 @@ public class LoginFragment extends DialogFragment {
 
         UserRepository userData = UserRepository.getInstance(getContext());
 
-        FragmentLoginBinding binding = FragmentLoginBinding.inflate(getLayoutInflater());
+        binding = FragmentLoginBinding.inflate(getLayoutInflater());
 
         binding.loginButton.setOnClickListener(v -> {
             String usernameInput = binding.loginUsernameEditText.getText().toString();
@@ -61,7 +66,12 @@ public class LoginFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+        if (getDialog() != null && getDialog().getWindow() != null) {
+            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        }
+
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
@@ -75,7 +85,7 @@ public class LoginFragment extends DialogFragment {
         UserRepository userData = UserRepository.getInstance(getContext());
         User user = userData.getCurrentUser();
 
-        if (user != null) {
+        if (userData.isCurrentUserValid()) {
             Bitmap cropped = ImageUtils.roundCrop(user.getProfilePicture());
             loginButton.setIcon(new BitmapDrawable(getResources(), cropped));
         }

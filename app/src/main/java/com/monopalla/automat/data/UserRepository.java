@@ -14,9 +14,11 @@ public class UserRepository {
     private final HashMap<String, User> users = new HashMap<>();
     private final Context context;
     private User currentUser;
+    public static final User DEFAULT_USER = new User("default", "default", "default", null);
 
     private UserRepository(Context context) {
         this.context = context;
+        currentUser = DEFAULT_USER;
 
         users.put("walter", new User("walter", "walter", "Walter Clements", toBitmap(R.drawable.walter_dog)));
     }
@@ -35,6 +37,10 @@ public class UserRepository {
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public boolean isCurrentUserValid() {
+        return currentUser != null && !currentUser.equals(DEFAULT_USER);
     }
 
     public boolean isLoginCorrect(String username, String password) {

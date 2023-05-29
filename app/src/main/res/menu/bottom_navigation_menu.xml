@@ -3,16 +3,16 @@
     <item
         android:id="@+id/favorites"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_shopping_cart_24"
-        android:title="Punti Automat™"/>
+        android:icon="@drawable/ic_round_favorite_24"
+        android:title="I miei preferiti"/>
     <item
         android:id="@+id/home"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/ic_round_home_24"
         android:title="Home"/>
     <item
         android:id="@+id/orderHistory"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_history_24"
-        android:title="I miei acquisti"/>
+        android:icon="@drawable/ic_round_history_24"
+        android:title="I miei ordini"/>
 </menu>

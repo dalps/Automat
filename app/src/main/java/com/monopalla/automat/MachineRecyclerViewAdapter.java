@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.monopalla.automat.data.MachineRepository;
 import com.monopalla.automat.data.model.Machine;
+import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.databinding.MachineRecyclerviewItemBinding;
 
 import java.util.ArrayList;

@@ -3,6 +3,8 @@ package com.monopalla.automat;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Activity;
@@ -28,36 +30,65 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        MachineRepository machineData = MachineRepository.getInstance(getApplicationContext());
-        System.out.println(machineData.getMachines().size());
+        //
+        // Bottom navigation interaction
+        //
+        binding.bottomNav.setOnNavigationItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
 
-        binding.machineList.setLayoutManager(new LinearLayoutManager(this));
-        binding.machineList.setAdapter(new MachineRecyclerViewAdapter(machineData.getMachines()));
+            switch (item.getItemId()) {
+                case R.id.favorites:
+                    selectedFragment = new FavoritesFragment();
+                    break;
+
+
+                case R.id.home:
+                    selectedFragment = new MainFragment();
+                    break;
+
+
+                case R.id.orderHistory:
+                    selectedFragment = new HistoryFragment();
+                    break;
+            }
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, selectedFragment)
+                    .commit();
+
+            return true;
+        });
 
         binding.bottomNav.setSelectedItemId(R.id.home);
 
-        binding.scanFAB.setOnClickListener(view ->
-                AnimUtils.switchViewsWithCircularReveal(binding.noMachineFound, binding.machineSection));
+        // Display the first fragment at application start
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, new MainFragment())
+                .commit();
 
+
+        //
+        // App bar user avatar interaction & appearance
+        //
         Menu menu = binding.homeAppBar.getMenu();
         MenuItem loginButton = menu.findItem(R.id.login);
 
         UserRepository userData = UserRepository.getInstance(getApplicationContext());
         User user = userData.getCurrentUser();
 
-        if (user != null) {
+        if (userData.isCurrentUserValid()) {
             loginButton.setIcon(new BitmapDrawable(getResources(), user.getProfilePicture()));
         }
 
         binding.homeAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.login) {
-                if (userData.getCurrentUser() != null) {
-                    // TODO Start user profile activity
-                    Intent intent = new Intent(HomeActivity.this, UserProfileActivity.class);
+                if (userData.isCurrentUserValid()) {
+                    Intent intent = new Intent(this, UserProfileActivity.class);
 
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 } else {
-                    // TODO Show login dialog
                     LoginFragment fragment = new LoginFragment(binding);
                     fragment.show(getSupportFragmentManager(), "login");
                 }
@@ -67,7 +98,5 @@ public class HomeActivity extends AppCompatActivity {
 
             return false;
         });
-
-
     }
 }

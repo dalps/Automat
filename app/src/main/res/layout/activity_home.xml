@@ -7,6 +7,7 @@
     tools:context=".HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/homeAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="0dp"
@@ -30,72 +31,15 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <LinearLayout
-        android:id="@+id/noMachineFound"
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginBottom="@dimen/medium_margin"
-            android:src="@drawable/no_machine" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_margin"
-            android:text="Trova distributori Automat™"
-            android:textAlignment="center"
-            android:textFontWeight="700"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/scanHelp"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:text="@string/scan_help_text"
-            android:textAlignment="center"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/machineSection"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:visibility="invisible">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Distributori rilevati"
-            android:textSize="20sp"
-            android:textAlignment="textStart"
-            android:textFontWeight="700"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginBottom="@dimen/small_margin"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/machineList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/scanFAB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_above="@id/bottomNav"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/home_fab_description"
-        android:text="Scan"
-        app:icon="@drawable/ic_baseline_refresh_24"/>
+        android:layout_below="@id/homeAppBarLayout"
+        android:animateLayoutChanges="true">
+
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"

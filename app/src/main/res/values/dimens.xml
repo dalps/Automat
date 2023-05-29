@@ -8,4 +8,5 @@
     <dimen name="big_fontsize">22sp</dimen>
     <dimen name="list_item_spacing">16sp</dimen>
     <dimen name="list_item_spacing_half">8sp</dimen>
+    <dimen name="fragment_title_fontsize">28sp</dimen>
 </resources>

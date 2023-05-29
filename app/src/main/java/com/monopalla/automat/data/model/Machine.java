@@ -103,12 +103,15 @@ public class Machine {
         slots.put(slotName, new MachineSlot(slotName, product, amount));
     }
 
-    public ArrayList<Product> getProducts() {
+    public ArrayList<Product> getProducts(User user) {
         return slots.values()
                 .stream()
                 .filter(MachineSlot::isAssigned)
                 .map(MachineSlot::getProduct)
                 .distinct()
+                .sorted()
+                .sorted((p1, p2) ->
+                        user.isProductFavorite(p2) ? 1 : user.isProductFavorite(p1) ? -1 : 0)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 

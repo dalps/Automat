@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Product {
+public class Product implements Comparable<Product> {
     private String name; // A unique identifier for the product
     private String description;
     private String type;
@@ -71,5 +71,10 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(getName());
+    }
+
+    @Override
+    public int compareTo(Product product) {
+        return this.getName().compareTo(product.getName());
     }
 }

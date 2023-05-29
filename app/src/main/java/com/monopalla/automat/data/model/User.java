@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class User {
@@ -32,6 +33,14 @@ public class User {
 
     public void removeFavorite(Product product) {
         favoriteProducts.remove(product);
+    }
+
+    public boolean isProductFavorite(Product product) {
+        return favoriteProducts.contains(product);
+    }
+
+    public boolean anyFavorites() {
+        return !favoriteProducts.isEmpty();
     }
 
     public void addAutomats(int gain) {
@@ -78,7 +87,6 @@ public class User {
         this.name = name;
     }
 
-
     public Bitmap getProfilePicture() {
         return profilePicture;
     }
@@ -89,5 +97,18 @@ public class User {
 
     public Set<Product> getFavoriteProducts() {
         return favoriteProducts;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return getUsername().equals(user.getUsername());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUsername());
     }
 }

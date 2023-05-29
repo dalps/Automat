@@ -6,14 +6,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".LoginFragment"
-    android:padding="@dimen/medium_margin">
+    android:paddingVertical="@dimen/big_margin"
+    android:paddingHorizontal="@dimen/medium_margin"
+    android:background="@drawable/round_dialog_background">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/small_margin"
         android:layout_marginBottom="@dimen/big_margin"
-        android:text="Account Automat"
+        android:text="Account Automat™"
+        android:textAlignment="center"
         android:textSize="@dimen/big_fontsize"
         android:textFontWeight="700"/>
 
