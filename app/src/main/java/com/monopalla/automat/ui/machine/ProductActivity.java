@@ -1,10 +1,14 @@
-package com.monopalla.automat;
+package com.monopalla.automat.ui.machine;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.monopalla.automat.R;
 import com.monopalla.automat.data.ProductRepository;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.databinding.ActivityProductBinding;
+import com.monopalla.automat.ui.payment.PaymentDialogFragment;
+
 import java.util.ArrayList;
 import java.util.Collections;
 

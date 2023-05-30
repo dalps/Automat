@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PaymentDialogFragment">
+    tools:context=".ui.payment.PaymentDialogFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/itemsTitle"
                 android:clipToPadding="false"
-                tools:context=".PaymentDialogFragment"
+                tools:context=".ui.payment.PaymentDialogFragment"
                 tools:listitem="@layout/fragment_payment_dialog_cart_item" />
 
             <com.google.android.material.divider.MaterialDivider

@@ -1,25 +1,21 @@
-package com.monopalla.automat;
+package com.monopalla.automat.ui.home;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.app.Activity;
 import android.app.ActivityOptions;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import com.monopalla.automat.data.MachineRepository;
+
+import com.monopalla.automat.databinding.ActivityHomeBinding;
+import com.monopalla.automat.ui.user.LoginFragment;
+import com.monopalla.automat.R;
+import com.monopalla.automat.ui.user.UserProfileActivity;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.User;
-import com.monopalla.automat.databinding.ActivityHomeBinding;
 
 public class HomeActivity extends AppCompatActivity {
     ActivityHomeBinding binding;

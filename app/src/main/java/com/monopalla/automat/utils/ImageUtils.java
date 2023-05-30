@@ -1,4 +1,4 @@
-package com.monopalla.automat;
+package com.monopalla.automat.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

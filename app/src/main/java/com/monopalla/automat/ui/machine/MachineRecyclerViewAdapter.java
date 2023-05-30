@@ -1,4 +1,4 @@
-package com.monopalla.automat;
+package com.monopalla.automat.ui.machine;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -12,9 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.monopalla.automat.R;
 import com.monopalla.automat.data.MachineRepository;
 import com.monopalla.automat.data.model.Machine;
-import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.databinding.MachineRecyclerviewItemBinding;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.monopalla.automat;
+package com.monopalla.automat.ui.cart;
 
 import android.os.Bundle;
 
@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.monopalla.automat.R;
 import com.monopalla.automat.data.model.Cart;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.databinding.CartItemBinding;

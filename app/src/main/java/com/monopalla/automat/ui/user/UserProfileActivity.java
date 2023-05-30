@@ -1,13 +1,15 @@
-package com.monopalla.automat;
+package com.monopalla.automat.ui.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
+import com.monopalla.automat.R;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.ActivityUserProfileBinding;
+import com.monopalla.automat.utils.ImageUtils;
 
 public class UserProfileActivity extends AppCompatActivity {
     ActivityUserProfileBinding binding;

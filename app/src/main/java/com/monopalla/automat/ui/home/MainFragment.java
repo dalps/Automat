@@ -1,22 +1,17 @@
-package com.monopalla.automat;
+package com.monopalla.automat.ui.home;
 
-import android.app.ActivityOptions;
-import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.monopalla.automat.utils.AnimUtils;
+import com.monopalla.automat.ui.machine.MachineRecyclerViewAdapter;
 import com.monopalla.automat.data.MachineRepository;
-import com.monopalla.automat.data.UserRepository;
-import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.FragmentMainBinding;
 
 public class MainFragment extends Fragment {

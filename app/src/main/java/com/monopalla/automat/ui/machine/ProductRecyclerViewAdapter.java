@@ -1,4 +1,4 @@
-package com.monopalla.automat;
+package com.monopalla.automat.ui.machine;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -17,11 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.snackbar.Snackbar;
+import com.monopalla.automat.R;
 import com.monopalla.automat.data.ProductRepository;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.ProductRecyclerviewItemBinding;
+import com.monopalla.automat.utils.AnimUtils;
 
 import java.util.ArrayList;
 

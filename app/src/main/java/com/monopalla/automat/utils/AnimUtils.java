@@ -1,4 +1,4 @@
-package com.monopalla.automat;
+package com.monopalla.automat.utils;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

@@ -1,15 +1,16 @@
-package com.monopalla.automat;
+package com.monopalla.automat.ui.machine;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.monopalla.automat.ui.cart.CartDialogFragment;
+import com.monopalla.automat.R;
 import com.monopalla.automat.data.MachineRepository;
 import com.monopalla.automat.data.ProductRepository;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.Machine;
-import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.databinding.ActivityMachineBinding;
 
 public class MachineActivity extends AppCompatActivity {

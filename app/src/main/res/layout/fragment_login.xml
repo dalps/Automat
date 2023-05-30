@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".LoginFragment"
+    tools:context=".ui.user.LoginFragment"
     android:paddingVertical="@dimen/big_margin"
     android:paddingHorizontal="@dimen/medium_margin"
     android:background="@drawable/round_dialog_background">

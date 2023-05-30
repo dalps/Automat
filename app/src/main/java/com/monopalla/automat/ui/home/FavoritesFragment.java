@@ -1,13 +1,8 @@
-package com.monopalla.automat;
+package com.monopalla.automat.ui.home;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,13 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
-import com.monopalla.automat.data.MachineRepository;
-import com.monopalla.automat.data.ProductRepository;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.FavoriteRecyclerviewItemBinding;
-import com.monopalla.automat.databinding.MachineRecyclerviewItemBinding;
 
 import java.util.ArrayList;
 import android.os.Bundle;
