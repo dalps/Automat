@@ -2,9 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeLayoutRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeActivity">
+    tools:context=".ui.home.HomeActivity"
+    android:animateLayoutChanges="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/homeAppBarLayout"
@@ -31,12 +33,57 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <LinearLayout
+        android:id="@+id/registerInviteBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/homeAppBarLayout"
+        android:padding="@dimen/medium_margin"
+        android:layout_margin="@dimen/medium_margin"
+        android:background="@drawable/home_banner_background">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrati per guadagnare punti Automat e risparmiare ad ogni acquisto!"
+            android:textSize="@dimen/medium_fontsize"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/small_margin">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bannerLoginButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:text="Accedi"
+                android:textColor="@color/teal_700"
+                app:rippleColor="@color/teal_200"
+                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bannerRegisterButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_marginStart="@dimen/small_margin"
+                android:backgroundTint="@color/teal_700"
+                android:text="Registrati" />
+        </LinearLayout>
+
+    </LinearLayout>
+
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNav"
-        android:layout_below="@id/homeAppBarLayout"
+        android:layout_below="@id/registerInviteBanner"
         android:animateLayoutChanges="true">
 
     </FrameLayout>

@@ -20,4 +20,6 @@
     <string name="total_price">Totale: %1$.2f€</string>
     <string name="total_price_in_automats">(%1$d punti Automat)</string>
     <string name="automats_earned">Hai guadagnato %1$d punti Automat!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

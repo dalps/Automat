@@ -31,10 +31,10 @@ import com.monopalla.automat.utils.ImageUtils;
 
 public class LoginFragment extends DialogFragment {
     FragmentLoginBinding binding;
-    ActivityHomeBinding parentBiding;
+    ActivityHomeBinding parentBinding;
 
-    public LoginFragment(ActivityHomeBinding parentBiding) {
-        this.parentBiding = parentBiding;
+    public LoginFragment(ActivityHomeBinding parentBinding) {
+        this.parentBinding = parentBinding;
     }
 
     @NonNull
@@ -58,6 +58,14 @@ public class LoginFragment extends DialogFragment {
             }
         });
 
+        binding.registerLink.setOnClickListener(v -> {
+            RegisterFragment fragment = new RegisterFragment(parentBinding);
+
+            fragment.show(getParentFragmentManager(), "register");
+
+            dismiss();
+        });
+
         builder.setView(binding.getRoot());
 
         return builder.create();
@@ -79,7 +87,7 @@ public class LoginFragment extends DialogFragment {
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
 
-        Menu menu = parentBiding.homeAppBar.getMenu();
+        Menu menu = parentBinding.homeAppBar.getMenu();
         MenuItem loginButton = menu.findItem(R.id.login);
 
         UserRepository userData = UserRepository.getInstance(getContext());

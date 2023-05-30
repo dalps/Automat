@@ -9,13 +9,16 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.monopalla.automat.databinding.ActivityHomeBinding;
 import com.monopalla.automat.ui.user.LoginFragment;
 import com.monopalla.automat.R;
+import com.monopalla.automat.ui.user.RegisterFragment;
 import com.monopalla.automat.ui.user.UserProfileActivity;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.User;
+import com.monopalla.automat.utils.AnimUtils;
 
 public class HomeActivity extends AppCompatActivity {
     ActivityHomeBinding binding;
@@ -94,5 +97,32 @@ public class HomeActivity extends AppCompatActivity {
 
             return false;
         });
+
+        //
+        // Registration banner
+        //
+        binding.bannerRegisterButton.setOnClickListener(v -> {
+            RegisterFragment fragment = new RegisterFragment(binding);
+            fragment.show(getSupportFragmentManager(), "register");
+        });
+
+        binding.bannerLoginButton.setOnClickListener(v -> {
+            LoginFragment fragment = new LoginFragment(binding);
+            fragment.show(getSupportFragmentManager(), "login");
+        });
+
+
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        if (hasFocus) {
+            if (UserRepository.getInstance(getApplicationContext()).isCurrentUserValid()) {
+                binding.registerInviteBanner.setVisibility(View.GONE);
+            }
+            else {
+                binding.registerInviteBanner.setVisibility(View.VISIBLE);
+            }
+        }
     }
 }
