@@ -21,7 +21,8 @@
             android:layout_alignParentStart="true"
             android:buttonTint="@android:color/holo_red_light"
             android:tooltipText="Nei preferiti"
-            android:button="@drawable/favorite_states" />
+            android:button="@drawable/favorite_states"
+            android:translationZ="1dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -51,7 +52,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/productName"
-                android:text="9.99"/>
+                android:text="@string/product_price"/>
+
+            <TextView
+                android:id="@+id/productAvailability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/productName"
+                android:layout_alignParentEnd="true"
+                android:text="@string/product_availability"
+                android:textColor="@color/light_text_color" />
 
             <ImageButton
                 android:id="@+id/productAddToCartButton"

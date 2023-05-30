@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.payment.PaymentDialogFragment">
+    tools:context=".ui.payment.OrderDialogFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/small_margin"
                 android:text="Articoli"
-                android:textSize="20dp"
+                android:textSize="@dimen/section_header_fontsize"
                 android:textFontWeight="700" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -64,8 +64,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/itemsTitle"
+                android:layout_marginTop="18dp"
                 android:clipToPadding="false"
-                tools:context=".ui.payment.PaymentDialogFragment"
+                tools:context=".ui.payment.OrderDialogFragment"
                 tools:listitem="@layout/fragment_payment_dialog_cart_item" />
 
             <com.google.android.material.divider.MaterialDivider
@@ -76,31 +77,48 @@
                 android:layout_below="@id/list"/>
 
             <TextView
-                android:id="@+id/total"
-                android:layout_width="wrap_content"
+                android:id="@+id/noItemsSelected"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/divider"
-                android:layout_alignBaseline="@id/paymentTotal"
-                android:text="Totale:"
-                android:textSize="18sp"/>
+                android:layout_alignBaseline="@id/orderTotalInfo"
+                android:textAlignment="center"
+                android:text="Non sono stati selezionati articoli"
+                android:textSize="@dimen/medium_fontsize"
+                android:visibility="invisible" />
 
-            <TextView
-                android:id="@+id/paymentTotal"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/orderTotalInfo"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/divider"
-                android:layout_alignParentEnd="true"
-                android:text="9.99"
-                android:textSize="32sp"
-                android:textFontWeight="700"/>
+                android:orientation="vertical"
+                android:layout_below="@id/divider">
+
+                <TextView
+                    android:id="@+id/orderTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_price"
+                    android:textSize="@dimen/medium_fontsize"
+                    android:textAlignment="textEnd"
+                    android:textFontWeight="700"/>
+
+                <TextView
+                    android:id="@+id/orderTotalInAutomats"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:text="@string/total_price_in_automats"
+                    android:textSize="@dimen/small_fontsize" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/paymentMethodsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/total"
+                android:layout_below="@id/orderTotalInfo"
                 android:text="Metodo di pagamento"
-                android:textSize="20dp"
+                android:textSize="@dimen/section_header_fontsize"
                 android:textFontWeight="700"
                 android:layout_marginTop="@dimen/big_margin"
                 android:layout_marginBottom="@dimen/small_margin"/>
@@ -138,10 +156,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/paymentMethods"
-                android:text="Paga"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/black"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                android:text="Paga" />
         </RelativeLayout>
 
     </ScrollView>

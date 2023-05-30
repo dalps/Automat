@@ -28,8 +28,8 @@ public class MachineActivity extends AppCompatActivity {
         UserRepository userData = UserRepository.getInstance(getApplicationContext());
 
         binding.productList.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
-        binding.productList.setAdapter(new ProductRecyclerViewAdapter(
-                machine.getProducts(userData.getCurrentUser()), binding.checkoutFAB));
+        binding.productList.setAdapter(new SlotRecyclerViewAdapter(
+                machine.getSortedSlots(userData.getCurrentUser()), binding.checkoutFAB));
 
         binding.machineAppBar.setNavigationOnClickListener(view -> {
             // TODO show clear cart confirmation dialog (if not empty)

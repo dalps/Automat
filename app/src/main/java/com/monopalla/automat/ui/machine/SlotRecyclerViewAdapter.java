@@ -20,6 +20,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.monopalla.automat.R;
 import com.monopalla.automat.data.ProductRepository;
 import com.monopalla.automat.data.UserRepository;
+import com.monopalla.automat.data.model.MachineSlot;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.ProductRecyclerviewItemBinding;
@@ -27,12 +28,12 @@ import com.monopalla.automat.utils.AnimUtils;
 
 import java.util.ArrayList;
 
-public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecyclerViewAdapter.ViewHolder> {
-    private ArrayList<Product> productList;
+public class SlotRecyclerViewAdapter extends RecyclerView.Adapter<SlotRecyclerViewAdapter.ViewHolder> {
+    private ArrayList<MachineSlot> slotList;
     View snackBarAnchor;
 
-    public ProductRecyclerViewAdapter(ArrayList<Product> productList, View snackBarAnchor) {
-        this.productList = productList;
+    public SlotRecyclerViewAdapter(ArrayList<MachineSlot> productList, View snackBarAnchor) {
+        this.slotList = productList;
         this.snackBarAnchor = snackBarAnchor;
     }
 
@@ -40,6 +41,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         final CardView productCardView;
         final TextView productNameTV;
         final TextView productPriceTV;
+        final TextView productAvailabilityTV;
         final ImageView productPicIV;
         final ImageButton productAddToCartButton;
         final ImageButton productRemoveFromCartButton;
@@ -51,6 +53,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
             productCardView = binding.productCard;
             productNameTV = binding.productName;
             productPriceTV = binding.productPrice;
+            productAvailabilityTV = binding.productAvailability;
             productPicIV = binding.productPic;
             productAddToCartButton = binding.productAddToCartButton;
             productRemoveFromCartButton = binding.productRemoveFromCartButton;
@@ -60,15 +63,16 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
 
     @NonNull
     @Override
-    public ProductRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SlotRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         return new ViewHolder(ProductRecyclerviewItemBinding.inflate(
                 LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductRecyclerViewAdapter.ViewHolder holder, int position) {
-        Product product = productList.get(position);
+    public void onBindViewHolder(@NonNull SlotRecyclerViewAdapter.ViewHolder holder, int position) {
+        MachineSlot slot = slotList.get(position);
+        Product product = slot.getProduct();
         Context context = holder.itemView.getContext();
         ProductRepository productData = ProductRepository.getInstance(context);
         UserRepository userData = UserRepository.getInstance(context);
@@ -76,6 +80,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
 
         holder.productNameTV.setText(product.getName());
         holder.productPriceTV.setText(context.getString(R.string.product_price, product.getPrice()));
+        holder.productAvailabilityTV.setText(context.getString(R.string.product_availability, slot.getNumberOfItems()));
         holder.productPicIV.setImageBitmap(product.getPicture());
 
         holder.productCardView.setOnClickListener(view -> {
@@ -141,7 +146,7 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return slotList.size();
     }
 
     public void showSnackbar(View view, String msg) {

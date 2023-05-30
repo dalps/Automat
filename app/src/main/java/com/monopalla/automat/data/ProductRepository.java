@@ -29,7 +29,7 @@ public class ProductRepository {
                           "Valori nutrizionali per pezzo (36g):\n" +
                           "163kcal, 7,6g grassi, 20,2g carboidrati, 1,4g proteine",
                 "Snack",
-                1.00f,
+                0.70f,
                 toBitmap(R.drawable.fiesta))
         );
 

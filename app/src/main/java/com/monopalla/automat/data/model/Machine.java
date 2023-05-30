@@ -2,6 +2,7 @@ package com.monopalla.automat.data.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -56,6 +57,15 @@ public class Machine {
 
     public HashMap<String, MachineSlot> getSlots() {
         return slots;
+    }
+
+    public ArrayList<MachineSlot> getSortedSlots(User user) {
+        return slots.values().stream()
+                .filter(MachineSlot::isAssigned)
+                .sorted(Comparator.comparing(MachineSlot::getProduct))
+                .sorted((s1, s2) ->
+                        user.isProductFavorite(s2.getProduct()) ? 1 : user.isProductFavorite(s1.getProduct()) ? -1 : 0)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public void setSlots(HashMap<String, MachineSlot> slots) {

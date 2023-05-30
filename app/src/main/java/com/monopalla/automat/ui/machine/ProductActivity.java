@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.monopalla.automat.R;
+import com.monopalla.automat.data.MachineRepository;
 import com.monopalla.automat.data.ProductRepository;
+import com.monopalla.automat.data.model.Cart;
+import com.monopalla.automat.data.model.Order;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.databinding.ActivityProductBinding;
-import com.monopalla.automat.ui.payment.PaymentDialogFragment;
+import com.monopalla.automat.ui.payment.OrderDialogFragment;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -38,14 +42,10 @@ public class ProductActivity extends AppCompatActivity {
         });
 
         binding.purchaseButton.setOnClickListener(view -> {
-            if(!productData.getCart().isCartEmpty()) {
-                /* TODO show cart deletion confirmation dialog
-                productData.emptyCart();
-                productData.addToCart(product); */
-            }
-
-            PaymentDialogFragment paymentBottomSheet = new PaymentDialogFragment(
-                    new ArrayList<>(Collections.singletonList(product)));
+            OrderDialogFragment paymentBottomSheet = new OrderDialogFragment(
+                    new Order(LocalDate.now(),
+                            MachineRepository.getInstance().getCurrentMachine(),
+                            new ArrayList<>(Collections.singletonList(product))));
             paymentBottomSheet.show(getSupportFragmentManager(), "payment");
         });
 

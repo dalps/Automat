@@ -3,10 +3,11 @@
     <dimen name="small_margin">8dp</dimen>
     <dimen name="medium_margin">16dp</dimen>
     <dimen name="big_margin">32dp</dimen>
-    <dimen name="small_fontsize">14dp</dimen>
-    <dimen name="medium_fontsize">18dp</dimen>
+    <dimen name="small_fontsize">14sp</dimen>
+    <dimen name="medium_fontsize">18sp</dimen>
     <dimen name="big_fontsize">22sp</dimen>
     <dimen name="list_item_spacing">16sp</dimen>
     <dimen name="list_item_spacing_half">8sp</dimen>
     <dimen name="fragment_title_fontsize">28sp</dimen>
+    <dimen name="section_header_fontsize">20sp</dimen>
 </resources>

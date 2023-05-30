@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.monopalla.automat.utils.AnimUtils;
-import com.monopalla.automat.ui.machine.MachineRecyclerViewAdapter;
 import com.monopalla.automat.data.MachineRepository;
 import com.monopalla.automat.databinding.FragmentMainBinding;
 

@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,9 +20,7 @@ import com.monopalla.automat.data.model.Cart;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.databinding.CartItemBinding;
 import com.monopalla.automat.databinding.FragmentCartDialogBinding;
-import com.monopalla.automat.databinding.FragmentPaymentDialogCartItemBinding;
-
-import java.util.ArrayList;
+import com.monopalla.automat.ui.payment.OrderDialogFragment;
 
 public class CartDialogFragment extends BottomSheetDialogFragment {
     Cart cart;
@@ -47,14 +44,13 @@ public class CartDialogFragment extends BottomSheetDialogFragment {
 
         final RecyclerView recyclerView = binding.cartRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new CartAdapter(cart));
+        recyclerView.setAdapter(new CartItemAdapter(cart));
         recyclerView.setNestedScrollingEnabled(false);
 
-        binding.cartTotal.setText(getString(R.string.product_price, cart.getTotal()));
-
         binding.payButton.setOnClickListener(view1 -> {
-            // TODO show payment dialog
-            dismiss();
+            OrderDialogFragment fragment = new OrderDialogFragment(cart.toOrder());
+
+            fragment.show(getChildFragmentManager(), "payment");
         });
 
         binding.cartAppBar.setNavigationOnClickListener(view1 -> dismiss());
@@ -66,27 +62,27 @@ public class CartDialogFragment extends BottomSheetDialogFragment {
         binding = null;
     }
 
-    private class ViewHolder extends RecyclerView.ViewHolder {
-        final TextView productName, productPrice, itemQuantity;
-        final ImageView productPic;
-        final ImageButton addUnitButton, removeUnitButton;
-
-        ViewHolder(CartItemBinding binding) {
-            super(binding.getRoot());
-            productName = binding.cartProductName;
-            productPrice = binding.cartProductPrice;
-            productPic = binding.cartProductPic;
-            addUnitButton = binding.addUnitButton;
-            removeUnitButton = binding.removeUnitButton;
-            itemQuantity = binding.itemQuantity;
-        }
-    }
-
-    private class CartAdapter extends RecyclerView.Adapter<ViewHolder> {
+    private class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHolder> {
         private final Cart cart;
 
-        CartAdapter(Cart cart) {
+        CartItemAdapter(Cart cart) {
             this.cart = cart;
+        }
+
+        private class ViewHolder extends RecyclerView.ViewHolder {
+            final TextView productName, productPrice, itemQuantity;
+            final ImageView productPic;
+            final ImageButton addUnitButton, removeUnitButton;
+
+            ViewHolder(CartItemBinding binding) {
+                super(binding.getRoot());
+                productName = binding.cartProductName;
+                productPrice = binding.cartProductPrice;
+                productPic = binding.cartProductPic;
+                addUnitButton = binding.addUnitButton;
+                removeUnitButton = binding.removeUnitButton;
+                itemQuantity = binding.itemQuantity;
+            }
         }
 
         @NonNull
@@ -110,16 +106,11 @@ public class CartDialogFragment extends BottomSheetDialogFragment {
             holder.addUnitButton.setOnClickListener(view -> {
                 cart.increaseItemQuanitity(position);
                 holder.itemQuantity.setText(getString(R.string.item_quantity, item.getQuantity()));
-
-
-                binding.cartTotal.setText(getString(R.string.product_price, cart.getTotal()));
             });
 
             holder.removeUnitButton.setOnClickListener(view -> {
                 cart.decreaseItemQuanitity(position);
                 holder.itemQuantity.setText(getString(R.string.item_quantity, item.getQuantity()));
-
-                binding.cartTotal.setText(getString(R.string.product_price, cart.getTotal()));
             });
         }
 

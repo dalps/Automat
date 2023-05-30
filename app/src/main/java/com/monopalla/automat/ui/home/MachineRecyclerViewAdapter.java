@@ -1,4 +1,4 @@
-package com.monopalla.automat.ui.machine;
+package com.monopalla.automat.ui.home;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -16,6 +16,7 @@ import com.monopalla.automat.R;
 import com.monopalla.automat.data.MachineRepository;
 import com.monopalla.automat.data.model.Machine;
 import com.monopalla.automat.databinding.MachineRecyclerviewItemBinding;
+import com.monopalla.automat.ui.machine.MachineActivity;
 
 import java.util.ArrayList;
 

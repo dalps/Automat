@@ -47,8 +47,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/medium_margin"
-            android:paddingBottom="@dimen/medium_margin">
+            android:padding="@dimen/medium_margin">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cartRecyclerView"
@@ -62,35 +61,16 @@
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/small_margin"
+                android:layout_marginVertical="@dimen/medium_margin"
                 android:layout_below="@id/cartRecyclerView"/>
-
-            <TextView
-                android:id="@+id/total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/divider"
-                android:layout_alignBaseline="@id/cartTotal"
-                android:text="Totale:"
-                android:textSize="18sp"/>
-
-            <TextView
-                android:id="@+id/cartTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/divider"
-                android:layout_alignParentEnd="true"
-                android:text="9.99"
-                android:textSize="32sp"
-                android:textFontWeight="700"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/payButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_margin"
-                android:layout_below="@id/cartTotal"
-                android:text="Paga"
+                android:layout_below="@id/divider"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="Vai al pagamento"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/black"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>

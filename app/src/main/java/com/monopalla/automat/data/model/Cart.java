@@ -1,7 +1,11 @@
 package com.monopalla.automat.data.model;
 
+import com.monopalla.automat.data.MachineRepository;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Cart {
     final ArrayList<CartItem> items;
@@ -10,6 +14,14 @@ public class Cart {
     public Cart(int size) {
         items = new ArrayList<>();
         this.capacity = size;
+    }
+
+    public Cart(ArrayList<Product> products) {
+        items = products.stream()
+                .map(p -> new CartItem(p, 1))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        this.capacity = products.size();
     }
 
     public void insertProductUnit(Product product) {
@@ -62,6 +74,25 @@ public class Cart {
         return getItems().stream()
                 .mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity())
                 .sum();
+    }
+
+    public ArrayList<Product> getUnits() {
+        ArrayList<Product> units = new ArrayList<>();
+
+        items.forEach(i -> {
+                    for (int j = 0; j < i.getQuantity(); j++) {
+                        units.add(i.getProduct());
+                    }
+                });
+
+        return units;
+    }
+
+    public Order toOrder() {
+        return new Order(
+                LocalDate.now(),
+                MachineRepository.getInstance().getCurrentMachine(),
+                getUnits());
     }
 
     public static class CartItem {

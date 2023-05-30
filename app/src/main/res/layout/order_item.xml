@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/list_item_spacing_half"
+    android:gravity="center_vertical"
+    android:background="?attr/selectableItemBackground">
+
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/orderProductSelect"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="@dimen/medium_margin"
+        android:checked="true" />
+
+    <ImageView
+        android:id="@+id/orderProductPic"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/placeholder" />
+
+    <TextView
+        android:id="@+id/orderProductName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="@dimen/medium_margin"
+        android:text="Placeholder"
+        android:textSize="@dimen/medium_fontsize"/>
+
+    <TextView
+        android:id="@+id/orderProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="textEnd"
+        android:text="@string/product_price"
+        android:textSize="@dimen/medium_fontsize"/>
+
+</LinearLayout>
