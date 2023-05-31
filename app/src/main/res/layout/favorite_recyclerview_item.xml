@@ -4,45 +4,69 @@
     android:id="@+id/productCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
-    android:focusable="true"
-    android:layout_margin="@dimen/small_margin"
-    style="@style/Widget.MaterialComponents.CardView">
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="10dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/stroke_color"
+    app:cardElevation="0dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="@dimen/medium_margin"
-        android:paddingVertical="@dimen/small_margin">
+        android:padding="@dimen/small_margin">
 
         <ImageView
             android:id="@+id/favoritesProductPic"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:src="@drawable/placeholder"
-            android:scaleType="centerInside"
+            android:scaleType="fitCenter"
             android:contentDescription="Product picture"/>
 
-        <TextView
-            android:id="@+id/favoritesProductName"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/favoritesActions"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="@dimen/medium_margin"
-            android:text="Placeholder"
-            android:textFontWeight="700"
-            android:textSize="20dp"/>
+            android:layout_below="@id/favoritesProductPic"
+            android:gravity="center_vertical"
+            android:layout_alignParentEnd="true">
 
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/favoritesProductFavoriteCheckbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@android:color/holo_red_light"
-            android:tooltipText="Nei preferiti"
-            android:button="@drawable/favorite_states"
-            android:checked="true" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/favoritesProductName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="@dimen/medium_margin"
+                android:text="Placeholder"
+                android:textFontWeight="700"
+                android:textSize="20dp"/>
+
+            <ImageButton
+                android:id="@+id/favoritesProductLocate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_round_my_location_24"
+                android:padding="12dp"
+                android:background="?attr/selectableItemBackground"/>
+
+            <ImageButton
+                android:id="@+id/favoritesProductDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_outline_info_24"
+                android:padding="12dp"
+                android:background="?attr/selectableItemBackground"/>
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/favoritesProductFavoriteCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@android:color/holo_red_light"
+                android:tooltipText="Nei preferiti"
+                android:button="@drawable/favorite_states"
+                android:checked="true" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>

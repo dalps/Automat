@@ -10,7 +10,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cronologia acquisti"
+        android:text="I miei ordini"
+        android:layout_marginBottom="@dimen/medium_margin"
         android:textFontWeight="700"
         android:textSize="@dimen/fragment_title_fontsize" />
 

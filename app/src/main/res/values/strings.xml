@@ -12,7 +12,7 @@
     <string name="cart_item_removed_alert">%1$s rimosso dal carrello</string>
     <string name="cart_item_marked_alert">%1$s aggiunto ai preferiti</string>
     <string name="cart_item_unmarked_alert">%1$s rimosso dai preferiti</string>
-    <string name="scan_help_text">Premi il pulsante Scan per trovare distributori vicini</string>
+    <string name="scan_help_text">Premi il pulsante Scan per trovare distributori Automat vicini</string>
     <string name="item_quantity">%1$d</string>
     <string name="user_order_tally">%1$d acquisti effettuati</string>
     <string name="user_profile_automat_tally">%1$d punti Automat</string>
@@ -20,6 +20,4 @@
     <string name="total_price">Totale: %1$.2f€</string>
     <string name="total_price_in_automats">(%1$d punti Automat)</string>
     <string name="automats_earned">Hai guadagnato %1$d punti Automat!</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

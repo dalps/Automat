@@ -50,7 +50,8 @@ public class CartDialogFragment extends BottomSheetDialogFragment {
         binding.payButton.setOnClickListener(view1 -> {
             OrderDialogFragment fragment = new OrderDialogFragment(cart.toOrder());
 
-            fragment.show(getChildFragmentManager(), "payment");
+            fragment.show(getParentFragmentManager(), "payment");
+            dismiss();
         });
 
         binding.cartAppBar.setNavigationOnClickListener(view1 -> dismiss());

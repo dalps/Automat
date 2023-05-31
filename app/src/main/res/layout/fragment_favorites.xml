@@ -4,14 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.FavoritesFragment"
-    android:padding="@dimen/medium_margin"
+    android:paddingHorizontal="@dimen/medium_margin"
     android:clipToPadding="false">
 
     <TextView
         android:id="@+id/favoritesFragmentTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Preferiti"
+        android:text="I miei preferiti"
+        android:layout_marginVertical="@dimen/medium_margin"
         android:textFontWeight="700"
         android:textSize="@dimen/fragment_title_fontsize" />
 
@@ -28,7 +29,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoriesList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/favoritesFragmentTitle"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/favoritesFragmentTitle"
+        android:paddingBottom="@dimen/medium_margin"
+        android:clipToPadding="false"/>
 
 </RelativeLayout>

@@ -12,7 +12,8 @@
         android:id="@+id/mainFragmentTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Distributori"
+        android:text="Rileva distributori"
+        android:layout_marginBottom="@dimen/medium_margin"
         android:textFontWeight="700"
         android:textSize="@dimen/fragment_title_fontsize" />
 
@@ -30,19 +31,11 @@
             android:src="@drawable/no_machine" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_margin"
-            android:text="Trova distributori Automat™"
-            android:textAlignment="center"
-            android:textFontWeight="700"
-            android:textSize="20sp" />
-
-        <TextView
             android:id="@+id/scanHelp"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="@string/scan_help_text"
+            android:textSize="@dimen/small_fontsize"
             android:textAlignment="center"/>
     </LinearLayout>
 
@@ -52,13 +45,13 @@
         android:layout_height="match_parent"
         android:layout_below="@id/mainFragmentTitle"
         android:orientation="vertical"
-        android:gravity="center"
         android:visibility="invisible">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/machineList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:clipToPadding="false" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

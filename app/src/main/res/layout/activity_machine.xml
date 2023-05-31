@@ -65,7 +65,9 @@
             android:id="@+id/productList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/helpText"/>
+            android:layout_below="@id/helpText"
+            android:paddingBottom="72dp"
+            android:clipToPadding="false"/>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/checkoutFAB"
