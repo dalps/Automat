@@ -87,6 +87,10 @@ public class LoginFragment extends DialogFragment {
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
 
+        if (parentBinding == null) {
+            return;
+        }
+
         Menu menu = parentBinding.homeAppBar.getMenu();
         MenuItem loginButton = menu.findItem(R.id.login);
 

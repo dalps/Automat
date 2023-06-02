@@ -18,8 +18,10 @@ import android.widget.TextView;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.monopalla.automat.R;
+import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.Order;
 import com.monopalla.automat.data.model.Product;
+import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.FragmentPaymentDialogBinding;
 import com.monopalla.automat.databinding.OrderItemBinding;
 import com.monopalla.automat.utils.AnimUtils;
@@ -27,11 +29,11 @@ import com.monopalla.automat.utils.AnimUtils;
 import java.util.ArrayList;
 
 public class OrderDialogFragment extends BottomSheetDialogFragment {
-    Order order;
     private FragmentPaymentDialogBinding binding;
+    Order order;
 
-    public OrderDialogFragment(Order cart) {
-        this.order = cart;
+    public OrderDialogFragment(Order order) {
+        this.order = order;
     }
 
     @Nullable
@@ -45,15 +47,31 @@ public class OrderDialogFragment extends BottomSheetDialogFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        final RecyclerView recyclerView = binding.list;
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new OrderItemAdapter(order.getItems()));
-        recyclerView.setNestedScrollingEnabled(false);
+        binding.list.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.list.setAdapter(new OrderItemAdapter(order.getItems()));
+        binding.list.setNestedScrollingEnabled(false);
 
         binding.orderTotal.setText(getString(R.string.total_price, order.total()));
         binding.orderTotalInAutomats.setText(getString(R.string.total_price_in_automats, order.totalInAutomats()));
 
         binding.productPageAppBar.setNavigationOnClickListener(view1 -> {
+            dismiss();
+        });
+
+        binding.payButton.setOnClickListener(v -> {
+            CompleteOrderDialogFragment fragment = new CompleteOrderDialogFragment(order);
+
+            UserRepository userData = UserRepository.getInstance(getContext());
+
+            if (userData.isCurrentUserValid()) {
+                User user = userData.getCurrentUser();
+
+                user.addAutomats((int) order.earnedAutomats());
+                user.addToHistory(order);
+            }
+
+            fragment.show(getParentFragmentManager(), "orderComplete");
+
             dismiss();
         });
 

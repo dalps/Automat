@@ -120,35 +120,52 @@
                 android:text="Metodo di pagamento"
                 android:textSize="@dimen/section_header_fontsize"
                 android:textFontWeight="700"
-                android:layout_marginTop="@dimen/big_margin"
-                android:layout_marginBottom="@dimen/small_margin"/>
+                android:layout_marginTop="@dimen/big_margin" />
 
             <LinearLayout
                 android:id="@+id/paymentMethods"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/paymentMethodsTitle"
-                android:orientation="horizontal"
-                android:layout_marginBottom="@dimen/medium_margin"
+                android:orientation="vertical"
                 android:gravity="center_vertical">
 
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="0.5"
-                    android:src="@drawable/google_pay_mark_800"/>
-
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/sufficientPoints"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Google Pay"/>
+                    android:layout_marginBottom="@dimen/medium_margin"
+                    android:text="Hai abbastanza punti per completare l'acquisto!"
+                    android:textSize="@dimen/small_fontsize"/>
 
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.4"
-                    android:src="@drawable/ic_round_navigate_next_24"/>
+                <RadioGroup
+                    android:id="@+id/methodsRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/methodAutomatPoints"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Saldo punti Automat"
+                        android:background="@drawable/automat_point_option_background"
+                        android:paddingHorizontal="@dimen/medium_margin" />
+
+                    <RadioButton
+                        android:id="@+id/methodGooglePay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Google Pay"
+                        android:paddingHorizontal="@dimen/medium_margin" />
+
+                    <RadioButton
+                        android:id="@+id/methodCrediCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Carta di credito"
+                        android:paddingHorizontal="@dimen/medium_margin" />
+                </RadioGroup>
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -156,6 +173,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/paymentMethods"
+                android:layout_marginTop="@dimen/big_margin"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/black"
                 android:text="Paga" />
