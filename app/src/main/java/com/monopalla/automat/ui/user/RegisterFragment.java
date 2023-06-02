@@ -3,6 +3,7 @@ package com.monopalla.automat.ui.user;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -25,10 +26,15 @@ import com.monopalla.automat.databinding.FragmentRegisterBinding;
 
 public class RegisterFragment extends DialogFragment {
     FragmentRegisterBinding binding;
-    ActivityHomeBinding parentBinding;
 
-    public RegisterFragment(ActivityHomeBinding parentBinding) {
-        this.parentBinding = parentBinding;
+    public interface RegisterListener {
+        public void onSuccessfulRegister(LoginFragment login);
+    }
+
+    RegisterListener listener;
+
+    public RegisterFragment() {
+
     }
 
     @NonNull
@@ -76,12 +82,17 @@ public class RegisterFragment extends DialogFragment {
         return binding.getRoot();
     }
 
-    @Override
-    public void onDismiss(@NonNull DialogInterface dialog) {
-        super.onDismiss(dialog);
 
-        if (UserRepository.getInstance(getContext()).isCurrentUserValid()) {
-            parentBinding.registerInviteBanner.setVisibility(View.GONE);
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        try {
+            listener = (RegisterListener) context;
+        } catch (ClassCastException e) {
+            // The activity doesn't implement the interface, throw exception
+            throw new ClassCastException(getActivity().toString()
+                    + " must implement RegisterListener");
         }
     }
 }

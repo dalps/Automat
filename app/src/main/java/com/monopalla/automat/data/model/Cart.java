@@ -95,6 +95,10 @@ public class Cart {
                 getUnits());
     }
 
+    public void clear() {
+        items.clear();
+    }
+
     public static class CartItem {
         Product product;
         int quantity;

@@ -32,8 +32,7 @@ public class MachineActivity extends AppCompatActivity {
                 machine.getSortedSlots(userData.getCurrentUser()), binding.checkoutFAB));
 
         binding.machineAppBar.setNavigationOnClickListener(view -> {
-            // TODO show clear cart confirmation dialog (if not empty)
-            productData.getCart().clearCart();
+            productData.clearCart();
 
             finishAfterTransition();
         });

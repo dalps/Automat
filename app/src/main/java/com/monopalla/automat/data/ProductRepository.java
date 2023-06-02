@@ -186,4 +186,8 @@ public class ProductRepository {
     public void setCart(Cart cart) {
         this.cart = cart;
     }
+
+    public void clearCart() {
+        cart.clear();
+    }
 }

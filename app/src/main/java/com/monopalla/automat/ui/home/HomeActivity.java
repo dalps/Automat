@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,8 +20,9 @@ import com.monopalla.automat.ui.user.UserProfileActivity;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.utils.AnimUtils;
+import com.monopalla.automat.utils.ImageUtils;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements LoginFragment.LoginListener, RegisterFragment.RegisterListener {
     ActivityHomeBinding binding;
 
     @Override
@@ -78,7 +80,8 @@ public class HomeActivity extends AppCompatActivity {
         User user = userData.getCurrentUser();
 
         if (userData.isCurrentUserValid()) {
-            loginButton.setIcon(new BitmapDrawable(getResources(), user.getProfilePicture()));
+            Bitmap cropped = ImageUtils.roundCrop(user.getProfilePicture());
+            loginButton.setIcon(new BitmapDrawable(getResources(), cropped));
         }
 
         binding.homeAppBar.setOnMenuItemClickListener(item -> {
@@ -88,7 +91,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 } else {
-                    LoginFragment fragment = new LoginFragment(binding);
+                    LoginFragment fragment = new LoginFragment();
                     fragment.show(getSupportFragmentManager(), "login");
                 }
 
@@ -102,12 +105,12 @@ public class HomeActivity extends AppCompatActivity {
         // Registration banner
         //
         binding.bannerRegisterButton.setOnClickListener(v -> {
-            RegisterFragment fragment = new RegisterFragment(binding);
+            RegisterFragment fragment = new RegisterFragment();
             fragment.show(getSupportFragmentManager(), "register");
         });
 
         binding.bannerLoginButton.setOnClickListener(v -> {
-            LoginFragment fragment = new LoginFragment(binding);
+            LoginFragment fragment = new LoginFragment();
             fragment.show(getSupportFragmentManager(), "login");
         });
 
@@ -123,6 +126,33 @@ public class HomeActivity extends AppCompatActivity {
             else {
                 binding.registerInviteBanner.setVisibility(View.VISIBLE);
             }
+        }
+    }
+
+    @Override
+    public void onSuccessfulLogin(LoginFragment login) {
+        Menu menu = binding.homeAppBar.getMenu();
+        MenuItem loginButton = menu.findItem(R.id.login);
+
+        UserRepository userData = UserRepository.getInstance(getApplicationContext());
+        User user = userData.getCurrentUser();
+
+        if (userData.isCurrentUserValid()) {
+            binding.registerInviteBanner.setVisibility(View.GONE);
+
+            Bitmap cropped = ImageUtils.roundCrop(user.getProfilePicture());
+            loginButton.setIcon(new BitmapDrawable(getResources(), cropped));
+        }
+
+        Intent intent = new Intent(this, UserProfileActivity.class);
+
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+    }
+
+    @Override
+    public void onSuccessfulRegister(LoginFragment login) {
+        if (UserRepository.getInstance(getApplicationContext()).isCurrentUserValid()) {
+            binding.registerInviteBanner.setVisibility(View.GONE);
         }
     }
 }

@@ -1,12 +1,19 @@
 package com.monopalla.automat.ui.payment;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
+import com.google.android.material.snackbar.Snackbar;
 import com.monopalla.automat.R;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.Order;
@@ -24,16 +32,28 @@ import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.FragmentPaymentDialogBinding;
 import com.monopalla.automat.databinding.OrderItemBinding;
+import com.monopalla.automat.ui.user.LoginFragment;
 import com.monopalla.automat.utils.AnimUtils;
 
 import java.util.ArrayList;
 
 public class OrderDialogFragment extends BottomSheetDialogFragment {
     private FragmentPaymentDialogBinding binding;
+    private ActivityResultLauncher<Intent> activityResultLauncher;
     Order order;
 
     public OrderDialogFragment(Order order) {
         this.order = order;
+
+        activityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if(result.getResultCode() == 1) {
+                    System.out.println("Hello");
+                    getActivity().finish();
+                }
+            }
+        );
     }
 
     @Nullable
@@ -59,7 +79,7 @@ public class OrderDialogFragment extends BottomSheetDialogFragment {
         });
 
         binding.payButton.setOnClickListener(v -> {
-            CompleteOrderDialogFragment fragment = new CompleteOrderDialogFragment(order);
+            Intent intent = new Intent(getActivity(), OrderCompleteActivity.class);
 
             UserRepository userData = UserRepository.getInstance(getContext());
 
@@ -70,7 +90,7 @@ public class OrderDialogFragment extends BottomSheetDialogFragment {
                 user.addToHistory(order);
             }
 
-            fragment.show(getParentFragmentManager(), "orderComplete");
+            activityResultLauncher.launch(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity()));
 
             dismiss();
         });

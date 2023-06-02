@@ -3,6 +3,7 @@ package com.monopalla.automat.ui.user;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -31,10 +32,15 @@ import com.monopalla.automat.utils.ImageUtils;
 
 public class LoginFragment extends DialogFragment {
     FragmentLoginBinding binding;
-    ActivityHomeBinding parentBinding;
 
-    public LoginFragment(ActivityHomeBinding parentBinding) {
-        this.parentBinding = parentBinding;
+    public interface LoginListener {
+        public void onSuccessfulLogin(LoginFragment login);
+    }
+
+    LoginListener listener;
+
+    public LoginFragment() {
+
     }
 
     @NonNull
@@ -51,15 +57,14 @@ public class LoginFragment extends DialogFragment {
             String passwordInput = binding.loginPasswordEditText.getText().toString();
 
             if (userData.login(usernameInput, passwordInput)) {
-                Intent intent = new Intent(getActivity(), UserProfileActivity.class);
+                listener.onSuccessfulLogin(this);
 
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 dismiss();
             }
         });
 
         binding.registerLink.setOnClickListener(v -> {
-            RegisterFragment fragment = new RegisterFragment(parentBinding);
+            RegisterFragment fragment = new RegisterFragment();
 
             fragment.show(getParentFragmentManager(), "register");
 
@@ -84,22 +89,15 @@ public class LoginFragment extends DialogFragment {
     }
 
     @Override
-    public void onDismiss(@NonNull DialogInterface dialog) {
-        super.onDismiss(dialog);
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
 
-        if (parentBinding == null) {
-            return;
-        }
-
-        Menu menu = parentBinding.homeAppBar.getMenu();
-        MenuItem loginButton = menu.findItem(R.id.login);
-
-        UserRepository userData = UserRepository.getInstance(getContext());
-        User user = userData.getCurrentUser();
-
-        if (userData.isCurrentUserValid()) {
-            Bitmap cropped = ImageUtils.roundCrop(user.getProfilePicture());
-            loginButton.setIcon(new BitmapDrawable(getResources(), cropped));
+        try {
+            listener = (LoginListener) context;
+        } catch (ClassCastException e) {
+            // The activity doesn't implement the interface, throw exception
+            throw new ClassCastException(getActivity().toString()
+                    + " must implement LoginListener");
         }
     }
 }

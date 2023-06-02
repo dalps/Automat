@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.payment.OrderCompleteActivity"
+    android:animateLayoutChanges="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/orderCompleteAppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/orderCompleteAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/machine_actionbar_menu"
+            app:navigationIcon="@drawable/ic_round_arrow_back_24"
+            style="@style/Widget.MaterialComponents.Toolbar.Surface">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ordine completato"
+                    android:textSize="20sp"
+                    android:textFontWeight="800"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/orderCompleteAppbarSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Automat del Palazzo"
+                    android:textSize="14sp"
+                    android:textFontWeight="700"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/orderCompleteAppBarLayout"
+        android:padding="@dimen/medium_margin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/backToHomeButton"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/orderCompleteItemThumbnails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollIndicators="none"
+                android:scrollbars="none"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/big_margin"
+                android:text="I tuoi articoli stanno per essere erogati.\nControlla il vassoio!"
+                android:textAlignment="center"
+                android:textSize="@dimen/medium_margin"
+                android:textFontWeight="700"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/medium_margin"
+                android:background="@drawable/home_banner_background">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/small_margin"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:src="@drawable/automat_points"/>
+
+                    <TextView
+                        android:id="@+id/plusAutomatPoints"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/small_margin"
+                        android:text="@string/plus_automat_points"
+                        android:textFontWeight="700"
+                        android:textSize="@dimen/big_fontsize" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/earnedAutomatsMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/small_margin"
+                    android:text="@string/earned_automat_points_message"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/medium_margin" />
+
+                <TextView
+                    android:id="@+id/newAutomatsBalanceMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_automat_points_balance_message"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/medium_margin" />
+
+                <TextView
+                    android:id="@+id/loginToRedeemLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Accedi o registrati per riscattarli"
+                    android:textColor="@color/teal_700"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/medium_margin"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/small_margin"
+                    android:background="?android:selectableItemBackground"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/backToHomeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_above="@id/keepShoppingButton"
+            android:backgroundTint="@color/teal_700"
+            app:icon="@drawable/ic_round_home_24"
+            app:iconGravity="textStart"
+            android:text="Torna alla home" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/keepShoppingButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continua con gli acquisti"
+            android:textColor="@color/teal_700"
+            android:layout_alignParentBottom="true"
+            app:icon="@drawable/ic_round_shopping_cart_24"
+            app:iconGravity="textStart"
+            app:iconTint="@color/teal_700"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+    </RelativeLayout>
+</RelativeLayout>
