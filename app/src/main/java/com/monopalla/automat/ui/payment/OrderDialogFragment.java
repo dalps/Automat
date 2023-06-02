@@ -82,13 +82,14 @@ public class OrderDialogFragment extends BottomSheetDialogFragment {
             Intent intent = new Intent(getActivity(), OrderCompleteActivity.class);
 
             UserRepository userData = UserRepository.getInstance(getContext());
+            User user = userData.getCurrentUser();
 
             if (userData.isCurrentUserValid()) {
-                User user = userData.getCurrentUser();
 
                 user.addAutomats((int) order.earnedAutomats());
-                user.addToHistory(order);
             }
+
+            user.addToHistory(order);
 
             activityResultLauncher.launch(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity()));
 

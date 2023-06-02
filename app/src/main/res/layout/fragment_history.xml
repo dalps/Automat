@@ -4,15 +4,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HistoryFragment"
-    android:padding="@dimen/medium_margin"
+    android:paddingHorizontal="@dimen/medium_margin"
     android:clipToPadding="false">
 
     <TextView
+        android:id="@+id/ordersFragmentTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="I miei ordini"
         android:layout_marginBottom="@dimen/medium_margin"
         android:textFontWeight="700"
         android:textSize="@dimen/fragment_title_fontsize" />
+
+    <TextView
+        android:id="@+id/noOrdersMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="100dp"
+        android:text="Gli ordini effettuati tramite l'app verranno mostrati qui."
+        android:textSize="@dimen/small_fontsize"
+        android:textAlignment="center"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:id="@+id/orderHistorySection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/ordersFragmentTitle">
+
+        <TextView
+            android:id="@+id/orderHistoryLength"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/order_history_length_message"
+            android:textSize="@dimen/small_fontsize"
+            android:layout_marginBottom="@dimen/small_margin" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ordersList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/medium_margin"
+            android:clipToPadding="false"/>
+    </LinearLayout>
+
 
 </RelativeLayout>

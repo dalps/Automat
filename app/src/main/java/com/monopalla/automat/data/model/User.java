@@ -13,8 +13,8 @@ public class User {
     String name;
     Bitmap profilePicture;
     final HashSet<Product> favoriteProducts;
-    final ArrayList<Order> orderHistory;
 
+    final ArrayList<Order> orderHistory;
     int automats;
 
     public User(String username, String password, String name, Bitmap profilePicture) {
@@ -55,12 +55,20 @@ public class User {
         return automats;
     }
 
+    public ArrayList<Order> getOrderHistory() {
+        return orderHistory;
+    }
+
     public void addToHistory(Order order) {
         orderHistory.add(order);
     }
 
     public int historyLength() {
         return orderHistory.size();
+    }
+
+    public boolean anyOrders() {
+        return !orderHistory.isEmpty();
     }
 
     public String getUsername() {

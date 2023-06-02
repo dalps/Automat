@@ -23,4 +23,5 @@
     <string name="earned_automat_points_message">Con questo ordine hai guadagnato %1$d punti Automat!</string>
     <string name="new_automat_points_balance_message">Nuovo saldo: %1$d</string>
     <string name="plus_automat_points">+%1$d</string>
+    <string name="order_history_length_message">%1$d ordini effettuati</string>
 </resources>
