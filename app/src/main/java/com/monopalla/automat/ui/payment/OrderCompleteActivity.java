@@ -16,6 +16,7 @@ import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.ActivityOrderCompleteBinding;
 import com.monopalla.automat.ui.ProductThumbnailRecyclerViewAdapter;
 import com.monopalla.automat.ui.home.HomeActivity;
+import com.monopalla.automat.ui.machine.MachineActivity;
 import com.monopalla.automat.ui.user.LoginFragment;
 import com.monopalla.automat.ui.user.RegisterFragment;
 
@@ -30,6 +31,7 @@ public class OrderCompleteActivity extends AppCompatActivity  implements LoginFr
 
         UserRepository userData = UserRepository.getInstance(getApplicationContext());
         MachineRepository machineData = MachineRepository.getInstance(getApplicationContext());
+        ProductRepository productData = ProductRepository.getInstance(getApplicationContext());
 
         Order order = ProductRepository.getInstance(getApplicationContext()).getCart().toOrder();
 
@@ -62,13 +64,21 @@ public class OrderCompleteActivity extends AppCompatActivity  implements LoginFr
         binding.orderCompleteAppbarSubtitle.setText(machineData.getCurrentMachine().getName());
 
         binding.orderCompleteAppBar.setNavigationOnClickListener(view -> {
-            finishAfterTransition();
+            productData.clearCart();
+
+            // Back to the machine's product listing
+            Intent intent = new Intent(this, MachineActivity.class);
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            startActivity(intent);
         });
 
         binding.backToHomeButton.setOnClickListener(v -> {
-            ProductRepository.getInstance(getApplicationContext()).clearCart();
+            productData.clearCart();
             machineData.setCurrentMachine(null);
 
+            // Back to home
             Intent intent = new Intent(this, HomeActivity.class);
 
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -77,7 +87,14 @@ public class OrderCompleteActivity extends AppCompatActivity  implements LoginFr
         });
 
         binding.keepShoppingButton.setOnClickListener(v -> {
-            finishAfterTransition();
+            productData.clearCart();
+
+            // Back to the machine's product listing
+            Intent intent = new Intent(this, MachineActivity.class);
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            startActivity(intent);
         });
     }
 
