@@ -30,12 +30,10 @@ public class MachineRecyclerViewAdapter extends RecyclerView.Adapter<MachineRecy
     public static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView machineNameTV;
         final TextView machineStatusTV;
-        final RelativeLayout machineLayout;
 
         public ViewHolder(MachineRecyclerviewItemBinding binding) {
             super(binding.getRoot());
 
-            machineLayout = binding.machineContainer;
             machineNameTV = binding.machineName;
             machineStatusTV = binding.machineStatus;
         }
@@ -58,7 +56,7 @@ public class MachineRecyclerViewAdapter extends RecyclerView.Adapter<MachineRecy
         holder.machineNameTV.setText(context.getString(R.string.rv_machine_name, machine.getName()));
         holder.machineStatusTV.setText(context.getString(R.string.rv_machine_status, machine.getStatus()));
 
-        holder.machineLayout.setOnClickListener(view -> {
+        holder.itemView.setOnClickListener(view -> {
             machineData.setCurrentMachine(machine);
 
             Intent intent = new Intent(context, MachineActivity.class);
