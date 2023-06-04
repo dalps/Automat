@@ -129,18 +129,14 @@
                     android:textAlignment="center"
                     android:textSize="@dimen/medium_margin" />
 
-                <TextView
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/loginToRedeemLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/medium_margin"
                     android:text="Accedi o registrati per riscattarli"
-                    android:textColor="@color/teal_700"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/medium_margin"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:padding="@dimen/small_margin"
-                    android:background="?android:selectableItemBackground"/>
+                    android:textAllCaps="false"
+                    android:backgroundTint="@color/teal_700" />
             </LinearLayout>
         </LinearLayout>
 
@@ -151,10 +147,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:layout_above="@id/keepShoppingButton"
-            android:backgroundTint="@color/teal_700"
             app:icon="@drawable/ic_round_home_24"
             app:iconGravity="textStart"
-            android:text="Torna alla home" />
+            android:text="Torna alla home"
+            android:textAllCaps="false"
+            android:textColor="@color/teal_700"
+            app:iconTint="@color/teal_700"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/keepShoppingButton"
@@ -162,8 +161,9 @@
             android:layout_height="wrap_content"
             android:text="Continua con gli acquisti"
             android:textColor="@color/teal_700"
+            android:textAllCaps="false"
             android:layout_alignParentBottom="true"
-            app:icon="@drawable/ic_round_shopping_cart_24"
+            app:icon="@drawable/ic_round_arrow_back_24"
             app:iconGravity="textStart"
             app:iconTint="@color/teal_700"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
