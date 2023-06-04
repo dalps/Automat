@@ -78,6 +78,7 @@
             android:layout_margin="16dp"
             android:contentDescription="Vai al carrello"
             android:text="Carrello"
+            android:textAllCaps="false"
             app:icon="@drawable/ic_round_shopping_cart_24"/>
     </RelativeLayout>
 

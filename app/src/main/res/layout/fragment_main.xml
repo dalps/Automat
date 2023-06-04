@@ -61,7 +61,8 @@
         android:layout_alignParentEnd="true"
         android:contentDescription="@string/home_fab_description"
         android:layout_alignParentBottom="true"
-        android:text="Scan"
+        android:text="Rileva"
+        android:textAllCaps="false"
         app:icon="@drawable/ic_round_refresh_24" />
 
 </RelativeLayout>

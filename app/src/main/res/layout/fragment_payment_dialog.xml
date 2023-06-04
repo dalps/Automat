@@ -176,7 +176,8 @@
                 android:layout_marginTop="@dimen/big_margin"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/black"
-                android:text="Paga" />
+                android:text="Paga"
+                android:textAllCaps="false" />
         </RelativeLayout>
 
     </ScrollView>

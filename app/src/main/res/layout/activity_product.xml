@@ -80,8 +80,10 @@
             android:id="@+id/purchaseButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/productPageAddToCartButton"
+
+            android:layout_alignParentBottom="true"
             android:text="Acquista subito"
+            android:textAllCaps="false"
             app:iconGravity="textStart"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
@@ -89,8 +91,9 @@
             android:id="@+id/productPageAddToCartButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_above="@+id/purchaseButton"
             android:text="Aggiungi al carrello"
+            android:textAllCaps="false"
             app:icon="@drawable/ic_round_add_shopping_cart_24"
             app:iconGravity="textStart"/>
     </RelativeLayout>

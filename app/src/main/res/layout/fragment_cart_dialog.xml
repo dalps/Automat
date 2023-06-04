@@ -72,6 +72,7 @@
                 android:layout_marginTop="@dimen/small_margin"
                 android:text="Vai al pagamento"
                 android:textColor="@color/white"
+                android:textAllCaps="false"
                 android:backgroundTint="@color/black"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
         </RelativeLayout>

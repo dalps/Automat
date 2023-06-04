@@ -65,8 +65,9 @@
                 android:layout_marginEnd="@dimen/small_margin"
                 android:text="Accedi"
                 android:textColor="@color/teal_700"
+                android:textAllCaps="false"
                 app:rippleColor="@color/teal_200"
-                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bannerRegisterButton"
@@ -75,7 +76,8 @@
                 android:layout_weight="0.5"
                 android:layout_marginStart="@dimen/small_margin"
                 android:backgroundTint="@color/teal_700"
-                android:text="Registrati" />
+                android:text="Registrati"
+                android:textAllCaps="false" />
         </LinearLayout>
 
     </LinearLayout>
