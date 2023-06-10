@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.monopalla.automat.R;
+import com.monopalla.automat.data.ProductRepository;
 import com.monopalla.automat.data.model.Cart;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.databinding.CartItemBinding;
@@ -117,6 +118,17 @@ public class CartDialogFragment extends BottomSheetDialogFragment {
             });
 
             holder.removeUnitButton.setOnClickListener(view -> {
+                if (cart.getItem(position).getQuantity() <= 1) {
+                    ProductRepository.getInstance(getContext()).removeFromCart(product);
+                    notifyDataSetChanged();
+
+                    if (cart.isCartEmpty()) {
+                        dismiss();
+                    }
+                    
+                    return;
+                }
+
                 cart.decreaseItemQuanitity(position);
                 holder.itemQuantity.setText(getString(R.string.item_quantity, item.getQuantity()));
             });
