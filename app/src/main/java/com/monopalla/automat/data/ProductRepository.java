@@ -8,6 +8,8 @@ import com.monopalla.automat.R;
 import com.monopalla.automat.data.model.Cart;
 import com.monopalla.automat.data.model.Product;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -175,8 +177,37 @@ public class ProductRepository {
         products.forEach(p -> cart.addProduct(p));
     } */
 
+    public static class AddedToCardEvent {
+        public final Product product;
+
+        public AddedToCardEvent(Product product) {
+            this.product = product;
+        }
+    }
+
+    public static class RemovedFromCartEvent {
+        public final Product product;
+
+
+        public RemovedFromCartEvent(Product product) {
+            this.product = product;
+        }
+    }
+
     public void addToCart(Product product) {
-        getCart().getItems().add(new Cart.CartItem(product, 1));
+        ArrayList<Cart.CartItem> items = getCart().getItems();
+
+        if (!items.contains(new Cart.CartItem(product, 1))) {
+            items.add(new Cart.CartItem(product, 1));
+        }
+
+        EventBus.getDefault().post(new AddedToCardEvent(product));
+    }
+
+    public void removeFromCart(Product product) {
+        getCart().removeProduct(product);
+
+        EventBus.getDefault().post(new RemovedFromCartEvent(product));
     }
 
     public Cart getCart() {

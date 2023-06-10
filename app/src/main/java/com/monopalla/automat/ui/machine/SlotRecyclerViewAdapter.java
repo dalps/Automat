@@ -26,6 +26,9 @@ import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.ProductRecyclerviewItemBinding;
 import com.monopalla.automat.utils.AnimUtils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 
 public class SlotRecyclerViewAdapter extends RecyclerView.Adapter<SlotRecyclerViewAdapter.ViewHolder> {
@@ -59,6 +62,22 @@ public class SlotRecyclerViewAdapter extends RecyclerView.Adapter<SlotRecyclerVi
             productRemoveFromCartButton = binding.productRemoveFromCartButton;
             productFavoriteCheckBox = binding.productFavoriteCheckbox;
         }
+
+        @Subscribe
+        public void onAddedToCart(ProductRepository.AddedToCardEvent event) {
+            if(productNameTV.getText().toString().compareTo(event.product.getName()) == 0) {
+                AnimUtils.switchViewsWithCircularReveal(
+                        productAddToCartButton, productRemoveFromCartButton);
+            }
+        }
+
+        @Subscribe
+        public void onRemovedFromCart(ProductRepository.RemovedFromCartEvent event) {
+            if(productNameTV.getText().toString().compareTo(event.product.getName()) == 0) {
+                AnimUtils.switchViewsWithCircularReveal(
+                        productRemoveFromCartButton, productAddToCartButton);
+            }
+        }
     }
 
     @NonNull
@@ -77,6 +96,8 @@ public class SlotRecyclerViewAdapter extends RecyclerView.Adapter<SlotRecyclerVi
         ProductRepository productData = ProductRepository.getInstance(context);
         UserRepository userData = UserRepository.getInstance(context);
         User user = userData.getCurrentUser();
+
+        EventBus.getDefault().register(holder);
 
         holder.productNameTV.setText(product.getName());
         holder.productPriceTV.setText(context.getString(R.string.product_price, product.getPrice()));
@@ -105,19 +126,13 @@ public class SlotRecyclerViewAdapter extends RecyclerView.Adapter<SlotRecyclerVi
 
             showSnackbar(holder.productAddToCartButton,
                     context.getString(R.string.cart_item_added_alert, product.getName()));
-
-            AnimUtils.switchViewsWithCircularReveal(
-                    holder.productAddToCartButton, holder.productRemoveFromCartButton);
         });
 
         holder.productRemoveFromCartButton.setOnClickListener(view -> {
-            productData.getCart().removeProduct(product);
+            productData.removeFromCart(product);
 
             showSnackbar(holder.productRemoveFromCartButton,
                     context.getString(R.string.cart_item_removed_alert, product.getName()));
-
-            AnimUtils.switchViewsWithCircularReveal(
-                    holder.productRemoveFromCartButton, holder.productAddToCartButton);
         });
 
         if (user.isProductFavorite(product)) {
