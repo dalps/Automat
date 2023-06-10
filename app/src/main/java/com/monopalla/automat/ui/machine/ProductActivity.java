@@ -42,11 +42,17 @@ public class ProductActivity extends AppCompatActivity {
         });
 
         binding.purchaseButton.setOnClickListener(view -> {
-            OrderDialogFragment paymentBottomSheet = new OrderDialogFragment(
+            OrderDialogFragment fragment = new OrderDialogFragment(
                     new Order(LocalDate.now(),
                             MachineRepository.getInstance().getCurrentMachine(),
                             new ArrayList<>(Collections.singletonList(product))));
-            paymentBottomSheet.show(getSupportFragmentManager(), "payment");
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                    .add(R.id.productPageOrderFragmentContainer, fragment, "order")
+                    .addToBackStack("order")
+                    .commit();
         });
 
     }

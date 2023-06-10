@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,23 +38,13 @@ import com.monopalla.automat.utils.AnimUtils;
 
 import java.util.ArrayList;
 
-public class OrderDialogFragment extends BottomSheetDialogFragment {
+public class OrderDialogFragment extends Fragment {
     private FragmentPaymentDialogBinding binding;
     private ActivityResultLauncher<Intent> activityResultLauncher;
     Order order;
 
     public OrderDialogFragment(Order order) {
         this.order = order;
-
-        activityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if(result.getResultCode() == 1) {
-                    System.out.println("Hello");
-                    getActivity().finish();
-                }
-            }
-        );
     }
 
     @Nullable
@@ -69,13 +60,17 @@ public class OrderDialogFragment extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         binding.list.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.list.setAdapter(new OrderItemAdapter(order.getItems()));
-        binding.list.setNestedScrollingEnabled(false);
+        binding.list.setNestedScrollingEnabled(true);
 
         binding.orderTotal.setText(getString(R.string.total_price, order.total()));
         binding.orderTotalInAutomats.setText(getString(R.string.total_price_in_automats, order.totalInAutomats()));
 
         binding.productPageAppBar.setNavigationOnClickListener(view1 -> {
-            dismiss();
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                    .remove(this)
+                    .commit();
         });
 
         binding.payButton.setOnClickListener(v -> {
@@ -91,9 +86,9 @@ public class OrderDialogFragment extends BottomSheetDialogFragment {
 
             user.addToHistory(order);
 
-            activityResultLauncher.launch(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity()));
+            startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity()).toBundle());
 
-            dismiss();
+            // dismiss();
         });
 
     }

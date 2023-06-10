@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.payment.OrderDialogFragment">
+    tools:context=".ui.payment.OrderDialogFragment"
+    android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -40,7 +41,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -56,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/small_margin"
                 android:text="Articoli"
-                android:textSize="@dimen/section_header_fontsize"
+                android:textSize="@dimen/medium_fontsize"
                 android:textFontWeight="700" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -64,7 +65,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/itemsTitle"
-                android:layout_marginTop="18dp"
                 android:clipToPadding="false"
                 tools:context=".ui.payment.OrderDialogFragment"
                 tools:listitem="@layout/fragment_payment_dialog_cart_item" />
@@ -73,18 +73,19 @@
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
                 android:layout_below="@id/list"/>
 
             <TextView
                 android:id="@+id/noItemsSelected"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/medium_margin"
                 android:layout_below="@id/divider"
                 android:layout_alignBaseline="@id/orderTotalInfo"
                 android:textAlignment="center"
-                android:text="Non sono stati selezionati articoli"
-                android:textSize="@dimen/medium_fontsize"
+                android:text="Nessun articolo selezionato"
+                android:textSize="@dimen/small_fontsize"
                 android:visibility="invisible" />
 
             <LinearLayout
@@ -92,7 +93,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_below="@id/divider">
+                android:layout_below="@id/divider"
+                android:background="#eee"
+                android:padding="@dimen/small_margin">
 
                 <TextView
                     android:id="@+id/orderTotal"
@@ -118,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/orderTotalInfo"
                 android:text="Metodo di pagamento"
-                android:textSize="@dimen/section_header_fontsize"
+                android:textSize="@dimen/medium_fontsize"
                 android:textFontWeight="700"
                 android:layout_marginTop="@dimen/big_margin" />
 
@@ -172,7 +175,7 @@
                 android:id="@+id/payButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/paymentMethods"
+                android:layout_alignParentBottom="true"
                 android:layout_marginTop="@dimen/big_margin"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/black"
@@ -180,6 +183,6 @@
                 android:textAllCaps="false" />
         </RelativeLayout>
 
-    </ScrollView>
+    </RelativeLayout>
 
 </LinearLayout>

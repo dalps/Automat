@@ -1,101 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.machine.ProductActivity">
+    tools:context=".ui.machine.ProductActivity"
+    android:animateLayoutChanges="true">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="0dp"
-        app:elevation="0dp">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/productPageAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/product_actionbar_menu"
-            app:navigationIcon="@drawable/ic_round_arrow_back_24"
-            style="@style/Widget.MaterialComponents.Toolbar.Surface">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center">
-
-                <TextView
-                    android:id="@+id/productPageTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Info prodotto"
-                    android:textSize="20sp"
-                    android:textFontWeight="800"
-                    android:layout_gravity="center"/>
-            </LinearLayout>
-        </com.google.android.material.appbar.MaterialToolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <ImageView
-        android:id="@+id/productPagePic"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/placeholder"/>
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/medium_margin">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/productPageName"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nome prodotto"
-            android:textFontWeight="700"
-            android:textSize="28sp"/>
+            android:elevation="0dp"
+            app:elevation="0dp">
 
-        <TextView
-            android:id="@+id/productPagePrice"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/productPageAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:menu="@menu/product_actionbar_menu"
+                app:navigationIcon="@drawable/ic_round_arrow_back_24"
+                style="@style/Widget.MaterialComponents.Toolbar.Surface">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/productPageTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Info prodotto"
+                        android:textSize="20sp"
+                        android:textFontWeight="800"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:id="@+id/productPagePic"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/productPageName"
-            android:text="9.99 Euro"
-            android:textSize="32sp"/>
+            android:layout_height="300dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/placeholder"/>
 
-        <TextView
-            android:id="@+id/productPageDescription"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/productPagePrice"
-            android:text="Descrizione del prodotto"
-            android:textSize="18sp"/>
+            android:layout_height="match_parent"
+            android:padding="@dimen/medium_margin">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/purchaseButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/productPageName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome prodotto"
+                android:textFontWeight="700"
+                android:textSize="28sp"/>
 
-            android:layout_alignParentBottom="true"
-            android:text="Acquista subito"
-            android:textAllCaps="false"
-            app:iconGravity="textStart"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            <TextView
+                android:id="@+id/productPagePrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/productPageName"
+                android:text="9.99 Euro"
+                android:textSize="32sp"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/productPageAddToCartButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/purchaseButton"
-            android:text="Aggiungi al carrello"
-            android:textAllCaps="false"
-            app:icon="@drawable/ic_round_add_shopping_cart_24"
-            app:iconGravity="textStart"/>
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/productPageDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/productPagePrice"
+                android:text="Descrizione del prodotto"
+                android:textSize="18sp"/>
 
-</LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/purchaseButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="Acquista subito"
+                android:textAllCaps="false"
+                app:iconGravity="textStart"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/productPageAddToCartButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/purchaseButton"
+                android:text="Aggiungi al carrello"
+                android:textAllCaps="false"
+                app:icon="@drawable/ic_round_add_shopping_cart_24"
+                app:iconGravity="textStart"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/productPageOrderFragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

@@ -20,6 +20,7 @@ import com.monopalla.automat.data.model.Cart;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.databinding.CartItemBinding;
 import com.monopalla.automat.databinding.FragmentCartDialogBinding;
+import com.monopalla.automat.ui.home.MainFragment;
 import com.monopalla.automat.ui.payment.OrderDialogFragment;
 
 public class CartDialogFragment extends BottomSheetDialogFragment {
@@ -50,7 +51,13 @@ public class CartDialogFragment extends BottomSheetDialogFragment {
         binding.payButton.setOnClickListener(view1 -> {
             OrderDialogFragment fragment = new OrderDialogFragment(cart.toOrder());
 
-            fragment.show(getParentFragmentManager(), "payment");
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                    .add(R.id.orderFragmentContainer, fragment, "order")
+                    .addToBackStack("order")
+                    .commit();
+
             dismiss();
         });
 

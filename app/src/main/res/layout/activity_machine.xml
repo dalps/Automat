@@ -1,86 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.machine.MachineActivity">
+    tools:context=".ui.machine.MachineActivity"
+    android:animateLayoutChanges="true">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="0dp"
-        app:elevation="0dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/machineAppBar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/machine_actionbar_menu"
-            app:navigationIcon="@drawable/ic_round_arrow_back_24"
-            style="@style/Widget.MaterialComponents.Toolbar.Surface">
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            app:elevation="0dp">
 
-            <LinearLayout
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/machineAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:menu="@menu/machine_actionbar_menu"
+                app:navigationIcon="@drawable/ic_round_arrow_back_24"
+                style="@style/Widget.MaterialComponents.Toolbar.Surface">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prodotti"
+                        android:textSize="20sp"
+                        android:textFontWeight="800"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/appbarSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="in Automat del Palazzo"
+                        android:textSize="14sp"
+                        android:textFontWeight="700"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/helpText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Premi su un prodotto per maggiori informazioni"
+                android:textAlignment="center"
+                android:paddingVertical="@dimen/medium_margin" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/productList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/helpText"
+                android:paddingBottom="72dp"
+                android:clipToPadding="false"/>
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/checkoutFAB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center">
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="16dp"
+                android:contentDescription="Vai al carrello"
+                android:text="Carrello"
+                android:textAllCaps="false"
+                app:icon="@drawable/ic_round_shopping_cart_24"/>
+        </RelativeLayout>
+    </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Prodotti"
-                    android:textSize="20sp"
-                    android:textFontWeight="800"
-                    android:layout_gravity="center"/>
-
-                <TextView
-                    android:id="@+id/appbarSubtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="in Automat del Palazzo"
-                    android:textSize="14sp"
-                    android:textFontWeight="700"
-                    android:layout_gravity="center"/>
-            </LinearLayout>
-
-        </com.google.android.material.appbar.MaterialToolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/orderFragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/helpText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Premi su un prodotto per maggiori informazioni"
-            android:textAlignment="center"
-            android:paddingVertical="@dimen/medium_margin" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/productList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/helpText"
-            android:paddingBottom="72dp"
-            android:clipToPadding="false"/>
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/checkoutFAB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="16dp"
-            android:contentDescription="Vai al carrello"
-            android:text="Carrello"
-            android:textAllCaps="false"
-            app:icon="@drawable/ic_round_shopping_cart_24"/>
-    </RelativeLayout>
-
-
-</LinearLayout>
+        android:layout_height="match_parent" />
+</RelativeLayout>
