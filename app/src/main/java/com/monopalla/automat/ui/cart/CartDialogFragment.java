@@ -119,13 +119,16 @@ public class CartDialogFragment extends BottomSheetDialogFragment {
 
             holder.removeUnitButton.setOnClickListener(view -> {
                 if (cart.getItem(position).getQuantity() <= 1) {
+                    // cart references ProductRepository's instance
                     ProductRepository.getInstance(getContext()).removeFromCart(product);
-                    notifyDataSetChanged();
+                    notifyItemRemoved(position);
+                    int itemsChangedCount = cart.getItems().size() - position;
+                    notifyItemRangeChanged(position, itemsChangedCount);
 
                     if (cart.isCartEmpty()) {
                         dismiss();
                     }
-                    
+
                     return;
                 }
 
