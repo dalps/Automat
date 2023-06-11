@@ -16,7 +16,6 @@ import com.monopalla.automat.R;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.Order;
 import com.monopalla.automat.data.model.User;
-import com.monopalla.automat.databinding.FavoriteRecyclerviewItemBinding;
 import com.monopalla.automat.databinding.FragmentHistoryBinding;
 import com.monopalla.automat.databinding.OrderHistoryItemBinding;
 import com.monopalla.automat.ui.ProductThumbnailRecyclerViewAdapter;

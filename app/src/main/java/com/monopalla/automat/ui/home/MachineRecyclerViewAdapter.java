@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.monopalla.automat.R;
 import com.monopalla.automat.data.MachineRepository;
 import com.monopalla.automat.data.model.Machine;
-import com.monopalla.automat.databinding.MachineRecyclerviewItemBinding;
+import com.monopalla.automat.databinding.MachineItemBinding;
 import com.monopalla.automat.ui.machine.MachineActivity;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class MachineRecyclerViewAdapter extends RecyclerView.Adapter<MachineRecy
         final TextView machineNameTV;
         final TextView machineStatusTV;
 
-        public ViewHolder(MachineRecyclerviewItemBinding binding) {
+        public ViewHolder(MachineItemBinding binding) {
             super(binding.getRoot());
 
             machineNameTV = binding.machineName;
@@ -43,7 +43,7 @@ public class MachineRecyclerViewAdapter extends RecyclerView.Adapter<MachineRecy
     @Override
     public MachineRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        return new ViewHolder(MachineRecyclerviewItemBinding.inflate(
+        return new ViewHolder(MachineItemBinding.inflate(
                 LayoutInflater.from(parent.getContext()), parent, false));
     }
 

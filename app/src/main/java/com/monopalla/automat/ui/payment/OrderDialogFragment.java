@@ -33,7 +33,7 @@ import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.Order;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.data.model.User;
-import com.monopalla.automat.databinding.FragmentPaymentDialogBinding;
+import com.monopalla.automat.databinding.FragmentOrderBinding;
 import com.monopalla.automat.databinding.OrderItemBinding;
 import com.monopalla.automat.ui.user.LoginFragment;
 import com.monopalla.automat.utils.AnimUtils;
@@ -41,7 +41,7 @@ import com.monopalla.automat.utils.AnimUtils;
 import java.util.ArrayList;
 
 public class OrderDialogFragment extends Fragment {
-    private FragmentPaymentDialogBinding binding;
+    private FragmentOrderBinding binding;
     Order order;
 
     public OrderDialogFragment(Order order) {
@@ -53,7 +53,7 @@ public class OrderDialogFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        binding = FragmentPaymentDialogBinding.inflate(inflater, container, false);
+        binding = FragmentOrderBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

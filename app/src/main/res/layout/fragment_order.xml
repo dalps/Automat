@@ -67,7 +67,7 @@
                 android:layout_below="@id/itemsTitle"
                 android:clipToPadding="false"
                 tools:context=".ui.payment.OrderDialogFragment"
-                tools:listitem="@layout/fragment_payment_dialog_cart_item" />
+                tools:listitem="@layout/order_item" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/divider"

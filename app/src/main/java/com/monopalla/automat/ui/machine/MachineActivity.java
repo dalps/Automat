@@ -23,7 +23,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.monopalla.automat.data.model.MachineSlot;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.data.model.User;
-import com.monopalla.automat.databinding.ProductRecyclerviewItemBinding;
+import com.monopalla.automat.databinding.SlotProductItemBinding;
 import com.monopalla.automat.ui.cart.CartDialogFragment;
 import com.monopalla.automat.R;
 import com.monopalla.automat.data.MachineRepository;
@@ -95,7 +95,7 @@ public class MachineActivity extends AppCompatActivity {
             final ImageButton productRemoveFromCartButton;
             final MaterialCheckBox productFavoriteCheckBox;
 
-            public ViewHolder(ProductRecyclerviewItemBinding binding) {
+            public ViewHolder(SlotProductItemBinding binding) {
                 super(binding.getRoot());
 
                 productCardView = binding.productCard;
@@ -129,7 +129,7 @@ public class MachineActivity extends AppCompatActivity {
         @Override
         public SlotRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-            return new ViewHolder(ProductRecyclerviewItemBinding.inflate(
+            return new ViewHolder(SlotProductItemBinding.inflate(
                     LayoutInflater.from(parent.getContext()), parent, false));
         }
 

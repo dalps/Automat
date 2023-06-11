@@ -13,7 +13,7 @@ import com.google.android.material.checkbox.MaterialCheckBox;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.data.model.User;
-import com.monopalla.automat.databinding.FavoriteRecyclerviewItemBinding;
+import com.monopalla.automat.databinding.FavoriteItemBinding;
 
 import java.util.ArrayList;
 import android.os.Bundle;
@@ -68,7 +68,7 @@ class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRecyclerV
         final ImageView productPic;
         final MaterialCheckBox markAsFavorite;
 
-        public ViewHolder(FavoriteRecyclerviewItemBinding binding) {
+        public ViewHolder(FavoriteItemBinding binding) {
             super(binding.getRoot());
 
             productName = binding.favoritesProductName;
@@ -81,7 +81,7 @@ class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRecyclerV
     @Override
     public FavoriteRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        return new ViewHolder(FavoriteRecyclerviewItemBinding.inflate(
+        return new ViewHolder(FavoriteItemBinding.inflate(
                 LayoutInflater.from(parent.getContext()), parent, false));
     }
 

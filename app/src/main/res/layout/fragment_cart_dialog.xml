@@ -57,19 +57,15 @@
                 tools:context=".ui.machine.MachineActivity"
                 tools:listitem="@layout/cart_item" />
 
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/medium_margin"
-                android:layout_below="@id/cartRecyclerView"/>
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/payButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/divider"
-                android:layout_marginTop="@dimen/small_margin"
+                android:layout_below="@id/cartRecyclerView"
+                android:layout_marginTop="@dimen/big_margin"
+                app:icon="@drawable/round_shopping_cart_checkout_24"
+                app:iconTint="@color/white"
+                app:iconGravity="end"
                 android:text="Vai al pagamento"
                 android:textColor="@color/white"
                 android:textAllCaps="false"
