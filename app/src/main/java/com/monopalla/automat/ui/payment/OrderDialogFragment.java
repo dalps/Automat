@@ -22,11 +22,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.snackbar.Snackbar;
 import com.monopalla.automat.R;
+import com.monopalla.automat.data.ProductRepository;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.Order;
 import com.monopalla.automat.data.model.Product;
@@ -40,7 +42,6 @@ import java.util.ArrayList;
 
 public class OrderDialogFragment extends Fragment {
     private FragmentPaymentDialogBinding binding;
-    private ActivityResultLauncher<Intent> activityResultLauncher;
     Order order;
 
     public OrderDialogFragment(Order order) {
@@ -62,6 +63,10 @@ public class OrderDialogFragment extends Fragment {
         binding.list.setAdapter(new OrderItemAdapter(order.getItems()));
         binding.list.setNestedScrollingEnabled(true);
 
+        ProductRepository productData = ProductRepository.getInstance(getContext());
+        UserRepository userData = UserRepository.getInstance(getContext());
+        User user = userData.getCurrentUser();
+
         binding.orderTotal.setText(getString(R.string.total_price, order.total()));
         binding.orderTotalInAutomats.setText(getString(R.string.total_price_in_automats, order.totalInAutomats()));
 
@@ -73,18 +78,35 @@ public class OrderDialogFragment extends Fragment {
                     .commit();
         });
 
+        if (user.getAutomats() >= order.totalInAutomats()) {
+            binding.sufficientPoints.setVisibility(View.VISIBLE);
+            binding.methodAutomatPoints.setVisibility(View.VISIBLE);
+
+            binding.methodsRadioGroup.check(R.id.methodAutomatPoints);
+        }
+        else {
+            binding.sufficientPoints.setVisibility(View.GONE);
+            binding.methodAutomatPoints.setVisibility(View.GONE);
+
+            binding.methodsRadioGroup.check(R.id.methodGooglePay);
+        }
+
         binding.payButton.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), OrderCompleteActivity.class);
 
-            UserRepository userData = UserRepository.getInstance(getContext());
-            User user = userData.getCurrentUser();
+            if (binding.methodsRadioGroup.getCheckedRadioButtonId() == R.id.methodAutomatPoints) {
+                if (userData.isCurrentUserValid()) {
+                    user.spendAutomats((int) order.totalInAutomats());
+                }
 
-            if (userData.isCurrentUserValid()) {
-
-                user.addAutomats((int) order.earnedAutomats());
+                order.setPaymentMethod(Order.POINTS_METHOD);
+            }
+            else {
+                order.setPaymentMethod(Order.OTHER_METHOD);
             }
 
             user.addToHistory(order);
+            productData.setCurrentOrder(order);
 
             startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity()).toBundle());
 

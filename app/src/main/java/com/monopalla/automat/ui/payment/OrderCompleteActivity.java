@@ -33,7 +33,8 @@ public class OrderCompleteActivity extends AppCompatActivity  implements LoginFr
         MachineRepository machineData = MachineRepository.getInstance(getApplicationContext());
         ProductRepository productData = ProductRepository.getInstance(getApplicationContext());
 
-        Order order = ProductRepository.getInstance(getApplicationContext()).getCart().toOrder();
+        User user = userData.getCurrentUser();
+        Order order = productData.getCurrentOrder();
 
         ProductThumbnailRecyclerViewAdapter adapter = new ProductThumbnailRecyclerViewAdapter(order.getItems());
 
@@ -43,9 +44,20 @@ public class OrderCompleteActivity extends AppCompatActivity  implements LoginFr
         binding.plusAutomatPoints.setText(getString(R.string.plus_automat_points, order.earnedAutomats()));
         binding.earnedAutomatsMessage.setText(getString(R.string.earned_automat_points_message, order.earnedAutomats()));
 
-        if (userData.isCurrentUserValid()) {
-            User user = userData.getCurrentUser();
+        // Show earned points message user didn't pay with points
+        if (order.getPaymentMethod().compareTo(Order.POINTS_METHOD) == 0) {
+            binding.earnedPointsSection.setVisibility(View.GONE);
+            
+            binding.pointsBalanceMessage.setText(getString(R.string.new_automat_points_balance_message, user.getAutomats()));
+            binding.newBalanceSection.setVisibility(View.VISIBLE);
+        }
+        else {
+            user.addAutomats((int) order.earnedAutomats());
+            binding.earnedPointsSection.setVisibility(View.VISIBLE);
+            binding.newBalanceSection.setVisibility(View.GONE);
+        }
 
+        if (userData.isCurrentUserValid()) {
             binding.newAutomatsBalanceMessage.setVisibility(View.VISIBLE);
             binding.loginToRedeemLink.setVisibility(View.GONE);
 

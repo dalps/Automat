@@ -7,8 +7,11 @@ public class Order {
     LocalDate date;
     Machine machine;
     ArrayList<Product> items;
+    String paymentMethod = OTHER_METHOD;
     public static final double AUTOMATS_CHANGE = 0.1;
     public static final long AUTOMATS_BONUS = 3;
+    public static final String POINTS_METHOD = "automats";
+    public static final String OTHER_METHOD = "other";
 
     public Order(LocalDate date, Machine machine, ArrayList<Product> items) {
         this.date = date;
@@ -61,5 +64,13 @@ public class Order {
 
     public void addItem(Product product) {
         items.add(product);
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }

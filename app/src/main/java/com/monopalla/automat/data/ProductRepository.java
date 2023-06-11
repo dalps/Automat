@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 
 import com.monopalla.automat.R;
 import com.monopalla.automat.data.model.Cart;
+import com.monopalla.automat.data.model.Order;
 import com.monopalla.automat.data.model.Product;
 
 import org.greenrobot.eventbus.EventBus;
@@ -19,6 +20,7 @@ public class ProductRepository {
     private final Map<String, Product> products = new HashMap<>();
     private final Context context;
     private Product currentProduct;
+    private Order currentOrder;
     private Cart cart;
     public static final int CART_SIZE = 5;
 
@@ -169,6 +171,14 @@ public class ProductRepository {
 
     public void setCurrentProduct(Product currentProduct) {
         this.currentProduct = currentProduct;
+    }
+
+    public Order getCurrentOrder() {
+        return currentOrder;
+    }
+
+    public void setCurrentOrder(Order currentOrder) {
+        this.currentOrder = currentOrder;
     }
 
     /* public void newCart(ArrayList<Product> products) {
