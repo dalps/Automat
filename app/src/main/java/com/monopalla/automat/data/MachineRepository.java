@@ -62,7 +62,9 @@ public class MachineRepository {
     }
 
     public ArrayList<Machine> getMachines() {
-        return new ArrayList<>(machines.values());
+        return machines.values().stream()
+                .sorted()
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public Machine getCurrentMachine() {

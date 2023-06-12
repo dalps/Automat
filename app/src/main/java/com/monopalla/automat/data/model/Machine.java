@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Machine {
+public class Machine implements Comparable<Machine> {
     private String serialNumber;
     private String name;
     private String position;
@@ -136,5 +136,10 @@ public class Machine {
     @Override
     public int hashCode() {
         return Objects.hash(getSerialNumber());
+    }
+
+    @Override
+    public int compareTo(Machine m) {
+        return this.getName().compareTo(m.getName());
     }
 }

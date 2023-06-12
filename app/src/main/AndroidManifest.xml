@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Automat"
         tools:targetApi="31">
         <activity
+            android:name=".ui.employee.EmployeeHomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.payment.OrderCompleteActivity"
             android:exported="false">
             <meta-data

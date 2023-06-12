@@ -36,7 +36,12 @@ public class MainFragment extends Fragment {
         binding.machineList.setAdapter(new MachineRecyclerViewAdapter(machineData.getMachines()));
 
         binding.scanFAB.setOnClickListener(view -> {
-            AnimUtils.switchViewsWithCircularReveal(binding.noMachineFound, binding.machineSection);
+            if (binding.machineSection.getVisibility() == View.VISIBLE) {
+                AnimUtils.switchViewsWithCircularRevealAndDelay(binding.machineSection, binding.machineSection);
+            }
+            else {
+                AnimUtils.switchViewsWithCircularRevealAndDelay(binding.noMachineFound, binding.machineSection);
+            }
         });
 
         return binding.getRoot();
