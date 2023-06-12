@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.FavoritesFragment"
-    android:paddingHorizontal="@dimen/medium_margin"
     android:clipToPadding="false">
 
     <TextView
         android:id="@+id/favoritesFragmentTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/medium_margin"
         android:text="I miei preferiti"
-        android:layout_marginVertical="@dimen/medium_margin"
+        android:layout_marginTop="@dimen/medium_margin"
         android:textFontWeight="700"
         android:textSize="@dimen/fragment_title_fontsize" />
 
@@ -20,17 +21,49 @@
         android:id="@+id/noFavoriteMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/medium_margin"
+        android:layout_below="@id/searchSection"
         android:layout_marginVertical="100dp"
         android:text="Aggiungi prodotti alla tua lista dei preferiti spuntando l'icona ♥ durante gli acquisti"
         android:textSize="@dimen/small_fontsize"
         android:textAlignment="center"
         android:visibility="invisible"/>
 
+    <LinearLayout
+        android:id="@+id/searchSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/favoritesFragmentTitle"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:elevation="2dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/loginUsernameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/small_margin"
+            app:startIconDrawable="@drawable/ic_round_search_24"
+            app:endIconMode="clear_text"
+            android:hint="Cerca un prodotto"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/loginUsernameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoriesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/favoritesFragmentTitle"
+        android:layout_below="@id/searchSection"
+        android:paddingHorizontal="@dimen/medium_margin"
         android:paddingBottom="@dimen/medium_margin"
         android:clipToPadding="false"/>
 

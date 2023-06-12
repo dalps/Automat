@@ -59,19 +59,39 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/helpText"
+            <LinearLayout
+                android:id="@+id/searchSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Premi su un prodotto per maggiori informazioni"
-                android:textAlignment="center"
-                android:paddingVertical="@dimen/medium_margin" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="@dimen/small_margin"
+                android:background="@color/white"
+                android:elevation="2dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/loginUsernameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:startIconDrawable="@drawable/ic_round_search_24"
+                    app:endIconMode="clear_text"
+                    android:hint="Cerca un prodotto"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/loginUsernameEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/productList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/helpText"
+                android:layout_below="@id/searchSection"
                 android:paddingBottom="72dp"
                 android:clipToPadding="false"/>
 
