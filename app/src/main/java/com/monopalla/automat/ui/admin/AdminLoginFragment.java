@@ -19,6 +19,7 @@ import android.view.Window;
 import com.monopalla.automat.R;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.databinding.FragmentAdminLoginBinding;
+import com.monopalla.automat.ui.admin.home.AdminHomeActivity;
 
 public class AdminLoginFragment extends DialogFragment {
     FragmentAdminLoginBinding binding;

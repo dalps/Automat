@@ -1,4 +1,4 @@
-package com.monopalla.automat.ui.admin;
+package com.monopalla.automat.ui.admin.home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.monopalla.automat.R;
@@ -20,7 +21,7 @@ import com.monopalla.automat.data.MachineRepository;
 import com.monopalla.automat.data.model.Machine;
 import com.monopalla.automat.databinding.ActivityAdminHomeBinding;
 import com.monopalla.automat.databinding.AdminMachineItemBinding;
-import com.monopalla.automat.ui.home.MachineRecyclerViewAdapter;
+import com.monopalla.automat.ui.admin.machine.MachineControlPanelActivity;
 import com.monopalla.automat.ui.machine.MachineActivity;
 import com.monopalla.automat.utils.AnimUtils;
 
@@ -62,6 +63,7 @@ class AdminMachineRecyclerViewAdapter extends RecyclerView.Adapter<AdminMachineR
         final TextView machineNameTV;
         final TextView machineSerialNumber;
         final TextView machineStatusTV;
+        final LinearLayout controlPanelLink;
 
         public ViewHolder(AdminMachineItemBinding binding) {
             super(binding.getRoot());
@@ -69,6 +71,7 @@ class AdminMachineRecyclerViewAdapter extends RecyclerView.Adapter<AdminMachineR
             machineNameTV = binding.machineName;
             machineSerialNumber = binding.machineSerialNumber;
             machineStatusTV = binding.machineStatus;
+            controlPanelLink = binding.machineInfo;
         }
     }
 
@@ -90,10 +93,10 @@ class AdminMachineRecyclerViewAdapter extends RecyclerView.Adapter<AdminMachineR
         holder.machineStatusTV.setText(context.getString(R.string.rv_machine_status, machine.getStatus()));
         holder.machineSerialNumber.setText(machine.getSerialNumber());
 
-        holder.itemView.setOnClickListener(view -> {
+        holder.controlPanelLink.setOnClickListener(view -> {
             machineData.setCurrentMachine(machine);
 
-            Intent intent = new Intent(context, MachineActivity.class);
+            Intent intent = new Intent(context, MachineControlPanelActivity.class);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
                     (Activity) context);
 

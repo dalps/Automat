@@ -52,7 +52,10 @@ public class OrderCompleteActivity extends AppCompatActivity  implements LoginFr
             binding.newBalanceSection.setVisibility(View.VISIBLE);
         }
         else {
-            user.addAutomats((int) order.earnedAutomats());
+            if (userData.isCurrentUserValid()) {
+                user.addAutomats((int) order.earnedAutomats());
+            }
+
             binding.earnedPointsSection.setVisibility(View.VISIBLE);
             binding.newBalanceSection.setVisibility(View.GONE);
         }
