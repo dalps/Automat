@@ -24,4 +24,6 @@
     <string name="new_automat_points_balance_message">Nuovo saldo: %1$d</string>
     <string name="plus_automat_points">+%1$d</string>
     <string name="order_history_length_message">%1$d ordini effettuati</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

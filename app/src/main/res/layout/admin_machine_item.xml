@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/machineCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="10dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/stroke_color"
+    app:cardElevation="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/machineInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="?android:attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/machineIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/machine_icon"
+                android:contentDescription="machine icon"
+                android:layout_marginHorizontal="@dimen/small_margin"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingVertical="@dimen/medium_margin">
+
+                <TextView
+                    android:id="@+id/machineName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rv_machine_name"
+                    android:textSize="@dimen/medium_fontsize"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/machineSerialNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Snack e bevande"
+                    android:textSize="@dimen/small_fontsize"
+                    android:layout_below="@id/machineName" />
+
+                <TextView
+                    android:id="@+id/machineStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:text="@string/rv_machine_status"
+                    android:textSize="@dimen/small_fontsize"
+                    android:layout_below="@id/machineSerialNumber" />
+            </RelativeLayout>
+
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_round_navigate_next_24"
+                android:layout_alignParentEnd="true"
+                android:scaleType="centerInside"
+                android:contentDescription="Open machine" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/quickActions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/machineInfo"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_alignParentEnd="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/favoritesProductDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:backgroundTint="@android:color/holo_red_light"
+                app:icon="@drawable/round_lock_open_24"
+                app:iconGravity="textStart"
+                app:cornerRadius="0dp"
+                android:text="Sblocca"
+                android:textAllCaps="false"
+                android:insetTop="0dp"
+                android:insetBottom="0dp" />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_red_light">
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:layout_marginVertical="@dimen/small_margin" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/powerBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:backgroundTint="@android:color/holo_red_light"
+                app:icon="@drawable/round_power_settings_new_24"
+                app:iconGravity="textStart"
+                app:cornerRadius="0dp"
+                android:text="Spegni"
+                android:textAllCaps="false"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

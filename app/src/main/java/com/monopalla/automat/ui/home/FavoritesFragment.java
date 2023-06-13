@@ -54,7 +54,6 @@ public class FavoritesFragment extends Fragment {
         return binding.getRoot();
     }
 }
-       
 
 class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRecyclerViewAdapter.ViewHolder> {
     private final ArrayList<Product> favorites;

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.admin.AdminHomeActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/homeAppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/homeAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/home_actionbar_menu"
+            style="@style/Widget.MaterialComponents.Toolbar.Surface">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Automat™ Admin"
+                android:textSize="20sp"
+                android:textFontWeight="800"
+                android:layout_gravity="center"/>
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.HomeActivity"
+        android:padding="@dimen/medium_margin"
+        android:clipToPadding="false">
+
+        <TextView
+            android:id="@+id/mainFragmentTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rileva distributori"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:textFontWeight="700"
+            android:textSize="@dimen/fragment_title_fontsize" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                app:showAnimationBehavior="inward"
+                app:trackCornerRadius="5dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/noMachineFound"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="@dimen/medium_margin"
+                android:src="@drawable/no_machine" />
+
+            <TextView
+                android:id="@+id/scanHelp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="@string/scan_help_text"
+                android:textSize="@dimen/small_fontsize"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/machineSection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/mainFragmentTitle"
+            android:orientation="vertical"
+            android:visibility="invisible">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/machineList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false" />
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/scanFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/home_fab_description"
+            android:layout_alignParentBottom="true"
+            android:text="Rileva"
+            android:textAllCaps="false"
+            app:icon="@drawable/ic_round_refresh_24" />
+    </RelativeLayout>
+</LinearLayout>

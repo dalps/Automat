@@ -11,15 +11,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 
 import com.monopalla.automat.databinding.ActivityHomeBinding;
+import com.monopalla.automat.ui.admin.AdminLoginFragment;
 import com.monopalla.automat.ui.user.LoginFragment;
 import com.monopalla.automat.R;
 import com.monopalla.automat.ui.user.RegisterFragment;
 import com.monopalla.automat.ui.user.UserProfileActivity;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.User;
-import com.monopalla.automat.utils.AnimUtils;
 import com.monopalla.automat.utils.ImageUtils;
 
 public class HomeActivity extends AppCompatActivity implements LoginFragment.LoginListener, RegisterFragment.RegisterListener {
@@ -86,14 +87,27 @@ public class HomeActivity extends AppCompatActivity implements LoginFragment.Log
 
         binding.homeAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.login) {
-                if (userData.isCurrentUserValid()) {
-                    Intent intent = new Intent(this, UserProfileActivity.class);
+                PopupMenu popup = new PopupMenu(getApplicationContext(), findViewById(R.id.login));
 
-                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-                } else {
-                    LoginFragment fragment = new LoginFragment();
-                    fragment.show(getSupportFragmentManager(), "login");
-                }
+                popup.getMenuInflater().inflate(R.menu.home_settings_menu, popup.getMenu());
+
+                popup.setOnMenuItemClickListener(item1 -> {
+                    switch (item1.getItemId()) {
+                        case R.id.option_login:
+                            LoginFragment loginFragment = new LoginFragment();
+                            loginFragment.show(getSupportFragmentManager(), "login");
+                            break;
+
+                        case R.id.option_employee_login:
+                            AdminLoginFragment staffLoginFragment = new AdminLoginFragment();
+                            staffLoginFragment.show(getSupportFragmentManager(), "employee_login");
+                            break;
+                    }
+
+                    return true;
+                });
+
+                popup.show();
 
                 return true;
             }
