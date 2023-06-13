@@ -142,7 +142,9 @@ public class MachineActivity extends AppCompatActivity {
             UserRepository userData = UserRepository.getInstance(context);
             User user = userData.getCurrentUser();
 
-            EventBus.getDefault().register(holder);
+            if (!EventBus.getDefault().isRegistered(holder)) {
+                EventBus.getDefault().register(holder);
+            }
 
             holder.productNameTV.setText(product.getName());
             holder.productPriceTV.setText(context.getString(R.string.product_price, product.getPrice()));
