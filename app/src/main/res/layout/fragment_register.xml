@@ -99,18 +99,31 @@
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/registerButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/big_margin"
-        android:text="Registrati"
-        android:textAllCaps="false"/>
-
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/registerPolicyAgree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginTop="@dimen/medium_margin"
         android:text="Accetto i termini e condizioni del servizio e la privacy policy di Monopalla Srl."/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:text="Registrati"
+        android:textAllCaps="false"
+        app:cornerRadius="50dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/registerLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hai già un account? Accedi"
+        android:textSize="@dimen/small_fontsize"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_round_navigate_next_24"
+        app:iconGravity="end"
+        style="@style/Widget.MaterialComponents.Button.TextButton"/>
 </LinearLayout>

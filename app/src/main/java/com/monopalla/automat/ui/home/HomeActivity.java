@@ -123,9 +123,8 @@ public class HomeActivity extends AppCompatActivity implements LoginFragment.Log
             fragment.show(getSupportFragmentManager(), "register");
         });
 
-        binding.bannerLoginButton.setOnClickListener(v -> {
-            LoginFragment fragment = new LoginFragment();
-            fragment.show(getSupportFragmentManager(), "login");
+        binding.closeBannerButton.setOnClickListener(v -> {
+            binding.registerInviteBanner.setVisibility(View.GONE);
         });
 
 

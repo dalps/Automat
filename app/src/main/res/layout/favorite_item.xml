@@ -23,23 +23,26 @@
             android:scaleType="fitCenter"
             android:contentDescription="Product picture"/>
 
+        <TextView
+            android:id="@+id/favoritesProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/favoritesProductPic"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:text="Placeholder"
+            android:textFontWeight="700"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
         <LinearLayout
             android:id="@+id/favoritesActions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/favoritesProductPic"
-            android:gravity="center_vertical"
+            android:layout_below="@id/favoritesProductName"
+            android:gravity="center"
             android:layout_alignParentEnd="true">
-
-            <TextView
-                android:id="@+id/favoritesProductName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginHorizontal="@dimen/medium_margin"
-                android:text="Placeholder"
-                android:textFontWeight="700"
-                android:textSize="20dp"/>
 
             <ImageButton
                 android:id="@+id/favoritesProductLocate"
@@ -47,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_round_my_location_24"
                 android:padding="12dp"
-                android:background="?attr/selectableItemBackground"/>
+                android:background="?android:attr/actionBarItemBackground"/>
 
             <ImageButton
                 android:id="@+id/favoritesProductDetail"
@@ -55,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_outline_info_24"
                 android:padding="12dp"
-                android:background="?attr/selectableItemBackground"/>
+                android:background="?android:attr/actionBarItemBackground"/>
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/favoritesProductFavoriteCheckbox"

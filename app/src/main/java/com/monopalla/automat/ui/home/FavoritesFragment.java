@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,7 +44,7 @@ public class FavoritesFragment extends Fragment {
         if (user.anyFavorites()) {
             binding.noFavoriteMessage.setVisibility(View.INVISIBLE);
 
-            binding.favoriesList.setLayoutManager(new LinearLayoutManager(getActivity()));
+            binding.favoriesList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
             binding.favoriesList.setAdapter(new FavoriteRecyclerViewAdapter(
                     new ArrayList<>(user.getFavoriteProducts())));
         }

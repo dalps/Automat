@@ -63,20 +63,18 @@
                 android:id="@+id/searchSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="@dimen/small_margin"
-                android:background="@color/white"
-                android:elevation="2dp">
+                android:orientation="vertical"
+                android:gravity="center_vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/loginUsernameLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     app:startIconDrawable="@drawable/ic_round_search_24"
                     app:endIconMode="clear_text"
-                    android:hint="Cerca un prodotto"
+                    android:hint="Cerca un prodotto..."
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/small_margin"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -85,7 +83,13 @@
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/productList"

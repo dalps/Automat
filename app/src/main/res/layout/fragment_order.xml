@@ -179,8 +179,11 @@
                 android:layout_marginTop="@dimen/big_margin"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/black"
-                android:text="Paga"
-                android:textAllCaps="false" />
+                android:text="Conferma"
+                android:textAllCaps="false"
+                app:cornerRadius="50dp"
+                app:icon="@drawable/ic_round_navigate_next_24"
+                app:iconGravity="end"/>
         </RelativeLayout>
 
     </RelativeLayout>

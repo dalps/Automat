@@ -33,54 +33,62 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/registerInviteBanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_below="@id/homeAppBarLayout"
-        android:paddingHorizontal="@dimen/medium_margin"
-        android:paddingVertical="@dimen/small_margin"
-        android:layout_margin="@dimen/medium_margin"
-        android:background="@drawable/home_banner_background">
+        android:background="@drawable/home_banner_background"
+        android:layout_margin="@dimen/medium_margin">
 
-        <TextView
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/closeBannerButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registrati per guadagnare punti Automat e risparmiare su ogni acquisto!"
-            android:layout_marginTop="@dimen/small_margin"
-            android:textSize="@dimen/small_fontsize"/>
+            android:src="@drawable/ic_round_close_24"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:padding="12dp"
+            android:background="?android:attr/actionBarItemBackground"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/small_margin">
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/medium_margin"
+            android:paddingVertical="@dimen/small_margin">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/bannerLoginButton"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:layout_marginEnd="@dimen/small_margin"
-                android:text="Accedi"
-                android:textColor="@color/teal_700"
-                android:textAllCaps="false"
-                app:rippleColor="@color/teal_200"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                android:text="Iscriviti e risparmia"
+                android:textAlignment="center"
+                android:textSize="@dimen/medium_fontsize"
+                android:layout_marginTop="@dimen/small_margin"
+                android:textFontWeight="700"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrati per guadagnare punti Automat e risparmiare su ogni acquisto!"
+                android:layout_marginTop="@dimen/small_margin"
+                android:textSize="@dimen/small_fontsize"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/bannerRegisterButton"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
                 android:backgroundTint="@color/teal_700"
                 android:text="Registrati"
-                android:textAllCaps="false" />
-        </LinearLayout>
+                android:textAllCaps="false"
+                app:icon="@drawable/ic_round_navigate_next_24"
+                app:iconGravity="end"
+                app:cornerRadius="50dp"/>
 
-    </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
 
     <FrameLayout
         android:id="@+id/fragmentContainer"

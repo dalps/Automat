@@ -27,7 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hello"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:maxLines="1"
+            android:ellipsize="end"/>
 
         <TextView
             android:id="@+id/cartProductPrice"
@@ -36,29 +38,7 @@
             android:layout_below="@id/cartProductName"
             android:text="9.99"
             android:textSize="14sp"/>
-
     </RelativeLayout>
-
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginRight="@dimen/small_margin"
-        android:text="Quantità:"
-        android:textSize="16sp"
-        android:textFontWeight="700"
-        android:textAlignment="textEnd"/>
-
-    <TextView
-        android:id="@+id/itemQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/small_margin"
-        android:text="@string/item_quantity"
-        android:textSize="16sp"
-        android:textFontWeight="700"
-        android:textAlignment="textEnd"/>
 
     <ImageButton
         android:id="@+id/removeUnitButton"
@@ -66,7 +46,19 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/small_margin"
         android:src="@drawable/ic_round_remove_circle_outline_24"
-        android:background="?android:selectableItemBackground"/>
+        android:background="?attr/actionBarItemBackground"/>
+
+    <TextView
+        android:id="@+id/itemQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:text="@string/item_quantity"
+        android:textSize="16sp"
+        android:textFontWeight="700"
+        android:textAlignment="textEnd"
+        android:background="#ddd"
+        android:padding="@dimen/small_margin"/>
 
     <ImageButton
         android:id="@+id/addUnitButton"
@@ -74,5 +66,5 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/small_margin"
         android:src="@drawable/ic_round_add_circle_outline_24"
-        android:background="?android:selectableItemBackground"/>
+        android:background="?attr/actionBarItemBackground"/>
 </LinearLayout>
