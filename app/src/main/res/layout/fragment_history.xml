@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HistoryFragment"
@@ -15,6 +16,16 @@
         android:paddingHorizontal="@dimen/medium_margin"
         android:textFontWeight="700"
         android:textSize="@dimen/fragment_title_fontsize" />
+
+    <ImageButton
+        android:id="@+id/favoritesProductDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="@dimen/small_margin"
+        android:src="@drawable/ic_round_search_24"
+        android:padding="12dp"
+        android:background="?android:attr/actionBarItemBackground"/>
 
     <TextView
         android:id="@+id/ordersCount"
@@ -37,30 +48,18 @@
         android:gravity="end"
         android:layout_marginVertical="@dimen/small_margin">
 
-        <LinearLayout
+        <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical|end"
-            android:background="@drawable/outline_gray_background"
-            android:paddingStart="@dimen/small_margin"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?selectableItemBackground">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ordina per: Data "/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="center"
-                android:padding="@dimen/small_margin"
-                android:src="@drawable/round_expand_more_24"/>
-        </LinearLayout>
+            android:layout_weight="0"
+            android:text="Ordina per: Data"
+            android:textAllCaps="false"
+            android:textColor="@color/teal_700"
+            app:cornerRadius="50dp"
+            app:icon="@drawable/round_expand_more_24"
+            app:iconTint="@color/teal_700"
+            app:iconGravity="end"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
     </LinearLayout>
 

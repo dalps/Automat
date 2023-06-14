@@ -28,4 +28,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="cart_product_count">%1$d prodotti</string>
     <string name="details_title">Info %1$s</string>
+    <string name="cart_fab_text">Carrello (%1$d)</string>
+    <string name="order_items_count">Articoli (%1$d selezionati)</string>
+    <string name="order_total_recap">Totale (%1$d articoli): %1$.2f€</string>
+    <string name="detected_count">%1$d Macchine rilevate</string>
 </resources>

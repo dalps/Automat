@@ -34,9 +34,10 @@
                     android:layout_gravity="center">
 
                     <TextView
+                        android:id="@+id/appbarTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Prodotti"
+                        android:text="Automat del Palazzo"
                         android:textSize="20sp"
                         android:textFontWeight="800"
                         android:layout_gravity="center"/>
@@ -45,7 +46,7 @@
                         android:id="@+id/appbarSubtitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="in Automat del Palazzo"
+                        android:text="Catalogo prodotti"
                         android:textSize="14sp"
                         android:textFontWeight="700"
                         android:layout_gravity="center"/>
@@ -60,65 +61,33 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/searchSection"
+                android:id="@+id/topSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/favoritesFragmentTitle"
+                android:paddingHorizontal="@dimen/small_margin"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_margin="@dimen/small_margin">
+                android:gravity="center_vertical">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/productCount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginEnd="4dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/search_gray_background"
-                    android:paddingHorizontal="@dimen/small_margin"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?selectableItemBackground">
+                    android:text="@string/cart_product_count"
+                    android:textAllCaps="true" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="center"
-                        android:padding="@dimen/small_margin"
-                        android:src="@drawable/ic_round_search_24"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cerca prodotti..."/>
-                </LinearLayout>
-
-                <LinearLayout
+                <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical|end"
-                    android:background="@drawable/outline_gray_background"
-                    android:paddingStart="@dimen/small_margin"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?selectableItemBackground">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ordina per: Preferiti "/>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="center"
-                        android:padding="@dimen/small_margin"
-                        android:src="@drawable/round_expand_more_24"/>
-                </LinearLayout>
-
+                    android:layout_weight="0"
+                    android:text="Ordina per: Preferiti"
+                    android:textAllCaps="false"
+                    android:textColor="@color/teal_700"
+                    app:cornerRadius="50dp"
+                    app:icon="@drawable/round_expand_more_24"
+                    app:iconTint="@color/teal_700"
+                    app:iconGravity="end"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
             </LinearLayout>
 
 
@@ -126,7 +95,7 @@
                 android:id="@+id/productList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/searchSection"
+                android:layout_below="@id/topSection"
                 android:paddingBottom="72dp"
                 android:clipToPadding="false"/>
 

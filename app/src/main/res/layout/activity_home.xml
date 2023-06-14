@@ -67,7 +67,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Iscriviti e risparmia"
+                    android:text="Punti Automat™"
                     android:textAlignment="center"
                     android:textSize="@dimen/medium_fontsize"
                     android:layout_marginTop="@dimen/small_margin"
@@ -76,7 +76,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Registrati per guadagnare punti Automat e risparmiare su ogni acquisto!"
+                    android:text="Registrati per guadagnare punti Automat™ e risparmiare su ogni acquisto!"
+                    android:textAlignment="center"
                     android:layout_marginTop="@dimen/small_margin"
                     android:textSize="@dimen/small_fontsize"/>
 

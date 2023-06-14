@@ -47,7 +47,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingHorizontal="@dimen/medium_margin"
             android:paddingBottom="@dimen/medium_margin">
 
@@ -55,8 +55,8 @@
                 android:id="@+id/itemsTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/small_margin"
-                android:text="Articoli"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@string/order_items_count"
                 android:textSize="@dimen/medium_fontsize"
                 android:textFontWeight="700" />
 
@@ -169,14 +169,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginTop="@dimen/big_margin"
+                android:layout_marginTop="@dimen/small_margin"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/black"
-                android:text="Conferma"
+                android:text="Ordina ora"
                 android:textAllCaps="false"
                 app:cornerRadius="50dp"
-                app:icon="@drawable/ic_round_navigate_next_24"
-                app:iconGravity="end"/>
+                app:icon="@drawable/round_check_24"
+                app:iconGravity="textStart"/>
         </RelativeLayout>
 
     </RelativeLayout>

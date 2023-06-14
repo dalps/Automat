@@ -70,6 +70,7 @@ public class OrderDialogFragment extends Fragment {
         User user = userData.getCurrentUser();
 
         binding.orderTotal.setText(getString(R.string.total_price, order.total()));
+        binding.itemsTitle.setText(getString(R.string.order_items_count, order.getItems().size()));
         binding.orderTotalInAutomats.setText(getString(R.string.total_price_in_automats, order.totalInAutomats()));
 
         binding.productPageAppBar.setNavigationOnClickListener(view1 -> {
@@ -183,6 +184,7 @@ public class OrderDialogFragment extends Fragment {
                 }
 
                 binding.orderTotal.setText(getString(R.string.total_price, order.total()));
+                binding.itemsTitle.setText(getString(R.string.order_items_count, order.getItems().size()));
                 binding.orderTotalInAutomats.setText(getString(R.string.total_price_in_automats, order.totalInAutomats()));
             });
         }

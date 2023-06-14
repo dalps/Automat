@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Rileva distributori"
-        android:layout_marginBottom="@dimen/medium_margin"
         android:textFontWeight="700"
         android:textSize="@dimen/fragment_title_fontsize" />
 
@@ -36,7 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:clipToPadding="false">
 
         <ImageView
             android:layout_width="match_parent"
@@ -59,7 +59,17 @@
         android:layout_height="match_parent"
         android:layout_below="@id/mainFragmentTitle"
         android:orientation="vertical"
-        android:visibility="invisible">
+        android:visibility="invisible"
+        android:clipToPadding="false">
+
+        <TextView
+            android:id="@+id/detectedCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/detected_count"
+            android:textAllCaps="true"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/medium_margin"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/machineList"

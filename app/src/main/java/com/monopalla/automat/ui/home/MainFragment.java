@@ -45,6 +45,8 @@ public class MainFragment extends Fragment {
 
         MachineRepository machineData = MachineRepository.getInstance(getContext());
 
+        binding.detectedCount.setText(getString(R.string.detected_count, machineData.getMachines().size()));
+
         binding.machineList.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.machineList.setAdapter(new MachineRecyclerViewAdapter(machineData.getMachines()));
 
@@ -70,13 +72,11 @@ class MachineRecyclerViewAdapter extends RecyclerView.Adapter<MachineRecyclerVie
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView machineNameTV;
-        final TextView machineStatusTV;
 
         public ViewHolder(MachineItemBinding binding) {
             super(binding.getRoot());
 
             machineNameTV = binding.machineName;
-            machineStatusTV = binding.machineStatus;
         }
     }
 
@@ -95,7 +95,6 @@ class MachineRecyclerViewAdapter extends RecyclerView.Adapter<MachineRecyclerVie
         MachineRepository machineData = MachineRepository.getInstance(context);
 
         holder.machineNameTV.setText(context.getString(R.string.rv_machine_name, machine.getName()));
-        holder.machineStatusTV.setText(context.getString(R.string.rv_machine_status, machine.getStatus()));
 
         holder.itemView.setOnClickListener(view -> {
             machineData.setCurrentMachine(machine);

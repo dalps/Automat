@@ -2,4 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/search_products"
+        android:tooltipText="Cerca un prodotto"
+        android:title="Cerca un prodotto..."
+        android:titleCondensed="Cerca un prodotto..."
+        android:icon="@drawable/ic_round_search_24"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom"/>
+
 </menu>

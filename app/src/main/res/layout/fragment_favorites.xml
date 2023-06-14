@@ -17,6 +17,16 @@
         android:textFontWeight="700"
         android:textSize="@dimen/fragment_title_fontsize" />
 
+    <ImageButton
+        android:id="@+id/favoritesProductDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="@dimen/small_margin"
+        android:src="@drawable/ic_round_search_24"
+        android:padding="12dp"
+        android:background="?android:attr/actionBarItemBackground"/>
+
     <TextView
         android:id="@+id/favoritesCount"
         android:layout_width="match_parent"
@@ -26,6 +36,31 @@
         android:layout_below="@id/favoritesFragmentTitle"
         android:textAllCaps="true"
         android:layout_marginVertical="@dimen/small_margin" />
+
+    <LinearLayout
+        android:id="@+id/searchSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/favoritesFragmentTitle"
+        android:paddingHorizontal="@dimen/medium_margin"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginVertical="@dimen/small_margin">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="Ordina per: Nome"
+            android:textAllCaps="false"
+            android:textColor="@color/teal_700"
+            app:cornerRadius="50dp"
+            app:icon="@drawable/round_expand_more_24"
+            app:iconTint="@color/teal_700"
+            app:iconGravity="end"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/noFavoriteMessage"
@@ -38,68 +73,6 @@
         android:textSize="@dimen/small_fontsize"
         android:textAlignment="center"
         android:visibility="invisible"/>
-
-    <LinearLayout
-        android:id="@+id/searchSection"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/favoritesCount"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_margin="@dimen/small_margin">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginEnd="4dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/search_gray_background"
-            android:paddingHorizontal="@dimen/small_margin"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?selectableItemBackground">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="center"
-                android:padding="@dimen/small_margin"
-                android:src="@drawable/ic_round_search_24"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cerca prodotti..."/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical|end"
-            android:background="@drawable/outline_gray_background"
-            android:paddingStart="@dimen/small_margin"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?selectableItemBackground">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ordina per: Nome "/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="center"
-                android:padding="@dimen/small_margin"
-                android:src="@drawable/round_expand_more_24"/>
-        </LinearLayout>
-
-    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoriesList"

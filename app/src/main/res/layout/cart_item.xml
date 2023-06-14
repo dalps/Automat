@@ -42,9 +42,10 @@
 
     <ImageButton
         android:id="@+id/removeUnitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/small_margin"
+        android:layout_width="@dimen/cart_quantity_button_size"
+        android:layout_height="@dimen/cart_quantity_button_size"
+        android:scaleType="fitCenter"
+        android:layout_margin="@dimen/small_margin"
         android:src="@drawable/ic_round_remove_circle_outline_24"
         android:background="?attr/actionBarItemBackground"/>
 
@@ -52,19 +53,22 @@
         android:id="@+id/itemQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="32dp"
+        android:minHeight="32dp"
         android:layout_marginHorizontal="4dp"
         android:text="@string/item_quantity"
         android:textSize="16sp"
         android:textFontWeight="700"
-        android:textAlignment="textEnd"
+        android:textAlignment="center"
         android:background="@drawable/quantity_number_background"
         android:padding="@dimen/small_margin"/>
 
     <ImageButton
         android:id="@+id/addUnitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/small_margin"
+        android:layout_width="@dimen/cart_quantity_button_size"
+        android:layout_height="@dimen/cart_quantity_button_size"
+        android:scaleType="fitCenter"
+        android:layout_margin="@dimen/small_margin"
         android:src="@drawable/ic_round_add_circle_outline_24"
         android:background="?attr/actionBarItemBackground"/>
 </LinearLayout>

@@ -40,6 +40,7 @@ import java.util.ArrayList;
 
 public class MachineActivity extends AppCompatActivity {
     ActivityMachineBinding binding;
+    ProductRepository productData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class MachineActivity extends AppCompatActivity {
 
         MachineRepository machineData = MachineRepository.getInstance(getApplicationContext());
         Machine machine = machineData.getCurrentMachine();
-        ProductRepository productData = ProductRepository.getInstance(getApplicationContext());
+        productData = ProductRepository.getInstance(getApplicationContext());
         UserRepository userData = UserRepository.getInstance(getApplicationContext());
 
         binding.productList.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
@@ -62,7 +63,9 @@ public class MachineActivity extends AppCompatActivity {
             finishAfterTransition();
         });
 
-        binding.appbarSubtitle.setText(getString(R.string.machine_activity_subtitle, machine.getName()));
+        binding.appbarTitle.setText(machine.getName());
+
+        binding.productCount.setText(getString(R.string.cart_product_count, machine.getProducts(userData.getCurrentUser()).size()));
 
         binding.checkoutFAB.setOnClickListener(view -> {
             if(productData.getCart().isCartEmpty()) {
@@ -76,6 +79,22 @@ public class MachineActivity extends AppCompatActivity {
                     productData.getCart());
             cartBottomSheet.show(getSupportFragmentManager(), "cart");
         });
+
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+
+        binding.checkoutFAB.setText(getString(R.string.cart_fab_text, productData.getCart().getItems().size()));
+    }
+
+    @Subscribe
+    public void onAddedToCart(ProductRepository.AddedToCardEvent event) {
+        binding.checkoutFAB.setText(getString(R.string.cart_fab_text, productData.getCart().getItems().size()));
+    }
+
+    @Subscribe
+    public void onRemovedFromCart(ProductRepository.RemovedFromCartEvent event) {
+        binding.checkoutFAB.setText(getString(R.string.cart_fab_text, productData.getCart().getItems().size()));
     }
 
     public class SlotRecyclerViewAdapter extends RecyclerView.Adapter<SlotRecyclerViewAdapter.ViewHolder> {
