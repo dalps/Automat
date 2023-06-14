@@ -8,7 +8,10 @@
     app:cardCornerRadius="10dp"
     app:strokeWidth="1dp"
     app:strokeColor="@color/stroke_color"
-    app:cardElevation="0dp">
+    app:cardElevation="0dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?selectableItemBackground">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -81,13 +84,31 @@
                 android:lines="1"/>
         </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/orderHistoryItems"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/orderInfoSection"
-            android:padding="@dimen/small_margin"/>
-    </RelativeLayout>
+            android:gravity="center_vertical"
+            android:layout_below="@id/orderInfoSection">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/orderHistoryItems"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:padding="@dimen/small_margin"/>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="0"
+                android:src="@drawable/ic_round_navigate_next_24"
+                android:layout_alignParentEnd="true"
+                android:scaleType="centerInside"
+                android:contentDescription="Open machine" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>

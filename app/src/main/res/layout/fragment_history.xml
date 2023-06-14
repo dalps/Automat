@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HistoryFragment"
-    android:paddingHorizontal="@dimen/medium_margin"
     android:clipToPadding="false">
 
     <TextView
@@ -12,15 +11,66 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="I miei ordini"
-        android:layout_marginVertical="@dimen/medium_margin"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:paddingHorizontal="@dimen/medium_margin"
         android:textFontWeight="700"
         android:textSize="@dimen/fragment_title_fontsize" />
+
+    <TextView
+        android:id="@+id/ordersCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingHorizontal="@dimen/medium_margin"
+        android:text="@string/order_history_length_message"
+        android:layout_below="@id/ordersFragmentTitle"
+        android:textAllCaps="true"
+        android:layout_marginVertical="@dimen/small_margin" />
+
+    <LinearLayout
+        android:id="@+id/searchSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ordersFragmentTitle"
+        android:paddingHorizontal="@dimen/medium_margin"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginVertical="@dimen/small_margin">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical|end"
+            android:background="@drawable/outline_gray_background"
+            android:paddingStart="@dimen/small_margin"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ordina per: Data "/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="center"
+                android:padding="@dimen/small_margin"
+                android:src="@drawable/round_expand_more_24"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/noOrdersMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/searchSection"
         android:layout_marginVertical="100dp"
+        android:paddingHorizontal="@dimen/medium_margin"
         android:text="Gli ordini effettuati tramite l'app verranno mostrati qui."
         android:textSize="@dimen/small_fontsize"
         android:textAlignment="center"
@@ -31,15 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/ordersFragmentTitle">
-
-        <TextView
-            android:id="@+id/orderHistoryLength"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/order_history_length_message"
-            android:textSize="@dimen/small_fontsize"
-            android:layout_marginBottom="@dimen/small_margin" />
+        android:layout_below="@id/searchSection">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ordersList"

@@ -65,6 +65,8 @@ public class CartDialogFragment extends BottomSheetDialogFragment {
         });
 
         binding.cartAppBar.setNavigationOnClickListener(view1 -> dismiss());
+
+        binding.cartProductCount.setText(getString(R.string.cart_product_count, cart.getItems().size()));
     }
 
     @Override
@@ -114,9 +116,23 @@ public class CartDialogFragment extends BottomSheetDialogFragment {
             holder.itemQuantity.setText(getString(R.string.item_quantity, item.getQuantity()));
             holder.productPic.setImageBitmap(product.getPicture());
 
+            if (cart.getItem(position).getQuantity() <= 1) {
+                holder.removeUnitButton.setImageDrawable(getContext().getDrawable(R.drawable.ic_round_remove_shopping_cart_24));
+            }
+            else {
+                holder.removeUnitButton.setImageDrawable(getContext().getDrawable(R.drawable.ic_round_remove_circle_outline_24));
+            }
+
             holder.addUnitButton.setOnClickListener(view -> {
                 cart.increaseItemQuanitity(position);
                 holder.itemQuantity.setText(getString(R.string.item_quantity, item.getQuantity()));
+
+                if (cart.getItem(position).getQuantity() <= 1) {
+                    holder.removeUnitButton.setImageDrawable(getContext().getDrawable(R.drawable.ic_round_remove_shopping_cart_24));
+                }
+                else {
+                    holder.removeUnitButton.setImageDrawable(getContext().getDrawable(R.drawable.ic_round_remove_circle_outline_24));
+                }
             });
 
             holder.removeUnitButton.setOnClickListener(view -> {
@@ -135,6 +151,14 @@ public class CartDialogFragment extends BottomSheetDialogFragment {
                 }
 
                 cart.decreaseItemQuanitity(position);
+
+                if (cart.getItem(position).getQuantity() <= 1) {
+                    holder.removeUnitButton.setImageDrawable(getContext().getDrawable(R.drawable.ic_round_remove_shopping_cart_24));
+                }
+                else {
+                    holder.removeUnitButton.setImageDrawable(getContext().getDrawable(R.drawable.ic_round_remove_circle_outline_24));
+                }
+
                 holder.itemQuantity.setText(getString(R.string.item_quantity, item.getQuantity()));
             });
         }

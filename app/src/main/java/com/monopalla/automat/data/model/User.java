@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class User {
     String username;
@@ -103,8 +104,10 @@ public class User {
         this.profilePicture = profilePicture;
     }
 
-    public Set<Product> getFavoriteProducts() {
-        return favoriteProducts;
+    public ArrayList<Product> getFavoriteProducts() {
+        return favoriteProducts.stream()
+                .sorted()
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @Override

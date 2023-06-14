@@ -23,12 +23,12 @@ public class MachineRepository {
                 "Cagliari",
                 "Pronto");
         temp.assignSlot("A01", products.getProduct("Fiesta"), 18);
-        temp.assignSlot("A02", products.getProduct("Oreo"), 20);
         temp.assignSlot("A03", products.getProduct("Tuc"), 25);
         temp.assignSlot("A04", products.getProduct("Mars"), 25);
         temp.assignSlot("A05", products.getProduct("Crackers"), 30);
         temp.assignSlot("A06", products.getProduct("Coca Cola"), 22);
         temp.assignSlot("A07", products.getProduct("The alla Pesca"), 14);
+        temp.assignSlot("A08", products.getProduct("Oreo"), 20);
         machines.put(temp.getSerialNumber(), temp);
 
         temp = new Machine("ATM-00011035",

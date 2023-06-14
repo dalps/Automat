@@ -57,7 +57,7 @@
         android:textSize="16sp"
         android:textFontWeight="700"
         android:textAlignment="textEnd"
-        android:background="#ddd"
+        android:background="@drawable/quantity_number_background"
         android:padding="@dimen/small_margin"/>
 
     <ImageButton

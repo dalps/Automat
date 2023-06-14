@@ -69,19 +69,12 @@
                 tools:context=".ui.payment.OrderDialogFragment"
                 tools:listitem="@layout/order_item" />
 
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin"
-                android:layout_below="@id/list"/>
-
             <TextView
                 android:id="@+id/noItemsSelected"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/medium_margin"
-                android:layout_below="@id/divider"
+                android:layout_below="@id/list"
                 android:layout_alignBaseline="@id/orderTotalInfo"
                 android:textAlignment="center"
                 android:text="Nessun articolo selezionato"
@@ -93,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_below="@id/divider"
+                android:layout_below="@id/list"
                 android:background="#eee"
                 android:padding="@dimen/small_margin">
 

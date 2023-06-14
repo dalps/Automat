@@ -43,11 +43,13 @@ public class HistoryFragment extends Fragment {
         UserRepository userData = UserRepository.getInstance(getContext());
         User user = userData.getCurrentUser();
 
+        binding.ordersCount.setText(getString(R.string.order_history_length_message, user.historyLength()));
+
         if (user.anyOrders()) {
             binding.noOrdersMessage.setVisibility(View.INVISIBLE);
             binding.orderHistorySection.setVisibility(View.VISIBLE);
 
-            binding.orderHistoryLength.setText(getString(R.string.order_history_length_message, user.historyLength()));
+            binding.ordersCount.setText(getString(R.string.order_history_length_message, user.historyLength()));
 
             binding.ordersList.setLayoutManager(new LinearLayoutManager(getActivity()));
             binding.ordersList.setAdapter(new OrderRecyclerViewAdapter(user.getOrderHistory()));

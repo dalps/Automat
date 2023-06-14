@@ -72,8 +72,8 @@
                 android:scrollbars="none"/>
 
             <ImageView
-                android:layout_width="175dp"
-                android:layout_height="175dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:src="@drawable/pickup_illustration"
                 android:paddingTop="@dimen/small_margin"/>
 
@@ -82,9 +82,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginBottom="@dimen/big_margin"
-                android:text="I tuoi articoli stanno per essere erogati.\nControlla il vassoio del distributore"
+                android:text="Ritira i tuoi articoli dalla porta del distributore. Buon appetito!"
                 android:textAlignment="center"
-                android:textSize="@dimen/medium_margin"
+                android:textSize="@dimen/medium_fontsize"
                 android:textFontWeight="700"/>
 
             <LinearLayout
@@ -126,7 +126,7 @@
                     android:layout_marginBottom="@dimen/small_margin"
                     android:text="@string/earned_automat_points_message"
                     android:textAlignment="center"
-                    android:textSize="@dimen/medium_margin" />
+                    android:textSize="@dimen/small_fontsize" />
 
                 <TextView
                     android:id="@+id/newAutomatsBalanceMessage"
@@ -134,15 +134,19 @@
                     android:layout_height="wrap_content"
                     android:text="@string/new_automat_points_balance_message"
                     android:textAlignment="center"
-                    android:textSize="@dimen/medium_margin" />
+                    android:textSize="@dimen/medium_fontsize"
+                    android:textFontWeight="700"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/loginToRedeemLink"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/medium_margin"
                     android:text="Accedi o registrati per riscattarli"
                     android:textAllCaps="false"
+                    app:icon="@drawable/ic_round_navigate_next_24"
+                    app:iconGravity="end"
+                    app:cornerRadius="50dp"
                     android:backgroundTint="@color/teal_700" />
             </LinearLayout>
 
@@ -167,7 +171,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/small_margin"
                     android:text="@string/new_automat_points_balance_message"
-                    android:textSize="@dimen/big_fontsize" />
+                    android:textSize="@dimen/medium_fontsize"
+                    android:textFontWeight="700"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -178,12 +183,13 @@
             android:layout_marginTop="@dimen/medium_margin"
             android:layout_above="@id/keepShoppingButton"
             app:icon="@drawable/ic_round_home_24"
-            app:iconGravity="textStart"
+            app:iconGravity="end"
             android:text="Torna alla home"
             android:textAllCaps="false"
             android:textColor="@color/teal_700"
             app:iconTint="@color/teal_700"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:cornerRadius="50dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/keepShoppingButton"
@@ -193,10 +199,11 @@
             android:textColor="@color/teal_700"
             android:textAllCaps="false"
             android:layout_alignParentBottom="true"
-            app:icon="@drawable/ic_round_arrow_back_24"
-            app:iconGravity="textStart"
+            app:icon="@drawable/ic_round_navigate_next_24"
+            app:iconGravity="end"
             app:iconTint="@color/teal_700"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:cornerRadius="50dp"/>
 
     </RelativeLayout>
 </RelativeLayout>

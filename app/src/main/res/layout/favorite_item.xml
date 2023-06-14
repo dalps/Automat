@@ -13,7 +13,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/small_margin">
+        android:paddingTop="@dimen/small_margin"
+        android:paddingHorizontal="@dimen/small_margin">
 
         <ImageView
             android:id="@+id/favoritesProductPic"
@@ -28,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/favoritesProductPic"
-            android:layout_marginVertical="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
             android:text="Placeholder"
             android:textFontWeight="700"
             android:textAlignment="center"

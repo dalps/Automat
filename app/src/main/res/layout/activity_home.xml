@@ -1,109 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/homeLayoutRoot"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeActivity"
-    android:animateLayoutChanges="true">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/homeAppBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="0dp"
-        app:elevation="0dp">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/homeAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/home_actionbar_menu"
-            style="@style/Widget.MaterialComponents.Toolbar.Surface">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Automat™"
-                android:textSize="20sp"
-                android:textFontWeight="800"
-                android:layout_gravity="center"/>
-        </com.google.android.material.appbar.MaterialToolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
+    android:animateLayoutChanges="true"
+    tools:openDrawer="start">
 
     <RelativeLayout
-        android:id="@+id/registerInviteBanner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/homeAppBarLayout"
-        android:background="@drawable/home_banner_background"
-        android:layout_margin="@dimen/medium_margin">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/closeBannerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_round_close_24"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:padding="12dp"
-            android:background="?android:attr/actionBarItemBackground"/>
-
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/homeAppBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="@dimen/medium_margin"
-            android:paddingVertical="@dimen/small_margin">
+            android:elevation="0dp"
+            app:elevation="0dp">
 
-            <TextView
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/homeAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:menu="@menu/home_actionbar_menu"
+                app:navigationIcon="@drawable/round_menu_24"
+                style="@style/Widget.MaterialComponents.Toolbar.Surface">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Automat™"
+                    android:textSize="20sp"
+                    android:textFontWeight="800"
+                    android:layout_gravity="center"/>
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+            android:id="@+id/registerInviteBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/homeAppBarLayout"
+            android:background="@drawable/home_banner_background"
+            android:layout_margin="@dimen/medium_margin">
+
+            <ImageButton
+                android:id="@+id/closeBannerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_round_close_24"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:padding="12dp"
+                android:background="?android:attr/actionBarItemBackground"/>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Iscriviti e risparmia"
-                android:textAlignment="center"
-                android:textSize="@dimen/medium_fontsize"
-                android:layout_marginTop="@dimen/small_margin"
-                android:textFontWeight="700"/>
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/medium_margin"
+                android:paddingVertical="@dimen/small_margin">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Registrati per guadagnare punti Automat e risparmiare su ogni acquisto!"
-                android:layout_marginTop="@dimen/small_margin"
-                android:textSize="@dimen/small_fontsize"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Iscriviti e risparmia"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/medium_fontsize"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:textFontWeight="700"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/bannerRegisterButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin"
-                android:backgroundTint="@color/teal_700"
-                android:text="Registrati"
-                android:textAllCaps="false"
-                app:icon="@drawable/ic_round_navigate_next_24"
-                app:iconGravity="end"
-                app:cornerRadius="50dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Registrati per guadagnare punti Automat e risparmiare su ogni acquisto!"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:textSize="@dimen/small_fontsize"/>
 
-        </LinearLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bannerRegisterButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:backgroundTint="@color/teal_700"
+                    android:text="Registrati"
+                    android:textAllCaps="false"
+                    app:icon="@drawable/ic_round_navigate_next_24"
+                    app:iconGravity="end"
+                    app:cornerRadius="50dp"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottomNav"
+            android:layout_below="@id/registerInviteBanner"
+            android:animateLayoutChanges="true">
+
+        </FrameLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/bottom_navigation_menu" />
+
     </RelativeLayout>
 
-
-    <FrameLayout
-        android:id="@+id/fragmentContainer"
-        android:layout_width="match_parent"
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/naigationView"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomNav"
-        android:layout_below="@id/registerInviteBanner"
-        android:animateLayoutChanges="true">
+        android:layout_gravity="start"
+        app:menu="@menu/home_navigation_drawer"/>
+</androidx.drawerlayout.widget.DrawerLayout>
 
-    </FrameLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_navigation_menu" />
-</RelativeLayout>

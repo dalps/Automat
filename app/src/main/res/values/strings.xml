@@ -26,4 +26,5 @@
     <string name="order_history_length_message">%1$d ordini effettuati</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cart_product_count">%1$d prodotti</string>
 </resources>

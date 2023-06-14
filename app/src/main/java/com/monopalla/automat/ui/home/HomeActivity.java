@@ -85,7 +85,7 @@ public class HomeActivity extends AppCompatActivity implements LoginFragment.Log
             loginButton.setIcon(new BitmapDrawable(getResources(), cropped));
         }
 
-        binding.homeAppBar.setOnMenuItemClickListener(item -> {
+        /* binding.homeAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.login) {
                 PopupMenu popup = new PopupMenu(getApplicationContext(), findViewById(R.id.login));
 
@@ -113,6 +113,25 @@ public class HomeActivity extends AppCompatActivity implements LoginFragment.Log
             }
 
             return false;
+        }); */
+
+        binding.homeAppBar.setNavigationOnClickListener(v -> {
+            binding.drawerLayout.open();
+        });
+
+        binding.naigationView.setNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.login:
+                    LoginFragment loginFragment = new LoginFragment();
+                    loginFragment.show(getSupportFragmentManager(), "login");
+
+                    break;
+
+            }
+
+            binding.drawerLayout.close();
+
+            return true;
         });
 
         //
