@@ -43,10 +43,10 @@ public class AdminHomeActivity extends AppCompatActivity {
 
         binding.scanFAB.setOnClickListener(view -> {
             if (binding.machineSection.getVisibility() == View.VISIBLE) {
-                AnimUtils.switchViewsWithCircularRevealAndDelay(binding.machineSection, binding.machineSection);
+                AnimUtils.switchViewsWithCircularRevealAndDelay(binding.machineSection, binding.machineSection, binding.spinwheel);
             }
             else {
-                AnimUtils.switchViewsWithCircularRevealAndDelay(binding.noMachineFound, binding.machineSection);
+                AnimUtils.switchViewsWithCircularRevealAndDelay(binding.noMachineFound, binding.machineSection, binding.spinwheel);
             }
         });
     }

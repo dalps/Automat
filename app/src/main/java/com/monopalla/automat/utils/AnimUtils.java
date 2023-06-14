@@ -6,6 +6,8 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 
+import com.google.android.material.progressindicator.CircularProgressIndicator;
+
 public class AnimUtils {
     public static void switchViewsWithCircularReveal(View view1, View view2) {
         int cx1 = view1.getWidth()/2;
@@ -35,7 +37,7 @@ public class AnimUtils {
         animHide.start();
     }
 
-    public static void switchViewsWithCircularRevealAndDelay(View view1, View view2) {
+    public static void switchViewsWithCircularRevealAndDelay(View view1, View view2, CircularProgressIndicator spinwheel) {
         int cx1 = view1.getWidth()/2;
         int cy1 = view1.getHeight()/2;
 
@@ -64,12 +66,14 @@ public class AnimUtils {
                     public void onFinish() {
                         view2.setVisibility(View.VISIBLE);
                         animShow.start();
+                        spinwheel.hide();
                     }
 
                 }.start();
             }
         });
 
+        spinwheel.show();
         animHide.start();
     }
 
