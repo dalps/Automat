@@ -154,11 +154,8 @@ public class MachineActivity extends AppCompatActivity {
             holder.productCardView.setOnClickListener(view -> {
                 productData.setCurrentProduct(product);
 
-                Intent intent = new Intent(context, ProductActivity.class);
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
-                        (Activity) context);
-
-                context.startActivity(intent, options.toBundle());
+                ProductPurchaseDialogFragment fragment = new ProductPurchaseDialogFragment(product);
+                fragment.show(getSupportFragmentManager(), product.getName());
             });
 
             holder.productAddToCartButton.setOnClickListener(view -> {

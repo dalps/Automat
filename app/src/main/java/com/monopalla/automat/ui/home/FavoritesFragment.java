@@ -26,6 +26,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.View;
 import com.monopalla.automat.databinding.FragmentFavoritesBinding;
+import com.monopalla.automat.ui.machine.ProductFavoritesDialogFragment;
 
 public class FavoritesFragment extends Fragment {
     FragmentFavoritesBinding binding;
@@ -98,6 +99,11 @@ public class FavoritesFragment extends Fragment {
 
             holder.productName.setText(product.getName());
             holder.productPic.setImageBitmap(product.getPicture());
+
+            holder.itemView.setOnClickListener(v -> {
+                ProductFavoritesDialogFragment fragment = new ProductFavoritesDialogFragment(product);
+                fragment.show(getParentFragmentManager(), product.getName());
+            });
 
             holder.markAsFavorite.addOnCheckedStateChangedListener((checkBox, isChecked) -> {
                 if(isChecked == MaterialCheckBox.STATE_CHECKED) {
