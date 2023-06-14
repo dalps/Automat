@@ -49,6 +49,12 @@ public class AdminHomeActivity extends AppCompatActivity {
                 AnimUtils.switchViewsWithCircularRevealAndDelay(binding.noMachineFound, binding.machineSection, binding.spinwheel);
             }
         });
+
+        binding.detectedCount.setText(getString(R.string.detected_count, machineData.getMachines().size()));
+
+        binding.homeAppBar.setNavigationOnClickListener(v -> {
+            binding.drawerLayout.open();
+        });
     }
 }
 

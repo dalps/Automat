@@ -22,10 +22,15 @@ public class MachineControlPanelActivity extends AppCompatActivity {
         Machine machine = machineData.getCurrentMachine();
 
         binding.appbarSubtitle.setText(machine.getSerialNumber());
+
+        binding.machineAppBar.setNavigationOnClickListener(v -> {
+            finishAfterTransition();
+        });
+
         binding.machineName.setText(machine.getName());
 
         binding.inventoryAction.setOnClickListener(v -> {
-
+            // TODO start inventory activity
         });
     }
 }

@@ -63,10 +63,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/small_margin"
             android:text="Icona e nome"
+            android:textSize="@dimen/medium_fontsize"
             android:textFontWeight="700"/>
 
         <LinearLayout
-            android:id="@+id/panelMachineInfo"
+            android:id="@+id/panelMachineDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/appearanceLabel"
@@ -113,13 +114,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_below="@id/panelMachineInfo">
+            android:layout_below="@id/panelMachineDisplay">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/small_margin"
                 android:text="Azioni"
+                android:textSize="@dimen/medium_fontsize"
                 android:textFontWeight="700"/>
 
             <LinearLayout

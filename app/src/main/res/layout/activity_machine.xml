@@ -40,16 +40,9 @@
                         android:text="Automat del Palazzo"
                         android:textSize="20sp"
                         android:textFontWeight="800"
-                        android:layout_gravity="center"/>
-
-                    <TextView
-                        android:id="@+id/appbarSubtitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Catalogo prodotti"
-                        android:textSize="14sp"
-                        android:textFontWeight="700"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:maxLines="1"
+                        android:ellipsize="start"/>
                 </LinearLayout>
 
             </com.google.android.material.appbar.MaterialToolbar>
@@ -66,7 +59,8 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/small_margin"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/small_margin">
 
                 <TextView
                     android:id="@+id/productCount"

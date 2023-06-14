@@ -13,8 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.monopalla.automat.databinding.ActivityHomeBinding;
 import com.monopalla.automat.ui.admin.AdminLoginFragment;
+import com.monopalla.automat.ui.admin.home.AdminHomeActivity;
 import com.monopalla.automat.ui.user.LoginFragment;
 import com.monopalla.automat.R;
 import com.monopalla.automat.ui.user.RegisterFragment;
@@ -22,6 +24,9 @@ import com.monopalla.automat.ui.user.UserProfileActivity;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.utils.ImageUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 public class HomeActivity extends AppCompatActivity implements LoginFragment.LoginListener, RegisterFragment.RegisterListener {
     ActivityHomeBinding binding;
@@ -74,8 +79,8 @@ public class HomeActivity extends AppCompatActivity implements LoginFragment.Log
         //
         // App bar user avatar interaction & appearance
         //
-        Menu menu = binding.homeAppBar.getMenu();
-        MenuItem loginButton = menu.findItem(R.id.login);
+        Menu topMenu = binding.homeAppBar.getMenu();
+        MenuItem loginButton = topMenu.findItem(R.id.login);
 
         UserRepository userData = UserRepository.getInstance(getApplicationContext());
         User user = userData.getCurrentUser();
@@ -119,21 +124,6 @@ public class HomeActivity extends AppCompatActivity implements LoginFragment.Log
             binding.drawerLayout.open();
         });
 
-        binding.naigationView.setNavigationItemSelectedListener(menuItem -> {
-            switch (menuItem.getItemId()) {
-                case R.id.login:
-                    LoginFragment loginFragment = new LoginFragment();
-                    loginFragment.show(getSupportFragmentManager(), "login");
-
-                    break;
-
-            }
-
-            binding.drawerLayout.close();
-
-            return true;
-        });
-
         //
         // Registration banner
         //
@@ -146,7 +136,55 @@ public class HomeActivity extends AppCompatActivity implements LoginFragment.Log
             binding.registerInviteBanner.setVisibility(View.GONE);
         });
 
+        //
+        // Navigation drawer settings
+        //
+        Menu sideMenu = binding.naigationView.getMenu();
 
+        sideMenu.findItem(R.id.login).setVisible(true);
+
+        if (userData.isCurrentUserValid()) {
+            sideMenu.findItem(R.id.login).setVisible(false);
+
+            if (userData.isAdmin(user)) {
+                sideMenu.findItem(R.id.adminSection).setVisible(true);
+            }
+            else {
+                sideMenu.findItem(R.id.adminSection).setVisible(false);
+            }
+
+            sideMenu.findItem(R.id.userProfile).setVisible(true);
+            sideMenu.findItem(R.id.logout).setVisible(true);
+        }
+
+        EventBus.getDefault().register(this);
+
+        binding.naigationView.setNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.login:
+                    LoginFragment loginFragment = new LoginFragment();
+                    loginFragment.show(getSupportFragmentManager(), "login");
+                    break;
+
+                case R.id.logout:
+                    userData.logout();
+                    Snackbar.make(binding.naigationView, "Hai effettuato il logout", Snackbar.LENGTH_SHORT)
+                            .show();
+                    break;
+
+                case R.id.userProfile:
+                    Intent intent = new Intent(this, UserProfileActivity.class);
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                    break;
+
+                case R.id.adminAreaLink:
+                    Intent adminIntent = new Intent(this, AdminHomeActivity.class);
+                    startActivity(adminIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                    break;
+            }
+
+            return true;
+        });
     }
 
     @Override
@@ -163,17 +201,25 @@ public class HomeActivity extends AppCompatActivity implements LoginFragment.Log
 
     @Override
     public void onSuccessfulLogin(LoginFragment login) {
-        Menu menu = binding.homeAppBar.getMenu();
-        MenuItem loginButton = menu.findItem(R.id.login);
-
         UserRepository userData = UserRepository.getInstance(getApplicationContext());
         User user = userData.getCurrentUser();
+
+        Menu menu = binding.naigationView.getMenu();
 
         if (userData.isCurrentUserValid()) {
             binding.registerInviteBanner.setVisibility(View.GONE);
 
-            Bitmap cropped = ImageUtils.roundCrop(user.getProfilePicture());
-            loginButton.setIcon(new BitmapDrawable(getResources(), cropped));
+            menu.findItem(R.id.login).setVisible(false);
+
+            if (userData.isAdmin(user)) {
+                menu.findItem(R.id.adminSection).setVisible(true);
+            }
+            else {
+                menu.findItem(R.id.adminSection).setVisible(false);
+            }
+
+            menu.findItem(R.id.userProfile).setVisible(true);
+            menu.findItem(R.id.logout).setVisible(true);
         }
 
         Intent intent = new Intent(this, UserProfileActivity.class);
@@ -186,5 +232,17 @@ public class HomeActivity extends AppCompatActivity implements LoginFragment.Log
         if (UserRepository.getInstance(getApplicationContext()).isCurrentUserValid()) {
             binding.registerInviteBanner.setVisibility(View.GONE);
         }
+    }
+
+    @Subscribe
+    public void onSuccessfulLogout(UserRepository.LogoutEvent logoutEvent) {
+        binding.registerInviteBanner.setVisibility(View.VISIBLE);
+
+        Menu menu = binding.naigationView.getMenu();
+
+        menu.findItem(R.id.login).setVisible(true);
+        menu.findItem(R.id.userProfile).setVisible(false);
+        menu.findItem(R.id.logout).setVisible(false);
+        menu.findItem(R.id.adminSection).setVisible(false);
     }
 }

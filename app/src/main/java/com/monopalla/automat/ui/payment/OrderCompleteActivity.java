@@ -41,35 +41,34 @@ public class OrderCompleteActivity extends AppCompatActivity  implements LoginFr
         binding.orderCompleteItemThumbnails.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, true));
         binding.orderCompleteItemThumbnails.setAdapter(adapter);
 
-        binding.plusAutomatPoints.setText(getString(R.string.plus_automat_points, order.earnedAutomats()));
+        // binding.plusAutomatPoints.setText(getString(R.string.plus_automat_points, order.earnedAutomats()));
         binding.earnedAutomatsMessage.setText(getString(R.string.earned_automat_points_message, order.earnedAutomats()));
 
         // Show earned points message user didn't pay with points
         if (order.getPaymentMethod().compareTo(Order.POINTS_METHOD) == 0) {
-            binding.earnedPointsSection.setVisibility(View.GONE);
+            binding.earnedAutomatsMessage.setVisibility(View.GONE);
             
-            binding.pointsBalanceMessage.setText(getString(R.string.new_automat_points_balance_message, user.getAutomats()));
-            binding.newBalanceSection.setVisibility(View.VISIBLE);
+            binding.newBalance.setVisibility(View.VISIBLE);
+            binding.newBalance.setText(getString(R.string.new_automat_points_balance_message, user.getAutomats()));
         }
         else {
             if (userData.isCurrentUserValid()) {
                 user.addAutomats((int) order.earnedAutomats());
             }
 
-            binding.earnedPointsSection.setVisibility(View.VISIBLE);
-            binding.newBalanceSection.setVisibility(View.GONE);
+            binding.earnedAutomatsMessage.setVisibility(View.VISIBLE);
         }
 
         if (userData.isCurrentUserValid()) {
-            binding.newAutomatsBalanceMessage.setVisibility(View.VISIBLE);
             binding.loginToRedeemLink.setVisibility(View.GONE);
 
-            binding.newAutomatsBalanceMessage.setText(getString(R.string.new_automat_points_balance_message, user.getAutomats()));
+            binding.newBalance.setVisibility(View.VISIBLE);
+            binding.newBalance.setText(getString(R.string.new_automat_points_balance_message, user.getAutomats()));
         }
         else {
-            binding.newAutomatsBalanceMessage.setVisibility(View.GONE);
-            binding.loginToRedeemLink.setVisibility(View.VISIBLE);
+            binding.newBalance.setVisibility(View.GONE);
 
+            binding.loginToRedeemLink.setVisibility(View.VISIBLE);
             binding.loginToRedeemLink.setOnClickListener(v -> {
                 LoginFragment fragment = new LoginFragment();
                 fragment.show(getSupportFragmentManager(), "login");
@@ -118,10 +117,10 @@ public class OrderCompleteActivity extends AppCompatActivity  implements LoginFr
         User user = UserRepository.getInstance(getApplicationContext()).getCurrentUser();
         user.addAutomats((int) ProductRepository.getInstance(getApplicationContext()).getCart().toOrder().earnedAutomats());
 
-        binding.newAutomatsBalanceMessage.setVisibility(View.VISIBLE);
+        binding.newBalance.setVisibility(View.VISIBLE);
         binding.loginToRedeemLink.setVisibility(View.GONE);
 
-        binding.newAutomatsBalanceMessage.setText(getString(R.string.new_automat_points_balance_message, user.getAutomats()));
+        binding.newBalance.setText(getString(R.string.new_automat_points_balance_message, user.getAutomats()));
     }
 
     @Override
@@ -129,9 +128,9 @@ public class OrderCompleteActivity extends AppCompatActivity  implements LoginFr
         User user = UserRepository.getInstance(getApplicationContext()).getCurrentUser();
         user.addAutomats((int) ProductRepository.getInstance(getApplicationContext()).getCart().toOrder().earnedAutomats());
 
-        binding.newAutomatsBalanceMessage.setVisibility(View.VISIBLE);
+        binding.newBalance.setVisibility(View.VISIBLE);
         binding.loginToRedeemLink.setVisibility(View.GONE);
 
-        binding.newAutomatsBalanceMessage.setText(getString(R.string.new_automat_points_balance_message, user.getAutomats()));
+        binding.newBalance.setText(getString(R.string.new_automat_points_balance_message, user.getAutomats()));
     }
 }

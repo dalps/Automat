@@ -23,6 +23,7 @@ import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.databinding.FragmentProductFavoritesDialogBinding;
 import com.monopalla.automat.databinding.FragmentProductPurchaseDialogBinding;
 import com.monopalla.automat.ui.payment.OrderDialogFragment;
+import com.monopalla.automat.utils.AnimUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -57,8 +58,24 @@ public class ProductPurchaseDialogFragment extends DialogFragment {
             dismiss();
         });
 
+        if (productData.getCart().getUnits().contains(product)) {
+            binding.productPageAddToCartButton.setVisibility(View.INVISIBLE);
+            binding.productPageRemoveFromCartButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            binding.productPageAddToCartButton.setVisibility(View.VISIBLE);
+            binding.productPageRemoveFromCartButton.setVisibility(View.INVISIBLE);
+        }
+
         binding.productPageAddToCartButton.setOnClickListener(view -> {
             productData.addToCart(product);
+
+            dismiss();
+        });
+
+        binding.productPageRemoveFromCartButton.setOnClickListener(view -> {
+            productData.removeFromCart(product);
+
             dismiss();
         });
 

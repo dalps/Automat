@@ -5,7 +5,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.monopalla.automat.R;
+import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.data.model.User;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 
@@ -21,6 +24,7 @@ public class UserRepository {
         currentUser = DEFAULT_USER;
 
         users.put("walter", new User("walter", "walter", "Walter Clements", toBitmap(R.drawable.walter_dog)));
+        users.put("mario", new User("mario", "mario", "Mario Saia", toBitmap(R.drawable.placeholder)));
     }
 
     public static UserRepository getInstance(Context context) {
@@ -68,6 +72,7 @@ public class UserRepository {
 
     public void logout() {
         currentUser = null;
+        EventBus.getDefault().post(new LogoutEvent());
     }
 
     public void register(User newUser) {
@@ -81,5 +86,13 @@ public class UserRepository {
 
     Bitmap toBitmap(int resId) {
         return BitmapFactory.decodeResource(context.getResources(), resId);
+    }
+
+    public boolean isAdmin(User user) {
+        return user.getUsername() == "walter";
+    }
+
+    public static class LogoutEvent {
+
     }
 }

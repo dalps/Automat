@@ -21,7 +21,7 @@ public class MachineRepository {
         Machine temp = new Machine("ATM-00011034",
                 "Automat del Palazzo #1",
                 "Cagliari",
-                "Pronto");
+                "In funzione");
         temp.assignSlot("A01", products.getProduct("Fiesta"), 18);
         temp.assignSlot("A03", products.getProduct("Tuc"), 25);
         temp.assignSlot("A04", products.getProduct("Mars"), 25);
@@ -34,7 +34,7 @@ public class MachineRepository {
         temp = new Machine("ATM-00011035",
                 "Automat del Palazzo #2",
                 "Cagliari",
-                "Occupato");
+                "In funzione");
         temp.assignSlot("A01", products.getProduct("Fiesta"), 33);
         temp.assignSlot("A02", products.getProduct("Oreo"), 28);
         temp.assignSlot("A03", products.getProduct("Fonzies"), 27);

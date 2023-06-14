@@ -28,12 +28,16 @@ public class UserProfileActivity extends AppCompatActivity {
         if(user != null) {
             binding.userProfileUsername.setText(user.getName());
             binding.userProfileAutomats.setText(getString(R.string.user_profile_automat_tally, user.getAutomats()));
-            binding.orderHistorySize.setText(getString(R.string.user_order_tally, user.historyLength()));
 
             Bitmap photo = user.getProfilePicture();
             if(photo != null) {
                 binding.userProfilePic.setImageBitmap(ImageUtils.roundCrop(photo));
             }
+
+            binding.logoutButton.setOnClickListener(v -> {
+                userData.logout();
+                finishAfterTransition();
+            });
         }
     }
 }
