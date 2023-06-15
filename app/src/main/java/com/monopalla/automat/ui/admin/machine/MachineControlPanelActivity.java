@@ -2,6 +2,9 @@ package com.monopalla.automat.ui.admin.machine;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.monopalla.automat.R;
@@ -30,7 +33,11 @@ public class MachineControlPanelActivity extends AppCompatActivity {
         binding.machineName.setText(machine.getName());
 
         binding.inventoryAction.setOnClickListener(v -> {
-            // TODO start inventory activity
+            Intent intent = new Intent(this, InventoryActivity.class);
+
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this);
+
+            this.startActivity(intent, options.toBundle());
         });
     }
 }

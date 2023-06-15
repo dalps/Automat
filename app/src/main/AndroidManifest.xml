@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Automat"
         tools:targetApi="31">
         <activity
+            android:name=".ui.admin.machine.InventoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.admin.machine.MachineControlPanelActivity"
             android:exported="false" />
         <activity

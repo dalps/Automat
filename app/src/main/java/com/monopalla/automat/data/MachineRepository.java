@@ -23,12 +23,14 @@ public class MachineRepository {
                 "Cagliari",
                 "In funzione");
         temp.assignSlot("A01", products.getProduct("Fiesta"), 18);
+        temp.assignSlot("A02", null, 0);
         temp.assignSlot("A03", products.getProduct("Tuc"), 25);
         temp.assignSlot("A04", products.getProduct("Mars"), 25);
         temp.assignSlot("A05", products.getProduct("Crackers"), 30);
         temp.assignSlot("A06", products.getProduct("Coca Cola"), 22);
         temp.assignSlot("A07", products.getProduct("The alla Pesca"), 14);
         temp.assignSlot("A08", products.getProduct("Oreo"), 20);
+        temp.assignSlot("A09", null, 0);
         machines.put(temp.getSerialNumber(), temp);
 
         temp = new Machine("ATM-00011035",
@@ -37,11 +39,13 @@ public class MachineRepository {
                 "In funzione");
         temp.assignSlot("A01", products.getProduct("Fiesta"), 33);
         temp.assignSlot("A02", products.getProduct("Oreo"), 28);
-        temp.assignSlot("A03", products.getProduct("Fonzies"), 27);
+        temp.assignSlot("A03", null, 0);
         temp.assignSlot("A04", products.getProduct("Tuc"), 12);
         temp.assignSlot("A05", products.getProduct("Acqua Naturale"), 21);
-        temp.assignSlot("A06", products.getProduct("Acqua Frizzante"), 20);
+        temp.assignSlot("A06", null, 0);
+        temp.assignSlot("A07", products.getProduct("Acqua Frizzante"), 20);
         temp.assignSlot("A07", products.getProduct("Succo alla Pera"), 10);
+        temp.assignSlot("A08", products.getProduct("Tuc"), 12);
         machines.put(temp.getSerialNumber(), temp);
     }
 

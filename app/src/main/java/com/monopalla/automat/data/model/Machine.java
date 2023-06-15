@@ -68,6 +68,12 @@ public class Machine implements Comparable<Machine> {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
+    public ArrayList<MachineSlot> getSlotList() {
+        return slots.values().stream()
+                .sorted()
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
     public void setSlots(HashMap<String, MachineSlot> slots) {
         this.slots = slots;
     }

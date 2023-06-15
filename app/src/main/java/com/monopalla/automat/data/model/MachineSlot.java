@@ -3,7 +3,7 @@ package com.monopalla.automat.data.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class MachineSlot {
+public class MachineSlot implements Comparable<MachineSlot> {
     private String name; // A unique name for the slot within the machine
     private Product product; // The product that is sold
     private int numberOfItems; // The current amount of product items
@@ -86,5 +86,10 @@ public class MachineSlot {
     @Override
     public int hashCode() {
         return Objects.hash(getName());
+    }
+
+    @Override
+    public int compareTo(MachineSlot s) {
+        return this.getName().compareTo(s.getName());
     }
 }
