@@ -144,20 +144,6 @@
                     app:cornerRadius="50dp"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:visibility="visible"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/purchaseButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Acquista subito"
-                    android:layout_below="@id/productPageAddToCartButton"
-                    android:textAllCaps="false"
-                    android:textColor="@color/teal_700"
-                    app:icon="@drawable/ic_round_navigate_next_24"
-                    app:iconTint="@color/teal_700"
-                    app:iconGravity="end"
-                    app:cornerRadius="50dp"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
             </RelativeLayout>
 
         </LinearLayout>

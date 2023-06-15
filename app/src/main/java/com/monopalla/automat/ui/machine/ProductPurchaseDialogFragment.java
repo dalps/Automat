@@ -79,20 +79,6 @@ public class ProductPurchaseDialogFragment extends DialogFragment {
             dismiss();
         });
 
-        binding.purchaseButton.setOnClickListener(view -> {
-            OrderDialogFragment fragment = new OrderDialogFragment(
-                    new Order(LocalDate.now(),
-                            MachineRepository.getInstance().getCurrentMachine(),
-                            new ArrayList<>(Collections.singletonList(product))));
-
-            getChildFragmentManager()
-                    .beginTransaction()
-                    .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
-                    .add(R.id.productPageOrderFragmentContainer, fragment, "order")
-                    .addToBackStack("order")
-                    .commit();
-        });
-
         builder.setView(binding.getRoot());
 
         return builder.create();
