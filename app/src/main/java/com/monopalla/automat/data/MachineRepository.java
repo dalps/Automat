@@ -41,11 +41,12 @@ public class MachineRepository {
         temp.assignSlot("A02", products.getProduct("Oreo"), 28);
         temp.assignSlot("A03", null, 0);
         temp.assignSlot("A04", products.getProduct("Tuc"), 12);
+        temp.assignSlot("A05", null, 0);
         temp.assignSlot("A05", products.getProduct("Acqua Naturale"), 21);
-        temp.assignSlot("A06", null, 0);
-        temp.assignSlot("A07", products.getProduct("Acqua Frizzante"), 20);
-        temp.assignSlot("A07", products.getProduct("Succo alla Pera"), 10);
-        temp.assignSlot("A08", products.getProduct("Tuc"), 12);
+        temp.assignSlot("A06", products.getProduct("Acqua Frizzante"), 20);
+        temp.assignSlot("A07", products.getProduct("Thè alla pesca"), 18);
+        temp.assignSlot("A08", products.getProduct("Succo alla Pera"), 10);
+        temp.assignSlot("A09", products.getProduct("Croissant al Cioccolato"), 12);
         machines.put(temp.getSerialNumber(), temp);
     }
 

@@ -7,7 +7,7 @@ public class MachineSlot implements Comparable<MachineSlot> {
     private String name; // A unique name for the slot within the machine
     private Product product; // The product that is sold
     private int numberOfItems; // The current amount of product items
-    private static final int ITEM_CAPACITY = 50; // The maximum number of product items a slot can hold
+    public static final int ITEM_CAPACITY = 50; // The maximum number of product items a slot can hold
 
     public MachineSlot(String name, Product product, int initialAmount) {
         this.name = name;

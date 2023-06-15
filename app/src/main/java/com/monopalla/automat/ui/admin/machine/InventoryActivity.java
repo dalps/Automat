@@ -131,7 +131,8 @@ public class InventoryActivity extends AppCompatActivity {
                 holder.unassignedView.setVisibility(View.VISIBLE);
 
                 holder.productCardView.setOnClickListener(view -> {
-
+                    AssignSlotDialogFragment fragment = new AssignSlotDialogFragment(slot);
+                    fragment.show(getSupportFragmentManager(), slot.getName());
                 });
             }
         }

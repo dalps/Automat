@@ -15,23 +15,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.monopalla.automat.R;
-import com.monopalla.automat.data.MachineRepository;
-import com.monopalla.automat.data.ProductRepository;
 import com.monopalla.automat.data.model.MachineSlot;
-import com.monopalla.automat.data.model.Order;
 import com.monopalla.automat.data.model.Product;
-import com.monopalla.automat.databinding.SlotAssignedDialogBinding;
-import com.monopalla.automat.ui.payment.OrderDialogFragment;
+import com.monopalla.automat.databinding.SlotAssignDialogBinding;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-
-public class AssignedSlotDialogFragment extends DialogFragment {
-    SlotAssignedDialogBinding binding;
+public class AssignSlotDialogFragment extends DialogFragment {
+    SlotAssignDialogBinding binding;
     MachineSlot slot;
 
-    public AssignedSlotDialogFragment(MachineSlot slot) {
+    public AssignSlotDialogFragment(MachineSlot slot) {
         this.slot = slot;
     }
 
@@ -40,17 +32,10 @@ public class AssignedSlotDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        binding = SlotAssignedDialogBinding.inflate(getLayoutInflater());
+        binding = SlotAssignDialogBinding.inflate(getLayoutInflater());
 
-        Product product = slot.getProduct();
-
-        binding.productPageTitle.setText(getString(R.string.details_title, product.getName()));
-
-        binding.productPagePic.setImageBitmap(product.getPicture());
-        binding.assignedTo.setText(getString(R.string.slot_assigned_to, product.getName()));
-        binding.assignedToUnits.setText(getString(R.string.slot_assigned_to_units, slot.getNumberOfItems(), MachineSlot.ITEM_CAPACITY));
-
-        binding.productPageTitle.setText(getString(R.string.slot_assigned_title, slot.getName()));
+        binding.productPageTitle.setText(getString(R.string.slot_assign_title, slot.getName()));
+        
         binding.productPageAppBar.setNavigationOnClickListener(v -> {
             dismiss();
         });
@@ -68,6 +53,6 @@ public class AssignedSlotDialogFragment extends DialogFragment {
             getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         }
-        return inflater.inflate(R.layout.slot_assigned_dialog, container, false);
+        return inflater.inflate(R.layout.slot_assign_dialog, container, false);
     }
 }

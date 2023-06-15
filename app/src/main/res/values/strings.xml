@@ -25,7 +25,7 @@
     <string name="plus_automat_points">+%1$d</string>
     <string name="order_history_length_message">%1$d ordini effettuati</string>
     <string name="cart_product_count">%1$d prodotti</string>
-    <string name="slot_count">%1$d/%2$d slot assegnati</string>
+    <string name="slot_count">%1$d su %2$d slot assegnati</string>
     <string name="details_title">Info su %1$s</string>
     <string name="cart_fab_text">Carrello (%1$d)</string>
     <string name="order_items_count">Articoli (%1$d selezionati)</string>
@@ -33,7 +33,9 @@
     <string name="detected_count">%1$d Macchine rilevate</string>
     <string name="panel_machine_serial_number">Codice macchina: %1$s</string>
     <string name="panel_machine_status">Stato: %1$s</string>
-    <string name="slot_name">%1$s</string>
-    <string name="slot_assigned_to">Assegnato a: %1$s</string>
-    <string name="slot_assigned_to_units">%1$d unità rimanenti</string>
+    <string name="slot_name">#%1$s</string>
+    <string name="slot_assigned_title">Slot #%1$s</string>
+    <string name="slot_assigned_to">ASSEGNATO A: %1$s</string>
+    <string name="slot_assigned_to_units">UNITÀ RIMANENTI: %1$d/%2$d</string>
+    <string name="slot_assign_title">Assegna #%1$s</string>
 </resources>

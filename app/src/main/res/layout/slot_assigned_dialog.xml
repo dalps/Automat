@@ -42,107 +42,109 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/productPageAppBarLayout">
+        android:orientation="vertical"
+        android:layout_below="@id/productPageAppBarLayout"
+        android:paddingHorizontal="@dimen/medium_margin"
+        android:paddingBottom="@dimen/medium_margin">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="@dimen/medium_margin"
-            android:paddingBottom="@dimen/medium_margin">
+            android:layout_marginBottom="@dimen/small_margin"
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/productPagePic"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginBottom="@dimen/small_margin"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/placeholder"
                 android:scaleType="fitCenter"
-                android:src="@drawable/placeholder"/>
+                android:padding="2dp"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:background="@drawable/product_thumbnail_background"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/small_margin"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/assignedTo"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
+                    android:text="@string/slot_assigned_to"
+                    android:textSize="@dimen/small_fontsize"/>
 
-                    <TextView
-                        android:id="@+id/assignedTo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/slot_assigned_to"
-                        android:textFontWeight="700"
-                        android:textSize="@dimen/medium_fontsize"/>
-
-                    <TextView
-                        android:id="@+id/assignedToUnits"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/slot_assigned_to_units"
-                        android:textSize="@dimen/medium_fontsize"/>
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/assignedToUnits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/slot_assigned_to_units"
+                    android:textSize="@dimen/small_fontsize"
+                    android:textColor="@color/material_on_surface_emphasis_medium"/>
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/actions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/medium_margin"
-                    android:text="Riassegna con barcode"
-                    android:textAllCaps="false"
-                    android:textColor="@color/teal_700"
-                    app:icon="@drawable/round_qr_code_scanner_24"
-                    app:iconTint="@color/teal_700"
-                    app:iconGravity="textStart"
-                    app:cornerRadius="50dp"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:visibility="visible"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Riassegna dal catalogo"
-                    android:textAllCaps="false"
-                    android:textColor="@color/teal_700"
-                    app:icon="@drawable/round_list_24"
-                    app:iconTint="@color/teal_700"
-                    app:iconGravity="textStart"
-                    app:cornerRadius="50dp"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:visibility="visible"/>
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/small_margin" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/purchaseButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Rimuovi prodotto"
-                    android:textAllCaps="false"
-                    android:textColor="@color/teal_700"
-                    app:cornerRadius="50dp"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
-            </LinearLayout>
-
         </LinearLayout>
-    </ScrollView>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/actions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:text="Riassegna con barcode"
+                android:textAllCaps="false"
+                android:textColor="@color/teal_700"
+                app:icon="@drawable/round_qr_code_scanner_24"
+                app:iconTint="@color/teal_700"
+                app:iconGravity="textStart"
+                app:cornerRadius="50dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:visibility="visible"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Riassegna dal catalogo"
+                android:textAllCaps="false"
+                android:textColor="@color/teal_700"
+                app:icon="@drawable/round_list_24"
+                app:iconTint="@color/teal_700"
+                app:iconGravity="textStart"
+                app:cornerRadius="50dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:visibility="visible"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/small_margin"
+                app:dividerInsetStart="@dimen/small_margin"
+                app:dividerInsetEnd="@dimen/small_margin" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/purchaseButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rimuovi prodotto"
+                android:textAllCaps="false"
+                android:textColor="@color/teal_700"
+                app:cornerRadius="50dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/productPageOrderFragmentContainer"
