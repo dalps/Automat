@@ -28,7 +28,7 @@ public class MachineRepository {
         temp.assignSlot("A04", products.getProduct("Mars"), 25);
         temp.assignSlot("A05", products.getProduct("Crackers"), 30);
         temp.assignSlot("A06", products.getProduct("Coca Cola"), 22);
-        temp.assignSlot("A07", products.getProduct("The alla Pesca"), 14);
+        temp.assignSlot("A07", products.getProduct("Thè alla Pesca"), 14);
         temp.assignSlot("A08", products.getProduct("Oreo"), 20);
         temp.assignSlot("A09", null, 0);
         machines.put(temp.getSerialNumber(), temp);
@@ -47,6 +47,7 @@ public class MachineRepository {
         temp.assignSlot("A07", products.getProduct("Thè alla pesca"), 18);
         temp.assignSlot("A08", products.getProduct("Succo alla Pera"), 10);
         temp.assignSlot("A09", products.getProduct("Croissant al Cioccolato"), 12);
+        temp.assignSlot("A10", products.getProduct("Fonzies"), 10);
         machines.put(temp.getSerialNumber(), temp);
     }
 

@@ -78,6 +78,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/teal_700"
                     app:cornerRadius="50dp"
+                    app:rippleColor="@color/teal_200"
                     app:icon="@drawable/round_expand_more_24"
                     app:iconTint="@color/teal_700"
                     app:iconGravity="end"

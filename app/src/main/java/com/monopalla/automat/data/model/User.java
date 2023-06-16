@@ -2,6 +2,8 @@ package com.monopalla.automat.data.model;
 
 import android.graphics.Bitmap;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
@@ -28,12 +30,42 @@ public class User {
         automats = 0;
     }
 
+    public User(String username, String password, String name, Bitmap profilePicture, int automats) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.profilePicture = profilePicture;
+        favoriteProducts = new HashSet<>();
+        orderHistory = new ArrayList<>();
+        this.automats = automats;
+    }
+
+    public static class MarkedFavoriteEvent {
+        public final Product product;
+
+        public MarkedFavoriteEvent(Product product) {
+            this.product = product;
+        }
+    }
+
+    public static class UnmarkedFavoriteEvent {
+        public final Product product;
+
+        public UnmarkedFavoriteEvent(Product product) {
+            this.product = product;
+        }
+    }
+
     public void addFavorite(Product product) {
         favoriteProducts.add(product);
+
+        EventBus.getDefault().post(new MarkedFavoriteEvent(product));
     }
 
     public void removeFavorite(Product product) {
         favoriteProducts.remove(product);
+
+        EventBus.getDefault().post(new UnmarkedFavoriteEvent(product));
     }
 
     public boolean isProductFavorite(Product product) {

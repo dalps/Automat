@@ -8,16 +8,14 @@
     app:cardCornerRadius="10dp"
     app:strokeWidth="1dp"
     app:strokeColor="@color/stroke_color"
-    app:cardElevation="0dp"
+    app:cardElevation="2dp"
     android:clickable="true"
     android:focusable="true"
     android:background="?selectableItemBackground">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/small_margin"
-        android:paddingHorizontal="@dimen/small_margin">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/favoritesProductPic"
@@ -25,6 +23,8 @@
             android:layout_height="100dp"
             android:src="@drawable/placeholder"
             android:scaleType="fitCenter"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginHorizontal="@dimen/small_margin"
             android:contentDescription="Product picture"/>
 
         <TextView
@@ -36,44 +36,11 @@
             android:text="Placeholder"
             android:textFontWeight="700"
             android:textAlignment="center"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:layout_marginHorizontal="@dimen/small_margin"
             android:textSize="20dp"
             android:maxLines="1"
             android:ellipsize="end"/>
-
-        <LinearLayout
-            android:id="@+id/favoritesActions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/favoritesProductName"
-            android:gravity="center"
-            android:layout_alignParentEnd="true">
-
-            <ImageButton
-                android:id="@+id/favoritesProductLocate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_round_my_location_24"
-                android:padding="12dp"
-                android:background="?android:attr/actionBarItemBackground"/>
-
-            <ImageButton
-                android:id="@+id/favoritesProductDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_outline_info_24"
-                android:padding="12dp"
-                android:background="?android:attr/actionBarItemBackground"/>
-
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/favoritesProductFavoriteCheckbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@android:color/holo_red_light"
-                android:tooltipText="Nei preferiti"
-                android:button="@drawable/favorite_states"
-                android:checked="true" />
-        </LinearLayout>
-
     </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>

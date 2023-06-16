@@ -23,7 +23,7 @@ public class UserRepository {
         this.context = context;
         currentUser = DEFAULT_USER;
 
-        users.put("walter", new User("walter", "walter", "Walter Clements", toBitmap(R.drawable.walter_dog)));
+        users.put("walter", new User("walter", "walter", "Walter Clements", toBitmap(R.drawable.walter_dog), 100));
         users.put("mario", new User("mario", "mario", "Mario Saia", toBitmap(R.drawable.placeholder)));
     }
 
@@ -71,7 +71,7 @@ public class UserRepository {
 
 
     public void logout() {
-        currentUser = null;
+        currentUser = DEFAULT_USER;
         EventBus.getDefault().post(new LogoutEvent());
     }
 

@@ -72,14 +72,12 @@ public class FavoritesFragment extends Fragment {
         public class ViewHolder extends RecyclerView.ViewHolder {
             final TextView productName;
             final ImageView productPic;
-            final MaterialCheckBox markAsFavorite;
 
             public ViewHolder(FavoriteItemBinding binding) {
                 super(binding.getRoot());
 
                 productName = binding.favoritesProductName;
                 productPic = binding.favoritesProductPic;
-                markAsFavorite = binding.favoritesProductFavoriteCheckbox;
             }
         }
 
@@ -103,23 +101,6 @@ public class FavoritesFragment extends Fragment {
             holder.itemView.setOnClickListener(v -> {
                 ProductFavoritesDialogFragment fragment = new ProductFavoritesDialogFragment(product);
                 fragment.show(getParentFragmentManager(), product.getName());
-            });
-
-            holder.markAsFavorite.addOnCheckedStateChangedListener((checkBox, isChecked) -> {
-                if(isChecked == MaterialCheckBox.STATE_CHECKED) {
-                    user.addFavorite(product);
-
-                    showSnackbar(holder.markAsFavorite,
-                            context.getString(R.string.cart_item_marked_alert, product.getName()));
-                }
-                else {
-                    user.removeFavorite(product);
-
-                    showSnackbar(holder.markAsFavorite,
-                            context.getString(R.string.cart_item_unmarked_alert, product.getName()));
-                }
-
-                binding.favoritesCount.setText(getString(R.string.cart_product_count, favorites.size()));
             });
         }
 

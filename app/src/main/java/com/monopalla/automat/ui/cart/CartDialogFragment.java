@@ -1,5 +1,7 @@
 package com.monopalla.automat.ui.cart;
 
+import static com.monopalla.automat.utils.UIUtils.showErrorSnackbar;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -124,6 +126,11 @@ public class CartDialogFragment extends BottomSheetDialogFragment {
             }
 
             holder.addUnitButton.setOnClickListener(view -> {
+                if (cart.isCartFull()) {
+                    showErrorSnackbar(holder.addUnitButton,
+                            getString(R.string.cart_full_alert),
+                            binding.cartAppBar);
+                }
                 cart.increaseItemQuanitity(position);
                 holder.itemQuantity.setText(getString(R.string.item_quantity, item.getQuantity()));
 

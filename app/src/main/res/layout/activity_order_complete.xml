@@ -19,7 +19,7 @@
             android:id="@+id/orderCompleteAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/machine_actionbar_menu"
+            app:menu="@menu/order_complete_actionbar_menu"
             app:navigationIcon="@drawable/ic_round_arrow_back_24"
             style="@style/Widget.MaterialComponents.Toolbar.Surface">
 
@@ -132,7 +132,6 @@
                     android:id="@+id/loginToRedeemLink"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/medium_margin"
                     android:text="Accedi o registrati per riscattarli"
                     android:textAllCaps="false"
                     app:icon="@drawable/ic_round_navigate_next_24"
@@ -154,6 +153,7 @@
             android:textAllCaps="false"
             android:textColor="@color/teal_700"
             app:iconTint="@color/teal_700"
+            app:rippleColor="@color/teal_200"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             app:cornerRadius="50dp"/>
 
@@ -168,6 +168,7 @@
             app:icon="@drawable/ic_round_navigate_next_24"
             app:iconGravity="end"
             app:iconTint="@color/teal_700"
+            app:rippleColor="@color/teal_200"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             app:cornerRadius="50dp"/>
 

@@ -1,5 +1,7 @@
 package com.monopalla.automat.ui.machine;
 
+import static com.monopalla.automat.utils.UIUtils.showSnackbar;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.Color;
@@ -15,11 +17,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
+import com.google.android.material.checkbox.MaterialCheckBox;
+import com.google.android.material.snackbar.Snackbar;
 import com.monopalla.automat.R;
 import com.monopalla.automat.data.MachineRepository;
 import com.monopalla.automat.data.ProductRepository;
+import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.Order;
 import com.monopalla.automat.data.model.Product;
+import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.FragmentProductFavoritesDialogBinding;
 import com.monopalla.automat.databinding.FragmentProductPurchaseDialogBinding;
 import com.monopalla.automat.ui.payment.OrderDialogFragment;
@@ -46,6 +52,8 @@ public class ProductPurchaseDialogFragment extends DialogFragment {
 
         ProductRepository productData = ProductRepository.getInstance(getContext());
         Product product = productData.getCurrentProduct();
+        UserRepository userData = UserRepository.getInstance(getContext());
+        User user = userData.getCurrentUser();
 
         binding.productPageTitle.setText(getString(R.string.details_title, product.getName()));
 
@@ -78,6 +86,42 @@ public class ProductPurchaseDialogFragment extends DialogFragment {
 
             dismiss();
         });
+
+        binding.purchaseButton.setOnClickListener(view -> {
+            OrderDialogFragment fragment = new OrderDialogFragment(
+                    new Order(LocalDate.now(),
+                            MachineRepository.getInstance().getCurrentMachine(),
+                            new ArrayList<>(Collections.singletonList(product))));
+
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                    .add(R.id.orderFragmentContainer, fragment, "order")
+                    .addToBackStack("order")
+                    .commit();
+
+            dismiss();
+        });
+
+        binding.favoritesProductFavoriteCheckbox.setChecked(user.isProductFavorite(product));
+
+        binding.favoritesProductFavoriteCheckbox.addOnCheckedStateChangedListener((checkBox, isChecked) -> {
+            if(isChecked == MaterialCheckBox.STATE_CHECKED) {
+                user.addFavorite(product);
+
+                showSnackbar(binding.favoritesProductFavoriteCheckbox,
+                        getString(R.string.cart_item_marked_alert, product.getName()),
+                        binding.favoritesProductFavoriteCheckbox);
+            }
+            else {
+                user.removeFavorite(product);
+
+                showSnackbar(binding.favoritesProductFavoriteCheckbox,
+                        getString(R.string.cart_item_unmarked_alert, product.getName()),
+                        binding.favoritesProductFavoriteCheckbox);
+            }
+        });
+
 
         builder.setView(binding.getRoot());
 

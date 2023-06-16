@@ -113,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/orderTotalInfo"
-                android:text="Metodo di pagamento"
+                android:text="2. Metodo di pagamento"
                 android:textSize="@dimen/medium_fontsize"
                 android:textFontWeight="700"
                 android:layout_marginTop="@dimen/big_margin" />
@@ -131,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/medium_margin"
-                    android:text="Hai abbastanza punti per completare l'acquisto!"
+                    android:text="Hai abbastanza punti per coprire l'ordine!"
                     android:textSize="@dimen/small_fontsize"/>
 
                 <RadioGroup

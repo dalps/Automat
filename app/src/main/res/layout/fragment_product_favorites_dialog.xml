@@ -79,15 +79,16 @@
                     android:textFontWeight="700"
                     android:textSize="@dimen/big_fontsize"/>
 
-
-                <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/favoritesProductFavoriteCheckbox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@android:color/holo_red_light"
-                    android:tooltipText="Nei preferiti"
-                    android:button="@drawable/favorite_states"
-                    android:checked="true" />
+                <ImageButton
+                android:id="@+id/favoritesProductDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/round_share_24"
+                android:padding="12dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:background="?android:attr/actionBarItemBackground"
+                android:elevation="2dp"/>
 
             </LinearLayout>
 
@@ -104,14 +105,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/medium_margin"
-                android:text="Trova punti di vendita"
+                android:text="Elimina dai preferiti"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/teal_700"
-                android:elevation="2dp"
-                app:icon="@drawable/ic_round_my_location_24"
+                android:textColor="@color/teal_700"
+                app:icon="@drawable/ic_round_delete_24"
                 app:iconGravity="textStart"
-                app:iconTint="@color/white"
+                app:iconTint="@color/teal_700"
                 app:cornerRadius="50dp"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 

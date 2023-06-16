@@ -6,7 +6,7 @@
     <string name="machine_activity_subtitle">in %1$s</string>
     <string name="product_price">%1$.2f€</string>
     <string name="product_page_title">%1$s</string>
-    <string name="cart_full_alert">Non puoi ordinare più di 5 articoli</string>
+    <string name="cart_full_alert">Non puoi ordinare più di 5 articoli!</string>
     <string name="cart_empty_alert">Il carrello è vuoto!</string>
     <string name="cart_item_added_alert">%1$s aggiunto al carrello</string>
     <string name="cart_item_removed_alert">%1$s rimosso dal carrello</string>
@@ -18,7 +18,7 @@
     <string name="user_profile_automat_tally">%1$d punti Automat</string>
     <string name="product_availability">%1$d rimasti</string>
     <string name="total_price">Totale: %1$.2f€</string>
-    <string name="total_price_in_automats">(%1$d punti Automat)</string>
+    <string name="total_price_in_automats">(= %1$d punti Automat)</string>
     <string name="automats_earned">Hai guadagnato %1$d punti Automat!</string>
     <string name="earned_automat_points_message">Con questo ordine guadagni %1$d punti Automat!</string>
     <string name="new_automat_points_balance_message">Nuovo saldo: %1$d</string>
@@ -28,7 +28,7 @@
     <string name="slot_count">%1$d su %2$d slot assegnati</string>
     <string name="details_title">Info su %1$s</string>
     <string name="cart_fab_text">Carrello (%1$d)</string>
-    <string name="order_items_count">Articoli (%1$d selezionati)</string>
+    <string name="order_items_count">1. Rivedi articoli (%1$d selezionati)</string>
     <string name="order_total_recap">Totale (%1$d articoli): %1$.2f€</string>
     <string name="detected_count">%1$d Macchine rilevate</string>
     <string name="panel_machine_serial_number">Codice macchina: %1$s</string>

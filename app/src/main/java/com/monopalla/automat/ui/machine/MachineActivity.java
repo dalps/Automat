@@ -1,5 +1,8 @@
 package com.monopalla.automat.ui.machine;
 
+import static com.monopalla.automat.utils.UIUtils.showErrorSnackbar;
+import static com.monopalla.automat.utils.UIUtils.showSnackbar;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -69,9 +72,7 @@ public class MachineActivity extends AppCompatActivity {
 
         binding.checkoutFAB.setOnClickListener(view -> {
             if(productData.getCart().isCartEmpty()) {
-                Snackbar.make(binding.checkoutFAB, getString(R.string.cart_empty_alert), Snackbar.LENGTH_SHORT)
-                        .setAnchorView(binding.checkoutFAB)
-                        .show();
+                showErrorSnackbar(binding.checkoutFAB, getString(R.string.cart_empty_alert), binding.checkoutFAB);
                 return;
             }
 
@@ -132,6 +133,11 @@ public class MachineActivity extends AppCompatActivity {
                 if(productNameTV.getText().toString().compareTo(event.product.getName()) == 0) {
                     AnimUtils.switchViewsWithCircularReveal(
                             productAddToCartButton, productRemoveFromCartButton);
+
+                    showSnackbar(productAddToCartButton,
+                            productAddToCartButton.getContext()
+                                    .getString(R.string.cart_item_added_alert, event.product.getName()),
+                            binding.checkoutFAB);
                 }
             }
 
@@ -140,6 +146,25 @@ public class MachineActivity extends AppCompatActivity {
                 if(productNameTV.getText().toString().compareTo(event.product.getName()) == 0) {
                     AnimUtils.switchViewsWithCircularReveal(
                             productRemoveFromCartButton, productAddToCartButton);
+
+                    showSnackbar(productAddToCartButton,
+                            productAddToCartButton.getContext()
+                                    .getString(R.string.cart_item_removed_alert, event.product.getName()),
+                            binding.checkoutFAB);
+                }
+            }
+
+            @Subscribe
+            public void onMarkedFavorite(User.MarkedFavoriteEvent event) {
+                if(productNameTV.getText().toString().compareTo(event.product.getName()) == 0) {
+                    productFavoriteCheckBox.setChecked(true);
+                }
+            }
+
+            @Subscribe
+            public void onMarkedFavorite(User.UnmarkedFavoriteEvent event) {
+                if(productNameTV.getText().toString().compareTo(event.product.getName()) == 0) {
+                    productFavoriteCheckBox.setChecked(false);
                 }
             }
         }
@@ -179,8 +204,9 @@ public class MachineActivity extends AppCompatActivity {
 
             holder.productAddToCartButton.setOnClickListener(view -> {
                 if(productData.getCart().isCartFull()) {
-                    showSnackbar(holder.productAddToCartButton,
-                            context.getString(R.string.cart_full_alert));
+                    showErrorSnackbar(holder.productAddToCartButton,
+                            context.getString(R.string.cart_full_alert),
+                            binding.checkoutFAB);
 
                     return;
                 }
@@ -188,14 +214,16 @@ public class MachineActivity extends AppCompatActivity {
                 productData.addToCart(product);
 
                 showSnackbar(holder.productAddToCartButton,
-                        context.getString(R.string.cart_item_added_alert, product.getName()));
+                        context.getString(R.string.cart_item_added_alert, product.getName()),
+                        binding.checkoutFAB);
             });
 
             holder.productRemoveFromCartButton.setOnClickListener(view -> {
                 productData.removeFromCart(product);
 
                 showSnackbar(holder.productRemoveFromCartButton,
-                        context.getString(R.string.cart_item_removed_alert, product.getName()));
+                        context.getString(R.string.cart_item_removed_alert, product.getName()),
+                        binding.checkoutFAB);
             });
 
             if (user.isProductFavorite(product)) {
@@ -210,13 +238,15 @@ public class MachineActivity extends AppCompatActivity {
                     user.addFavorite(product);
 
                     showSnackbar(holder.productRemoveFromCartButton,
-                            context.getString(R.string.cart_item_marked_alert, product.getName()));
+                            context.getString(R.string.cart_item_marked_alert, product.getName()),
+                            binding.checkoutFAB);
                 }
                 else {
                     user.removeFavorite(product);
 
                     showSnackbar(holder.productRemoveFromCartButton,
-                            context.getString(R.string.cart_item_unmarked_alert, product.getName()));
+                            context.getString(R.string.cart_item_unmarked_alert, product.getName()),
+                            binding.checkoutFAB);
                 }
 
             });
@@ -225,12 +255,6 @@ public class MachineActivity extends AppCompatActivity {
         @Override
         public int getItemCount() {
             return slotList.size();
-        }
-
-        public void showSnackbar(View view, String msg) {
-            Snackbar.make(view, msg, Snackbar.LENGTH_SHORT)
-                    .setAnchorView(binding.checkoutFAB)
-                    .show();
         }
     }
 }
