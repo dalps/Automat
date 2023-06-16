@@ -17,8 +17,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 
 import com.monopalla.automat.R;
+import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.Product;
+import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.FragmentProductFavoritesDialogBinding;
+import com.monopalla.automat.utils.UIUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class ProductFavoritesDialogFragment extends DialogFragment {
     FragmentProductFavoritesDialogBinding binding;
@@ -32,6 +37,8 @@ public class ProductFavoritesDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
+        User user = UserRepository.getInstance(getContext()).getCurrentUser();
+
         binding = FragmentProductFavoritesDialogBinding.inflate(getLayoutInflater());
 
         binding.productPageTitle.setText(getString(R.string.details_title, product.getName()));
@@ -41,6 +48,16 @@ public class ProductFavoritesDialogFragment extends DialogFragment {
         binding.productPageDescription.setText(product.getDescription());
 
         binding.productPageAppBar.setNavigationOnClickListener(v -> {
+            dismiss();
+        });
+        
+        binding.share.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.share, binding.share
+        ));
+        
+        binding.removeFromFavorites.setOnClickListener(v -> {
+            user.removeFavorite(product);
+
             dismiss();
         });
 

@@ -64,6 +64,13 @@ public class RegisterFragment extends DialogFragment {
             dismiss();
         });
 
+        binding.loginLink.setOnClickListener(v -> {
+            LoginFragment fragment = new LoginFragment();
+            fragment.show(getParentFragmentManager(), "login");
+
+            dismiss();
+        });
+
         builder.setView(binding.getRoot());
 
         return builder.create();

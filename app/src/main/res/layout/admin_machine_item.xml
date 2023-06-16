@@ -85,7 +85,7 @@
             android:layout_alignParentEnd="true">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/favoritesProductDetail"
+                android:id="@+id/unlock"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
@@ -111,7 +111,7 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/powerBtn"
+                android:id="@+id/power"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"

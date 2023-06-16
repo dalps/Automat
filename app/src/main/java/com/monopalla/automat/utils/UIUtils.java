@@ -29,4 +29,15 @@ public class UIUtils {
                 .setBackgroundTint(0xffff4444) // #ffcc0000
                 .show();
     }
+
+    public static void showNoActionSnackbar(View view) {
+        Snackbar.make(view, "Azione non implementata", Snackbar.LENGTH_SHORT)
+                .show();
+    }
+
+    public static void showNoActionSnackbar(View view, View anchor) {
+        Snackbar.make(view, "Azione non implementata", Snackbar.LENGTH_SHORT)
+                .setAnchorView(anchor)
+                .show();
+    }
 }

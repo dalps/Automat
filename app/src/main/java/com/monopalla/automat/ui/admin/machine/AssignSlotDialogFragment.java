@@ -18,6 +18,7 @@ import com.monopalla.automat.R;
 import com.monopalla.automat.data.model.MachineSlot;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.databinding.SlotAssignDialogBinding;
+import com.monopalla.automat.utils.UIUtils;
 
 public class AssignSlotDialogFragment extends DialogFragment {
     SlotAssignDialogBinding binding;
@@ -39,6 +40,14 @@ public class AssignSlotDialogFragment extends DialogFragment {
         binding.productPageAppBar.setNavigationOnClickListener(v -> {
             dismiss();
         });
+
+        binding.barcodeMethod.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.barcodeMethod, binding.barcodeMethod
+        ));
+
+        binding.catalogueMethod.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.catalogueMethod, binding.barcodeMethod
+        ));
 
         builder.setView(binding.getRoot());
 

@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:paddingVertical="@dimen/list_item_spacing_half"
-    android:gravity="center_vertical"
-    android:background="?attr/selectableItemBackground">
+    android:gravity="center_vertical">
 
 
     <com.google.android.material.checkbox.MaterialCheckBox
@@ -28,17 +27,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginHorizontal="@dimen/medium_margin"
+        android:layout_marginStart="@dimen/medium_margin"
+        android:layout_marginEnd="4dp"
         android:text="Placeholder"
-        android:textSize="@dimen/medium_fontsize"/>
+        android:textSize="@dimen/medium_fontsize"
+        android:maxLines="2"
+        android:ellipsize="end"/>
 
     <TextView
         android:id="@+id/orderProductPrice"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:textAlignment="textEnd"
         android:text="@string/product_price"
-        android:textSize="@dimen/medium_fontsize"/>
+        android:textSize="@dimen/medium_fontsize"
+        android:maxLines="1"/>
 
 </LinearLayout>

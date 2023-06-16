@@ -35,6 +35,7 @@ import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.Machine;
 import com.monopalla.automat.databinding.ActivityMachineBinding;
 import com.monopalla.automat.utils.AnimUtils;
+import com.monopalla.automat.utils.UIUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -67,6 +68,10 @@ public class MachineActivity extends AppCompatActivity {
         });
 
         binding.appbarTitle.setText(machine.getName());
+
+        binding.sortBy.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.sortBy, binding.checkoutFAB
+        ));
 
         binding.productCount.setText(getString(R.string.cart_product_count, machine.getProducts(userData.getCurrentUser()).size()));
 

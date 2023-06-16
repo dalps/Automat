@@ -78,7 +78,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/slot_assigned_to"
-                    android:textSize="@dimen/small_fontsize"/>
+                    android:textSize="@dimen/small_fontsize"
+                    android:maxLines="1"
+                    android:ellipsize="end"/>
 
                 <TextView
                     android:id="@+id/assignedToUnits"
@@ -100,6 +102,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/barcodeMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/medium_margin"
@@ -115,6 +118,7 @@
                 android:visibility="visible"/>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/catalogueMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Riassegna dal catalogo"
@@ -136,7 +140,7 @@
                 app:dividerInsetEnd="@dimen/small_margin" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/purchaseButton"
+                android:id="@+id/remove"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rimuovi prodotto"

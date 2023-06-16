@@ -62,6 +62,7 @@
             android:textAllCaps="false" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/barcodeMethod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
@@ -77,6 +78,7 @@
             android:visibility="visible"/>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/catalogueMethod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sfoglia il catalogo"

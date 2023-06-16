@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.payment.OrderDialogFragment"
+    android:clickable="true"
     android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout

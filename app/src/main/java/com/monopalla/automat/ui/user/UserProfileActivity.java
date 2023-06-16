@@ -10,6 +10,7 @@ import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.ActivityUserProfileBinding;
 import com.monopalla.automat.utils.ImageUtils;
+import com.monopalla.automat.utils.UIUtils;
 
 public class UserProfileActivity extends AppCompatActivity {
     ActivityUserProfileBinding binding;
@@ -35,8 +36,7 @@ public class UserProfileActivity extends AppCompatActivity {
             }
 
             binding.logoutButton.setOnClickListener(v -> {
-                userData.logout();
-                finishAfterTransition();
+                UIUtils.showNoActionSnackbar(binding.logoutButton, binding.logoutButton);
             });
         }
     }

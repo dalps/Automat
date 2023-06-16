@@ -116,7 +116,7 @@
         app:cornerRadius="50dp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/registerLink"
+        android:id="@+id/loginLink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Hai già un account? Accedi"

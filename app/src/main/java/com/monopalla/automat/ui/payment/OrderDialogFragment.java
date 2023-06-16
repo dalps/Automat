@@ -38,6 +38,7 @@ import com.monopalla.automat.databinding.FragmentOrderBinding;
 import com.monopalla.automat.databinding.OrderItemBinding;
 import com.monopalla.automat.ui.user.LoginFragment;
 import com.monopalla.automat.utils.AnimUtils;
+import com.monopalla.automat.utils.UIUtils;
 
 import java.util.ArrayList;
 
@@ -96,6 +97,14 @@ public class OrderDialogFragment extends Fragment {
 
         binding.payButton.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), OrderCompleteActivity.class);
+
+            if (order.getItems().isEmpty()) {
+                UIUtils.showErrorSnackbar(
+                        binding.payButton, "Seleziona almeno un articolo!", binding.payButton
+                );
+
+                return;
+            }
 
             if (binding.methodsRadioGroup.getCheckedRadioButtonId() == R.id.methodAutomatPoints) {
                 if (userData.isCurrentUserValid()) {
@@ -159,6 +168,8 @@ public class OrderDialogFragment extends Fragment {
         public void onBindViewHolder(ViewHolder holder, int position) {
             Product product = items.get(position);
 
+            holder.itemView.setForeground(null);
+
             holder.productName.setText(product.getName());
             holder.productPrice.setText(getString(R.string.product_price, product.getPrice()));
             holder.productPic.setImageBitmap(product.getPicture());
@@ -171,7 +182,6 @@ public class OrderDialogFragment extends Fragment {
 
                     if (wasEmpty) {
                         AnimUtils.switchViewsWithCircularReveal(binding.noItemsSelected, binding.orderTotalInfo);
-                        binding.payButton.setEnabled(true);
                     }
                 }
                 else {
@@ -179,7 +189,6 @@ public class OrderDialogFragment extends Fragment {
 
                     if (order.getItems().isEmpty()) {
                         AnimUtils.switchViewsWithCircularReveal(binding.orderTotalInfo, binding.noItemsSelected);
-                        binding.payButton.setEnabled(false);
                     }
                 }
 

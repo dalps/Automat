@@ -33,10 +33,14 @@
                     android:id="@+id/productPageTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxWidth="250dp"
                     android:text="@string/details_title"
                     android:textSize="20sp"
+                    android:textAlignment="center"
                     android:textFontWeight="800"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:maxLines="1"
+                    android:ellipsize="end"/>
             </LinearLayout>
         </com.google.android.material.appbar.MaterialToolbar>
 

@@ -80,15 +80,15 @@
                     android:textSize="@dimen/big_fontsize"/>
 
                 <ImageButton
-                android:id="@+id/favoritesProductDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/round_share_24"
-                android:padding="12dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:background="?android:attr/actionBarItemBackground"
-                android:elevation="2dp"/>
+                    android:id="@+id/share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/round_share_24"
+                    android:padding="12dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="?android:attr/actionBarItemBackground"
+                    android:elevation="2dp"/>
 
             </LinearLayout>
 
@@ -101,13 +101,14 @@
                 android:textSize="@dimen/small_fontsize"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/purchaseButton"
+                android:id="@+id/removeFromFavorites"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/medium_margin"
                 android:text="Elimina dai preferiti"
                 android:textAllCaps="false"
                 android:textColor="@color/teal_700"
+                app:rippleColor="@color/teal_200"
                 app:icon="@drawable/ic_round_delete_24"
                 app:iconGravity="textStart"
                 app:iconTint="@color/teal_700"

@@ -24,6 +24,7 @@ import com.monopalla.automat.ui.user.UserProfileActivity;
 import com.monopalla.automat.data.UserRepository;
 import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.utils.ImageUtils;
+import com.monopalla.automat.utils.UIUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -79,46 +80,8 @@ public class HomeActivity extends AppCompatActivity implements LoginFragment.Log
         //
         // App bar user avatar interaction & appearance
         //
-        Menu topMenu = binding.homeAppBar.getMenu();
-        MenuItem loginButton = topMenu.findItem(R.id.login);
-
         UserRepository userData = UserRepository.getInstance(getApplicationContext());
         User user = userData.getCurrentUser();
-
-        if (userData.isCurrentUserValid()) {
-            Bitmap cropped = ImageUtils.roundCrop(user.getProfilePicture());
-            loginButton.setIcon(new BitmapDrawable(getResources(), cropped));
-        }
-
-        /* binding.homeAppBar.setOnMenuItemClickListener(item -> {
-            if (item.getItemId() == R.id.login) {
-                PopupMenu popup = new PopupMenu(getApplicationContext(), findViewById(R.id.login));
-
-                popup.getMenuInflater().inflate(R.menu.home_settings_menu, popup.getMenu());
-
-                popup.setOnMenuItemClickListener(item1 -> {
-                    switch (item1.getItemId()) {
-                        case R.id.option_login:
-                            LoginFragment loginFragment = new LoginFragment();
-                            loginFragment.show(getSupportFragmentManager(), "login");
-                            break;
-
-                        case R.id.option_employee_login:
-                            AdminLoginFragment staffLoginFragment = new AdminLoginFragment();
-                            staffLoginFragment.show(getSupportFragmentManager(), "employee_login");
-                            break;
-                    }
-
-                    return true;
-                });
-
-                popup.show();
-
-                return true;
-            }
-
-            return false;
-        }); */
 
         binding.homeAppBar.setNavigationOnClickListener(v -> {
             binding.drawerLayout.open();
@@ -167,19 +130,22 @@ public class HomeActivity extends AppCompatActivity implements LoginFragment.Log
                     break;
 
                 case R.id.logout:
-                    userData.logout();
-                    Snackbar.make(binding.naigationView, "Hai effettuato il logout", Snackbar.LENGTH_SHORT)
-                            .show();
+                    UIUtils.showNoActionSnackbar(binding.naigationView);
+
                     break;
 
                 case R.id.userProfile:
                     Intent intent = new Intent(this, UserProfileActivity.class);
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+                    binding.drawerLayout.close();
                     break;
 
                 case R.id.adminAreaLink:
                     Intent adminIntent = new Intent(this, AdminHomeActivity.class);
                     startActivity(adminIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+                    binding.drawerLayout.close();
                     break;
             }
 

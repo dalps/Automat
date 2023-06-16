@@ -11,6 +11,7 @@ import com.monopalla.automat.R;
 import com.monopalla.automat.data.MachineRepository;
 import com.monopalla.automat.data.model.Machine;
 import com.monopalla.automat.databinding.ActivityMachineControlPanelBinding;
+import com.monopalla.automat.utils.UIUtils;
 
 public class MachineControlPanelActivity extends AppCompatActivity {
     ActivityMachineControlPanelBinding binding;
@@ -39,5 +40,29 @@ public class MachineControlPanelActivity extends AppCompatActivity {
 
             this.startActivity(intent, options.toBundle());
         });
+
+        binding.balanceAction.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.panelActions, binding.quickActions
+        ));
+
+        binding.transactionsAction.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.panelActions, binding.quickActions
+        ));
+
+        binding.repairReportAction.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.panelActions, binding.quickActions
+        ));
+
+        binding.bugReportAction.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.panelActions, binding.quickActions
+        ));
+
+        binding.unlock.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.quickActions, binding.quickActions
+        ));
+
+        binding.power.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.quickActions, binding.quickActions
+        ));
     }
 }

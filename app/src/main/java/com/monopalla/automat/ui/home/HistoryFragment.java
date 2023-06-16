@@ -19,6 +19,7 @@ import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.FragmentHistoryBinding;
 import com.monopalla.automat.databinding.OrderHistoryItemBinding;
 import com.monopalla.automat.ui.ProductThumbnailRecyclerViewAdapter;
+import com.monopalla.automat.utils.UIUtils;
 
 import org.w3c.dom.Text;
 
@@ -58,6 +59,14 @@ public class HistoryFragment extends Fragment {
             binding.noOrdersMessage.setVisibility(View.VISIBLE);
             binding.orderHistorySection.setVisibility(View.INVISIBLE);
         }
+
+        binding.search.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.search, getActivity().findViewById(R.id.bottomNav)
+        ));
+
+        binding.sortBy.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.sortBy, getActivity().findViewById(R.id.bottomNav)
+        ));
 
         return binding.getRoot();
     }

@@ -18,7 +18,7 @@
         android:textSize="@dimen/fragment_title_fontsize" />
 
     <ImageButton
-        android:id="@+id/favoritesProductDetail"
+        android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -49,6 +49,7 @@
         android:layout_marginVertical="@dimen/small_margin">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/sortBy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"

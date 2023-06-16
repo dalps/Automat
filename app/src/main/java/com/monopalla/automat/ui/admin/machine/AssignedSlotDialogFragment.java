@@ -22,6 +22,7 @@ import com.monopalla.automat.data.model.Order;
 import com.monopalla.automat.data.model.Product;
 import com.monopalla.automat.databinding.SlotAssignedDialogBinding;
 import com.monopalla.automat.ui.payment.OrderDialogFragment;
+import com.monopalla.automat.utils.UIUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -54,6 +55,18 @@ public class AssignedSlotDialogFragment extends DialogFragment {
         binding.productPageAppBar.setNavigationOnClickListener(v -> {
             dismiss();
         });
+
+        binding.barcodeMethod.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.barcodeMethod, binding.barcodeMethod
+        ));
+
+        binding.catalogueMethod.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.catalogueMethod, binding.barcodeMethod
+        ));
+
+        binding.remove.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.remove, binding.barcodeMethod
+        ));
 
         builder.setView(binding.getRoot());
 

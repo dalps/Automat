@@ -27,6 +27,11 @@ import androidx.fragment.app.Fragment;
 import android.view.View;
 import com.monopalla.automat.databinding.FragmentFavoritesBinding;
 import com.monopalla.automat.ui.machine.ProductFavoritesDialogFragment;
+import com.monopalla.automat.utils.AnimUtils;
+import com.monopalla.automat.utils.UIUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 public class FavoritesFragment extends Fragment {
     FragmentFavoritesBinding binding;
@@ -59,6 +64,14 @@ public class FavoritesFragment extends Fragment {
 
         binding.favoritesCount.setText(getString(R.string.cart_product_count, favorites.size()));
 
+        binding.search.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.search, getActivity().findViewById(R.id.bottomNav)
+        ));
+
+        binding.sortBy.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.sortBy, getActivity().findViewById(R.id.bottomNav)
+        ));
+
         return binding.getRoot();
     }
 
@@ -79,6 +92,22 @@ public class FavoritesFragment extends Fragment {
                 productName = binding.favoritesProductName;
                 productPic = binding.favoritesProductPic;
             }
+
+            @Subscribe
+            public void onRemovedFromFavorites(User.UnmarkedFavoriteEvent event) {
+                int position = favorites.indexOf(event.product);
+                favorites.remove(event.product);
+                notifyItemRemoved(position);
+
+                int itemsChangedCount = favorites.size() - position;
+                notifyItemRangeChanged(position, itemsChangedCount);
+
+                if (favorites.isEmpty()) {
+                    AnimUtils.switchViewsWithCircularReveal(
+                            binding.favoriesList, binding.noFavoriteMessage
+                    );
+                }
+            }
         }
 
         @NonNull
@@ -94,6 +123,10 @@ public class FavoritesFragment extends Fragment {
             Product product = favorites.get(position);
             Context context = holder.itemView.getContext();
             User user = UserRepository.getInstance(context).getCurrentUser();
+
+            if (!EventBus.getDefault().isRegistered(holder)) {
+                EventBus.getDefault().register(holder);
+            }
 
             holder.productName.setText(product.getName());
             holder.productPic.setImageBitmap(product.getPicture());

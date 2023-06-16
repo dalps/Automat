@@ -8,10 +8,7 @@
     app:cardCornerRadius="10dp"
     app:strokeWidth="1dp"
     app:strokeColor="@color/stroke_color"
-    app:cardElevation="0dp"
-    android:clickable="true"
-    android:focusable="true"
-    android:background="?selectableItemBackground">
+    app:cardElevation="0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -95,7 +92,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-
                 android:padding="@dimen/small_margin"/>
 
             <ImageView

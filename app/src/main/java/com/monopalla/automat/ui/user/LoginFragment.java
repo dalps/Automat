@@ -29,6 +29,7 @@ import com.monopalla.automat.data.model.User;
 import com.monopalla.automat.databinding.ActivityHomeBinding;
 import com.monopalla.automat.databinding.FragmentLoginBinding;
 import com.monopalla.automat.utils.ImageUtils;
+import com.monopalla.automat.utils.UIUtils;
 
 public class LoginFragment extends DialogFragment {
     FragmentLoginBinding binding;
@@ -70,6 +71,10 @@ public class LoginFragment extends DialogFragment {
 
             dismiss();
         });
+
+        binding.recoverLink.setOnClickListener(v -> UIUtils.showNoActionSnackbar(
+                binding.recoverLink, binding.recoverLink
+        ));
 
         builder.setView(binding.getRoot());
 
